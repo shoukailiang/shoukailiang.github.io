@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://blog.shoukailiang.cn/2018/02/26/styled-components/">
+    
+    
+    <title>styled-components | 草丛里的知识</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="前端,react,框架,css,js">
+    <meta name="description" content="styled-components 是一个常用的 css in js 类库。使得css代码也有了作用域。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。诸如 sass&amp;amp;less 等预处理可以解决部分 css 的局限性，但还是要学习新的语法，而且需要对其编译，其复杂的 webpack 配置也总是让开发者抵触。而 styled-compone">
+<meta name="keywords" content="前端,react,框架,css,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="styled-components">
+<meta property="og:url" content="http:www.shoukailiang.cn/2018/02/26/styled-components/index.html">
+<meta property="og:site_name" content="草丛里的知识">
+<meta property="og:description" content="styled-components 是一个常用的 css in js 类库。使得css代码也有了作用域。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。诸如 sass&amp;amp;less 等预处理可以解决部分 css 的局限性，但还是要学习新的语法，而且需要对其编译，其复杂的 webpack 配置也总是让开发者抵触。而 styled-compone">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-25T16:16:02.996Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="styled-components">
+<meta name="twitter:description" content="styled-components 是一个常用的 css in js 类库。使得css代码也有了作用域。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。诸如 sass&amp;amp;less 等预处理可以解决部分 css 的局限性，但还是要学习新的语法，而且需要对其编译，其复杂的 webpack 配置也总是让开发者抵触。而 styled-compone">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">goodliang</h5>
+          <a href="mailto:435072096@qq.com" title="435072096@qq.com" class="mail">435072096@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/shoukailiang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/shoukailiang" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-trophy"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">styled-components</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">styled-components</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-25T16:14:49.000Z" itemprop="datePublished" class="page-time">
+  2018-02-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装和使用"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装和使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码提示和高亮"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码提示和高亮</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#组件样式继承"><span class="post-toc-number">3.</span> <span class="post-toc-text">组件样式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#组件内部使用-className"><span class="post-toc-number">4.</span> <span class="post-toc-text">组件内部使用 className</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSS-动画支持"><span class="post-toc-number">5.</span> <span class="post-toc-text">CSS 动画支持</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="使用-styled-components"
+  class="post-article article-type-使用 fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">styled-components</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-26 00:14:49" datetime="2018-02-25T16:14:49.000Z"  itemprop="datePublished">2018-02-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>styled-components 是一个常用的 css in js 类库。使得css代码也有了作用域。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。诸如 sass&amp;less 等预处理可以解决部分 css 的局限性，但还是要学习新的语法，而且需要对其编译，其复杂的 webpack 配置也总是让开发者抵触。而 styled-componens 很好的解决了这些问题，很适合 React 技术栈的项目开发。</p>
+<h2 id="安装和使用"><a href="#安装和使用" class="headerlink" title="安装和使用"></a>安装和使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install styled-components</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import styled from &apos;styled-components&apos;</span><br><span class="line">class InfoNav extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const H1 = styled.h1`</span><br><span class="line">      background-color: #a1a;</span><br><span class="line">      text-align: center;</span><br><span class="line">      &gt;span&#123;</span><br><span class="line">        color:blue;</span><br><span class="line">      &#125;</span><br><span class="line">    `;</span><br><span class="line">    return (</span><br><span class="line">      &lt;React.Fragment&gt;</span><br><span class="line">        &lt;H1&gt;</span><br><span class="line">          &lt;span&gt;信息完善页面&lt;/span&gt;</span><br><span class="line">        &lt;/H1&gt;</span><br><span class="line">      &lt;/React.Fragment&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default InfoNav;</span><br></pre></td></tr></table></figure>
+<h2 id="代码提示和高亮"><a href="#代码提示和高亮" class="headerlink" title="代码提示和高亮"></a>代码提示和高亮</h2><p>ide 貌似没能做到代码高亮和提示<br>官网有vscode的插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vscode-styled-components</span><br></pre></td></tr></table></figure></p>
+<h2 id="组件样式继承"><a href="#组件样式继承" class="headerlink" title="组件样式继承"></a>组件样式继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import styled from &apos;styled-components&apos;</span><br><span class="line">class InfoNav extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const H1 = styled.div`</span><br><span class="line">      background-color: #a1a;</span><br><span class="line">      text-align: center;</span><br><span class="line">      font-size:20px;</span><br><span class="line">    `;</span><br><span class="line">    const SPAN = H1.extend`</span><br><span class="line">     color: white;</span><br><span class="line">   `;</span><br><span class="line">    return (</span><br><span class="line">      &lt;React.Fragment&gt;</span><br><span class="line">        &lt;H1&gt;</span><br><span class="line">          &lt;SPAN&gt;&#123;this.props.name&#125;信息完善页面&lt;/SPAN&gt;</span><br><span class="line">        &lt;/H1&gt;</span><br><span class="line">      &lt;/React.Fragment&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default InfoNav;</span><br></pre></td></tr></table></figure>
+<h2 id="组件内部使用-className"><a href="#组件内部使用-className" class="headerlink" title="组件内部使用 className"></a>组件内部使用 className</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Wrapper&gt;</span><br><span class="line">  &lt;h4&gt;Hello Word&lt;/h4&gt;</span><br><span class="line">  &lt;div className=&quot;detail&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/Wrapper&gt;</span><br></pre></td></tr></table></figure>
+<p>对于这种 styled-components 和 className 混用，或者是一些伪类的情况同样是支持的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import styled from &apos;styled-components&apos;;</span><br><span class="line">const Wrapper = styled.div`</span><br><span class="line">  display: block;</span><br><span class="line">  h4 &#123;</span><br><span class="line">    font-size: 14px;</span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      color: #fff;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  .detail &#123;</span><br><span class="line">    color: #ccc;</span><br><span class="line">  &#125;</span><br><span class="line">`;</span><br></pre></td></tr></table></figure></p>
+<p>当然还可以通过 injectGlobal 的方式将通用的样式注入到全局中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import styled, &#123; injectGlobal &#125; from &apos;styled-components&apos;;</span><br><span class="line">injectGlobal`</span><br><span class="line">  @font-face &#123;</span><br><span class="line">    font-family: &apos;Operator Mono&apos;;</span><br><span class="line">    src: url(&apos;../fonts/Operator-Mono.ttf&apos;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  body &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">  &#125;</span><br><span class="line">`;</span><br></pre></td></tr></table></figure></p>
+<h2 id="CSS-动画支持"><a href="#CSS-动画支持" class="headerlink" title="CSS 动画支持"></a>CSS 动画支持</h2><p>styled-components 同样对 css 动画中的 @keyframe 做了很好的支持。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; keyframes &#125; from &apos;styled-components&apos;;</span><br><span class="line">const fadeIn = keyframes`</span><br><span class="line">  0% &#123;</span><br><span class="line">    opacity: 0;</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    opacity: 1;</span><br><span class="line">  &#125;</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">const FadeInButton = styled.button`</span><br><span class="line">  animation: 1s $&#123;fadeIn&#125; ease-out;</span><br><span class="line">`;</span><br></pre></td></tr></table></figure></p>
+<p>keyframes 方法会生成一个唯一的 key 作为 keyframes 的名称，保证它的作用域是在单个文件内，非全局的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>下面简单总结一下 styled-components 在开发中的表现：</p>
+<ul>
+<li>提出了 container 和 components 的概念，移除了组件和样式之间的映射关系，符合关注度分离的模式；</li>
+<li>可以在样式定义中直接引用到 js 变量，共享变量，非常便利；</li>
+<li>支持组件之间继承，方便代码复用，提升可维护性；</li>
+<li>兼容现有的 className 方式，升级无痛；</li>
+<li>在实际应用中我们完全可以将 style 和 jsx 分开维护</li>
+</ul>
+<blockquote>
+<p>原文链接：<a href="https://juejin.im/entry/59a57a2b5188252445327ac1" title="Title" target="_blank" rel="noopener">https://juejin.im/entry/59a57a2b5188252445327ac1</a></p>
+</blockquote>
+<blockquote>
+<p>参考 ： <a href="https://www.jianshu.com/p/f188f7ea59b3" target="_blank" rel="noopener">https://www.jianshu.com/p/f188f7ea59b3</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-02-25T16:16:02.996Z" itemprop="dateUpdated">2018-02-26 00:16:02</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http:www.shoukailiang.cn">
+            <img src="/img/avatar.png" alt="goodliang">
+            goodliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/21/从面相过程的拖拽到面向对象的拖拽/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">从面相过程的拖拽到面向对象的拖拽</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>goodliang &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '再见';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '学习？？又在偷偷学习？？';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
