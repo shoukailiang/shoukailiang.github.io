@@ -30,7 +30,7 @@
 <meta property="og:site_name" content="草丛里的知识">
 <meta property="og:description" content="克隆项目：git clone https://github.com/shoukailiang/test.git 设置 如果你不设置可能还push不上去，第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：  git config –global user.name “shoukaili">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-20T12:59:51.660Z">
+<meta property="og:updated_time" content="2018-03-20T13:14:19.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速学会git">
 <meta name="twitter:description" content="克隆项目：git clone https://github.com/shoukailiang/test.git 设置 如果你不设置可能还push不上去，第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：  git config –global user.name “shoukaili">
@@ -227,14 +227,21 @@
 <li>git diff –cached：暂存区与版本库之间的对比（或者git diff –staged）</li>
 <li>git diff master:工作区与版本库之间的差异 ，master那个是分支的名字</li>
 </ul>
-<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><p>git reset HEAD drag.js  从暂存区撤销回工作区<br>git checkout – drag.js 从版本库撤销回工作区（会先从暂存区撤销，如果没有才会到版本库中撤销）<br>git commit -m “change3 drag.js and demo01.html” –amend  ：比如有两个文件1,2 我把1 add到暂存区，然后commit了全部，<br>这时候就除了错误，可以使用上述代码：就达到了撤销上一次的commit 然后把文件全部commit ；使用git log 并不会有那次commit的注释信息</p>
+<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><ul>
+<li>git reset HEAD drag.js  从暂存区撤销回工作区</li>
+<li>git checkout – drag.js 从版本库撤销回工作区（会先从暂存区撤销，如果没有才会到版本库中撤销）</li>
+<li>git commit -m “change3 drag.js and demo01.html” –amend  ：比如有两个文件1,2 我把1 add到暂存区，然后commit了全部，<br>这时候就除了错误，可以使用上述代码：就达到了撤销上一次的commit 然后把文件全部commit ；使用git log 并不会有那次commit的注释信息</li>
+</ul>
 <h3 id="删除："><a href="#删除：" class="headerlink" title="删除："></a>删除：</h3><ul>
 <li>git rm test.txt ：把暂存区中的test.txt删除（要先把工作区中的这个文件删除，否侧会报错）</li>
 <li>git rm -f test.txt 会把暂存区和工作区的test.txt删掉（要先把test.txt  add 到暂存区）</li>
 <li>git rm –cached test.txt 把暂存区的test.txt删掉，不会吧工作区的test.txt删掉</li>
 </ul>
 <h3 id="恢复："><a href="#恢复：" class="headerlink" title="恢复："></a>恢复：</h3><ul>
-<li><p>指定文件：比如一不小心在工作区把一个文件给误删了，这时候git log 后找到commit 的id  然后 git checkout e154cb8c45eb drag.js<br>git reset –hard e154cb8c45eb   恢复版本，不管有多少文件，可以去过去也可以去未来（未来至回退之后的未来）<br>git reset  –hard HEAD^ 回到上一个版本<br>git reset  –hard HEAD~2 回退两个版本（跳过两个，回退到第三个）</p>
+<li>指定文件：比如一不小心在工作区把一个文件给误删了，这时候git log 后找到commit 的id  然后 git checkout e154cb8c45eb drag.js</li>
+<li>git reset –hard e154cb8c45eb   恢复版本，不管有多少文件，可以去过去也可以去未来（未来至回退之后的未来）</li>
+<li>git reset  –hard HEAD^ 回到上一个版本</li>
+<li><p>git reset  –hard HEAD~2 回退两个版本（跳过两个，回退到第三个）</p>
 </li>
 <li><p>git reflog：把历史版本全都打印出来</p>
 </li>
@@ -298,7 +305,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-03-20T12:59:51.660Z" itemprop="dateUpdated">2018-03-20 20:59:51</time>
+    最后更新时间：<time datetime="2018-03-20T13:14:19.050Z" itemprop="dateUpdated">2018-03-20 21:14:19</time>
 </span><br>
 
 
