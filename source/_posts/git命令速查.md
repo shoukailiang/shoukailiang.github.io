@@ -8,7 +8,6 @@ tags:
 categories:
  - 工具
 ---
-
 ### 克隆项目：
 git clone https://github.com/shoukailiang/test.git
 
@@ -36,9 +35,9 @@ git clone https://github.com/shoukailiang/test.git
 - git diff master:工作区与版本库之间的差异 ，master那个是分支的名字
 
 ### 撤销
-- git reset HEAD drag.js  从暂存区撤销回工作区
-- git checkout -- drag.js 从版本库撤销回工作区（会先从暂存区撤销，如果没有才会到版本库中撤销）
-- git commit -m "change3 drag.js and demo01.html" --amend  ：比如有两个文件1,2 我把1 add到暂存区，然后commit了全部，
+git reset HEAD drag.js  从暂存区撤销回工作区
+git checkout -- drag.js 从版本库撤销回工作区（会先从暂存区撤销，如果没有才会到版本库中撤销）
+git commit -m "change3 drag.js and demo01.html" --amend  ：比如有两个文件1,2 我把1 add到暂存区，然后commit了全部，
 这时候就除了错误，可以使用上述代码：就达到了撤销上一次的commit 然后把文件全部commit ；使用git log 并不会有那次commit的注释信息
 
 
@@ -50,9 +49,9 @@ git clone https://github.com/shoukailiang/test.git
 
 ### 恢复：
 - 指定文件：比如一不小心在工作区把一个文件给误删了，这时候git log 后找到commit 的id  然后 git checkout e154cb8c45eb drag.js
-- git reset --hard e154cb8c45eb   恢复版本，不管有多少文件，可以去过去也可以去未来（未来至回退之后的未来）
-- git reset  --hard HEAD^ 回到上一个版本
-- git reset  --hard HEAD~2 回退两个版本（跳过两个，回退到第三个）
+git reset --hard e154cb8c45eb   恢复版本，不管有多少文件，可以去过去也可以去未来（未来至回退之后的未来）
+ git reset  --hard HEAD^ 回到上一个版本
+git reset  --hard HEAD~2 回退两个版本（跳过两个，回退到第三个）
 
 - git reflog：把历史版本全都打印出来
 
@@ -89,6 +88,7 @@ git clone https://github.com/shoukailiang/test.git
 - git branch -D new2 强制把没有合并的分支删掉
 - 有冲突的合并（两个分支不同）
   - 在master上git merge new1  会让你自己选择留下哪个然后 git commit -a -m "....."
+- git push origin --delete blog 删除远程分支
 
 
 - git push origin  new1  把new1分支提交到远端仓库上

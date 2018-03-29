@@ -1,6 +1,6 @@
 ---
 layout: create-react-app
-title: '配置scss,ant-design，装饰器，代理，node支持最新语法'
+title: 'create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法'
 date: 2018-03-28 19:37:07
 tags: 
   - 前端
@@ -13,7 +13,6 @@ categories:
  - webpack配置 
 ---
 ---
-
 ## 新建一个项目
 ```
 npm install -g create-react-app
@@ -96,9 +95,37 @@ test: /\.css$/ 变成 test: /\.s?css$/
       "transform-decorators-legacy"
     ]
   },
-  //设置代理
+  //设置代理,应为前端开启了一个服务器，后端又开启了一个服务器，导致跨域的问题，设置代理能解决这个问题
     "proxy": "http://localhost:8888",
 ```
 之后就ok了。你引入一个ant的组件试试就知道了
+# 结果
+```
+# 导入
+import { Button } from 'antd';
+import React from 'react'
+import "./msgCircle.scss";
+class MsgCircle extends React.Component {
+  render() {
+    return (
+      <div className="msg-circle">
+        <Button type="primary">Primary</Button>
+      </div>
+    )
+  }
+}
+export default MsgCircle;
+# 有人说为什么不用导入css,应为前面已经配置了按需加载
+```
 # 注意
 > 修改配置文件后要重新npm start一下的
+- 若配置装饰器后，发现 `vscode` 有红色波浪线，解决方法
+```
+# 新建一个tsconfig.json，内容如下
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowJs": true
+  }
+}
+```
