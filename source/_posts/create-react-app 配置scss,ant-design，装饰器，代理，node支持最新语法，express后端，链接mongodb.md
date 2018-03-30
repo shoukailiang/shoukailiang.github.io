@@ -1,6 +1,6 @@
 ---
 layout: create-react-app
-title: 'create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法'
+title: 'create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express后端，链接mongodb'
 date: 2018-03-28 19:37:07
 tags: 
   - 前端
@@ -9,6 +9,8 @@ tags:
   - scss
   - create-react-app
   - webpack
+  - express
+  - mongodb
 categories:
  - webpack配置 
 ---
@@ -129,3 +131,93 @@ export default MsgCircle;
   }
 }
 ```
+# 链接mongodb，后端node
+> 梦想还是要有的，万一实现了呢
+```
+# 在根目录新建一个server 
+cd server
+# init后就会生成一个package.json，记录你每次安装的包
+npm init 
+# 为什么把模块装在server里面，装在外面的package.json不好吗，可以啊，不过我喜欢分开
+npm i bluebird express mongoose nodemon --save 
+mkdir server.js
+```
+准备启动后端了，链接mongodb
+```
+const express = require('express');
+const mongoose = require('mongoose')
+
+const app = express();
+
+app.use('/', function (req, res) {
+  return res.json('hello world')
+})
+// mongoose的Promise已经废弃了，这里就用下bluebird
+mongoose.Promise = require('bluebird');
+
+try {
+  mongoose.connect('mongodb://localhost/test', {
+    // 不加参数会报警告
+    // useMongoClient: true
+  })
+} catch (error) {
+  console.log(error)
+}
+mongoose.connection
+  .once('open', function () {
+    console.log('mongoose connection')
+  })
+  .on('error', function (error) {
+    throw error;
+  })
+
+app.listen(8888, () => {
+  console.log("服务开启在8888");
+})
+```
+> 前面代理的端口要和后端启动的端口一致的
+
+修改package.json
+```
+# nodemon 就是你不用每次再去手动node server.js了，他会自动的帮你的
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+```
+# mongodb 存储配置
+- 默认你已经安装好mongodb,配好mongodb的环境变量，不配也没关系，多打几个路径而已
+- 在某一盘符下新建一个test(名字随意)，里面新建data,etc,logs三个文件夹
+- data是存放数据的，etc是配置文件，logs是日志
+- 在etc下新建mongo.conf
+```
+# 内容范例
+#数据库路径 (你自己的路径)
+dbpath=/home/skl/Desktop/test/data
+# 日志输出文件路径 
+logpath=/home/skl/Desktop/test/logs/mongodb.log
+# 错误日志采用追加模式，配置这个选项后mongodb的日志文件会追加到现有的日志文件，而不是重新创建一个文件 
+logappend=true
+
+# 过滤一些无用的日志 
+quiet=false
+
+# 启动日志文件，默认启动 
+journal=true
+
+# 端口号，默认是27017 
+port=27018
+```
+- 需要注意的是：linux和window的文件分隔符是不一样的，pwd打一下就知道了
+- 在etc文件里面运行 mongod --config mongo.conf （指定配置文件）
+> 启动server.js前先链接数据库 ，在etc文件里面运行 mongod --config mongo.conf （指定配置文件）
+## 启动
+```
+cd server
+npm start
+```
+
+![](https://user-gold-cdn.xitu.io/2018/3/30/162747a7d6c5682c?w=417&h=54&f=png&s=5208)
+访问localhost:8888，会出现
+
+
+![](https://user-gold-cdn.xitu.io/2018/3/30/162747b7e7798123?w=419&h=156&f=png&s=5405)
