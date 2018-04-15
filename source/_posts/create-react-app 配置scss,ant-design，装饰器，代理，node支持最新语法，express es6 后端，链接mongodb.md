@@ -1,6 +1,6 @@
 ---
 layout: create-react-app
-title: 'create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express后端，链接mongodb'
+title: 'create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb'
 date: 2018-03-28 19:37:07
 tags: 
   - 前端
@@ -119,6 +119,12 @@ class MsgCircle extends React.Component {
 export default MsgCircle;
 # 有人说为什么不用导入css,应为前面已经配置了按需加载
 ```
+# 如果我又想用antd的主题怎么办
+> 这里就给一个官方的解决方案
+
+[传送门](https://gist.github.com/Kruemelkatze/057f01b8e15216ae707dc7e6c9061ef7)
+
+![](https://user-gold-cdn.xitu.io/2018/3/30/1627484fc7122a6c?w=1033&h=373&f=png&s=44645)
 # 注意
 > 修改配置文件后要重新npm start一下的
 - 若配置装饰器后，发现 `vscode` 有红色波浪线，解决方法
@@ -179,10 +185,20 @@ app.listen(8888, () => {
 
 修改package.json
 ```
-# nodemon 就是你不用每次再去手动node server.js了，他会自动的帮你的
+# nodemon 就是你不用每次再去手动node server.js了，他会自动的帮你的（在外层的package.json）
   "scripts": {
-    "start": "nodemon server.js"
+    "server": "nodemon server/server.js"
   },
+```
+# express怎么不是es6的语法?
+```
+# 那就实现一下
+# 用babel-cli 
+npm i bebel-cli --save 
+修改scripts命令
+  "server": "NODE_ENV=test nodemon --exec babel-node server/server.js"
+ # 不指定babel-node的话，默认是node
+ # 之后你把里面的require改成import是不会报错的
 ```
 # mongodb 存储配置
 - 默认你已经安装好mongodb,配好mongodb的环境变量，不配也没关系，多打几个路径而已
