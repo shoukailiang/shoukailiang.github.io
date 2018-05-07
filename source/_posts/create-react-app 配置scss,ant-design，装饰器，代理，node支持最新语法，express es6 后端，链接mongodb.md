@@ -70,6 +70,7 @@ test: /\.css$/ 变成 test: /\.s?css$/
 ```
 # 修改babel配置，在package.json里面
 # 1.按需加载,让nodejs支持最新的语法，装饰器
+# s装饰器的包：npm i babel-plugin-transform-decorators-legacy --D
 # package.json里面不能写注释，记得删掉
  "babel": {
     "presets": [
