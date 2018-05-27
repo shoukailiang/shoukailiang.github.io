@@ -15,6 +15,7 @@ categories:
  - webpack配置 
 ---
 ---
+
 ## 新建一个项目
 ```
 npm install -g create-react-app
@@ -67,10 +68,11 @@ test: /\.css$/ 变成 test: /\.s?css$/
 [style-component](https://www.styled-components.com/)
 
 ## ant-design
+
 ```
 # 修改babel配置，在package.json里面
+# 装饰器的包：npm i babel-plugin-transform-decorators-legacy --D
 # 1.按需加载,让nodejs支持最新的语法，装饰器
-# s装饰器的包：npm i babel-plugin-transform-decorators-legacy --D
 # package.json里面不能写注释，记得删掉
  "babel": {
     "presets": [
@@ -238,3 +240,5 @@ npm start
 
 
 ![](https://user-gold-cdn.xitu.io/2018/3/30/162747b7e7798123?w=419&h=156&f=png&s=5405)
+
+[传送门](https://github.com/shoukailiang/react-scaffolding)  项目放github上了，可以自己查看
