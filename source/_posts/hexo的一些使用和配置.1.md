@@ -7,7 +7,6 @@ categories:
 ---
 
 
-
 #### github page
 
 在github 上的项目名称必须和自己用户名一样
@@ -20,13 +19,14 @@ categories:
 我们如何让本地git项目与远程的github建立联系呢？用 SSH keys
 
 ## 生成SSH keys
- 
+
 输入你自己的邮箱地址
 ```
 ssh-keygen -t rsa -C "435072096@qq.com"
 ```
 在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入，我们按回车不设置密码。
 ## 添加 SSH Key 到 GitHub
+
 打开 C:\Users\shouk \ .ssh\id_rsa.pub，此文件里面内容为刚才生成的密钥，准确的复制这个文件的内容，粘贴到 https://github.com/settings/ssh 的 new SSH key 中
 
 ## 测试
@@ -82,7 +82,7 @@ hexo d
 在浏览器中输入 https://shoukailiang.github.io （用户名改成你的）看到了 Hexo 与 GitHub Pages 已经成功关联了
 ```
 
-## 注意1：
+#### 注意1：
 若上面操作失败，则需要提前安装一个扩展：
 ```
 npm install hexo-deployer-git --save
@@ -112,6 +112,8 @@ categories:
 ##### 搜索功能的实现
 > https://github.com/alexbruno/hexo-generator-json-content
 
-![](//upload-images.jianshu.io/upload_images/4362861-72c3de13184a925e)
+
+
+![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4c2ca6047b2?w=323&h=55&f=png&s=1677)
 
 > 部分学习自：http://www.jianshu.com/p/39562a0d8eb6

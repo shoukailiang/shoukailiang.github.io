@@ -9,13 +9,13 @@ tags:
 categories:
  - 运维   
 ---
-### Node.js项目线上服务器部署与发布
+## ssh
 > 配置公钥 和密钥 可以登录服务器不需要密码
 看是否已经存在公钥和密钥 
 看用户文件夹下是否存在
-![](//upload-images.jianshu.io/upload_images/4362861-e0bcac3c1244896e)
+![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f3082fbf44?w=579&h=18&f=png&s=1451)
 
-![](//upload-images.jianshu.io/upload_images/4362861-88c57f7c39db795b)
+![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f3087a54f7?w=673&h=81&f=png&s=5616)
 
 
 ctrl +d 退出用户
@@ -23,7 +23,7 @@ sudo  rm -f  xxx 删除一个文件
 
 ```
 //连接
-ssh ubuntu@118.89.56.230
+ssh ubuntu@ip地址
 ```
 ```
 // 先给root一个密码
@@ -33,22 +33,22 @@ sudo passwd root
 
 ```
 //在root下
-sudo adduser skl
+sudo adduser shoukailiang
 增加一个用户
 
 //然后在root下给skl sudo 权限
- gpasswd -a skl sudo
+ gpasswd -a shoukailiang sudo
  
  //
  sudo visudo
- 增加下面的skl 
+ 增加下面的shoukailiang
 ```
-![](//upload-images.jianshu.io/upload_images/4362861-48cbec240d232e43?imageMogr2/auto-orient/strip%7CimageView2/2/w/294)
+![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f308821dfe?w=294&h=58&f=png&s=4375)
 
 ctrl +X保存 之后shift+Y enter 退出
 
 可以在root 下进入skl 用户 su skl 
-或者 sudo su skl 
+或者 sudo su shoukailiang 
 
 -----------------------------------------------------------------
 ```
@@ -66,11 +66,11 @@ sudo vi /etc/ssh/sshd_config
 ```
 ## 改过端口后 连接服务器会连不上 
 出现    
-     : ssh: connect to host 118.89.56.230 port 22: Connection refused
+     : ssh: connect to host ip地址 port 22: Connection refused
 
 这时候就要虚入输入端口号了
 
--  ssh -p 8888 ubuntu@118.89.56.230
+-  ssh -p 8888 ubuntu@ip地址
 (8888是刚刚改过的端口)
 
 ```
@@ -86,7 +86,7 @@ https://github.com/creationix/nvm
 ```
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 
-![](//upload-images.jianshu.io/upload_images/4362861-d57ad9792e8415be)
+![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f30892b4b8?w=857&h=268&f=png&s=9963)
 
 装完后若发现nvm 不是一个命令 在来一个命令窗口
 
@@ -108,7 +108,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | b
 
 
 #### 创建 app.js  如下
-> 创建 vi app.js 
+> 创建 sudo  vi app.js 
 ```
 var http=require('http');
 var server=http.createServer(function (req,res) {
@@ -116,7 +116,7 @@ var server=http.createServer(function (req,res) {
     res.end('Hello SKL\n');
 })
 server.listen(8081);
-console.log('Server running at http://118.89.56.230:8081');
+console.log('Server running at http://ip地址:8081');
 
 ```
 
@@ -153,7 +153,7 @@ upstream blog{
 # NGINX Server Instance,PORT 80
 server {
     listen 80;
-    server_name 118.89.56.230;
+    server_name ip地址;
 
 
     # Proxy to the Node instance
@@ -171,7 +171,7 @@ server {
 4.sudo nginx -t  测试是否成功
 5.  sudo nginx -s reload 重启 nginx 
 
-之后输入118.89.56.230 就可以看到了 把8081 的服务都导向到Nginx的80端口
+之后输入ip地址 就可以看到了 把8081 的服务都导向到Nginx的80端口
 
 > 让 Nginx的版本信息在浏览器的头信息中不那么明显
 
@@ -181,7 +181,7 @@ sudo vi nginx.conf
 去掉下面配置文件前的# 保存
 ``` 
 去掉 
-![](//upload-images.jianshu.io/upload_images/4362861-2d0508ad6933eb67?imageMogr2/auto-orient/strip%7CimageView2/2/w/192)
+![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f31eb283cb?w=192&h=24&f=png&s=2666)
 然后 sudo service nginx reload
 
 
@@ -221,8 +221,8 @@ port 改成了19997
 
 ### 文件上传
 ```
- scp ./test.html shoukailiang@118.89.56.230:/home/shoukailiang/test
- scp -P 8888 ant-mobile-recruit-app.tar shoukailiang@118.89.56.230:/home/shoukailiang/
+ scp ./test.html shoukailiang@ip地址0:/home/shoukailiang/test
+ scp -P 8888 ant-mobile-recruit-app.tar shoukailiang@ip地址:/home/shoukailiang/
 ```
 
 ### 打包
@@ -382,6 +382,18 @@ location / {
 测试nginx 
 重启nginx
 ```
+## node 后端启动
+```
+nohup npm start &
+https://segmentfault.com/q/1010000004455598
+lsof -i 查看端口
+```
+
+
+   
+
+
+
 
 
 

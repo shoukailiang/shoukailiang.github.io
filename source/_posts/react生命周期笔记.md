@@ -11,7 +11,6 @@ categories:
  - 前端
  - react
 ---
-
 ### 组件的生命周期分成三个状态
 - Mounting：已插入真实 DOM
 - Updating：正在被重新渲染
@@ -42,7 +41,7 @@ categories:
 
 在该方法中执行任何必要的清理,收尾工作，比如无效的定时器，或者清除在 componentDidMount 中创建的 DOM 元素。
 
-![](//upload-images.jianshu.io/upload_images/4362861-07eaeefba28b0d9b?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+![](https://user-gold-cdn.xitu.io/2018/7/15/1649d541ee9181b3?w=740&h=900&f=jpeg&s=208576)
 
 
 
