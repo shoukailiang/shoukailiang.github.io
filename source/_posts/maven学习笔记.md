@@ -90,3 +90,7 @@ clean compile test package install
     </dependency>
   </dependencies>
 ```
+
+
+> 打包的时候会进行单元测试，例如 mvn clean package 
+> 若想打包的时候跳过单元测试：mvn clean package -Dmaven.test.skip=true
