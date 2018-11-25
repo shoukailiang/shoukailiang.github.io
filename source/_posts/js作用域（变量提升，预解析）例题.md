@@ -3,7 +3,7 @@ title: js作用域（变量提升，预解析）例题
 date: 2018-03-10 19:49:51
 tags: 
   - 前端
-  - js
+  - javascript
 categories:
  - 前端
 ---

@@ -3,7 +3,7 @@ title: es6，es7的一些语法（笔记）
 date: 2018-03-15 20:47:55
 tags: 
   - 前端
-  - js
+  - javascript
   - es6
   - es7
 categories:

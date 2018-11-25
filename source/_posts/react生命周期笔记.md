@@ -6,7 +6,7 @@ tags:
   - react 
   - 生命周期
   - 框架
-  - js
+  - javascript
 categories:
  - 前端
  - react

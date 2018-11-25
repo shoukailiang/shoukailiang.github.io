@@ -4,7 +4,7 @@ title: 'create-react-app 配置scss,ant-design，装饰器，代理，node支持
 date: 2018-03-28 19:37:07
 tags: 
   - 前端
-  - js
+  - javascript
   - ant-design
   - scss
   - create-react-app

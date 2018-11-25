@@ -7,7 +7,7 @@ tags:
   - react 
   - 框架
   - css
-  - js
+  - javascript
 categories:
  - 前端
  - 工具

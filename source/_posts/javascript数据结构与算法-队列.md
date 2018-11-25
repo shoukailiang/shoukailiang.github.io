@@ -2,7 +2,7 @@
 title: javascript数据结构与算法-队列
 date: 2018-11-16 21:09:18
 tags: 
-  - js
+  - javascript
   - 前端
   - 数据结构
 categories:

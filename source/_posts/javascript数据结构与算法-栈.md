@@ -2,7 +2,8 @@
 title: javascript数据结构与算法-栈
 date: 2018-11-13 10:24:58
 tags: 
-  - js
+  - javascript
+  - typescript
   - 前端
   - 数据结构
 categories:
@@ -17,6 +18,9 @@ categories:
 - push方法 入栈
 - pop方法  删除栈顶的元素
 - peek方法 查看当前栈顶的元素
+- isEmpty方法
+- size方法
+- toString方法 打印出所有元素
 - length属性 栈的元素个数
 - list属性  存储栈  
 下面是出栈和入栈的示意图，照片来自网络
@@ -25,26 +29,156 @@ categories:
 这里我们用js数组来模拟栈，应为js是一门强大的高级语言，数组的push和pop方法在栈中也同样适用
 ```
 class Stack {
-    constructor(){
-        this.list=[];
-        this.length=0;
+  constructor() {
+    this.list = [];
+    this.length = 0;
+  }
+  push(value) {
+    this.length++;
+    this.list.push(value);
+  }
+  pop() {
+    if (this.isEmpty()) {
+      return undefined;
     }
-    // 将元素推入栈
-    push(value) {
-        this.length++;
-        this.list.push(value);
+    this.length--;
+    return this.list.pop();
+  }
+  isEmpty() {
+    return this.length === 0;   
+  }
+  size() {
+    return this.length;
+  }
+  peek() {
+    if (this.isEmpty()) {
+      return undefined;
     }
-    // 删除栈顶的元素
-    pop() {
-        // 
-        if (this.length === 0) return;
-        this.length--;
-        return this.list.pop();
+    return this.list[this.length - 1];
+  }
+  toString() {
+    if (this.isEmpty()) {
+      return '';
     }
-    peek() {
-        // 返回栈顶的元素
-        return this.list[this.length - 1];
+    let objString = `${this.list[0]}`;
+    for (let i = 1; i < this.length; i++) {
+      objString = `${objString},${this.list[i]}`;
     }
+    return objString;
+  }
+}
+```
+# 或者用对象来实现栈，但是没有数组原生的那些函数了
+入栈的时候，索引会变成对象的下标，就能set和get了,删除用delete
+```
+class Stack {
+  constructor() {
+    this.length = 0;
+    this.items = {};
+  }
+  push(element) {
+    this.items[this.length] = element;
+    this.length++;
+  }
+  pop() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    this.length--;
+    const result = this.items[this.length];
+    delete this.items[this.length];
+    return result;
+  }
+  peek() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return this.items[this.length - 1];
+  }
+  isEmpty() {
+    return this.length === 0;
+  }
+  size() {
+    return this.length;
+  }
+  clear() {
+    /* while (!this.isEmpty()) {
+        this.pop();
+      } */
+    this.items = {};
+    this.length = 0;
+  }
+  toString() {
+    if (this.isEmpty()) {
+      return '';
+    }
+    let objString = `${this.items[0]}`;
+    for (let i = 1; i < this.length; i++) {
+      objString = `${objString},${this.items[i]}`;
+    }
+    return objString;
+  }
+}
+```
+# 用ts实现一遍
+```
+class Stack<T> {
+  private count: number;
+  private items: any;
+
+  constructor() {
+    this.count = 0;
+    this.items = {};
+  }
+
+  push(element: T) {
+    this.items[this.count] = element;
+    this.count++;
+  }
+
+  pop() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    this.count--;
+    const result = this.items[this.count];
+    delete this.items[this.count];
+    return result;
+  }
+
+  peek() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return this.items[this.count - 1];
+  }
+
+  isEmpty() {
+    return this.count === 0;
+  }
+
+  size() {
+    return this.count;
+  }
+
+  clear() {
+    /* while (!this.isEmpty()) {
+      this.pop();
+    } */
+
+    this.items = {};
+    this.count = 0;
+  }
+  toString() {
+    if (this.isEmpty()) {
+      return '';
+    }
+    let objString = `${this.items[0]}`;
+    for (let i = 1; i < this.count; i++) {
+      objString = `${objString},${this.items[i]}`;
+    }
+    return objString;
+  }
 }
 ```
 # 存在的问题
@@ -64,7 +198,7 @@ let mulBase =(num,base)=>{
         num = Math.floor(num/=base);
     }
     var converted = "";
-    while(s.length>0){
+    while(s.size()>0){
         converted+=s.pop();
     }
     return converted;
@@ -81,7 +215,7 @@ let isPalindrome=(str)=>{
         s.push(str[i]);
     }
     let newStr = "";
-    while(s.length>0){
+    while(s.size()>0){
         newStr+=s.pop();
     }
     if(newStr===str){

@@ -3,7 +3,7 @@ title: react受控组件与非受控组件
 date: 2018-09-07 23:13:51
 tags: 
   - 前端
-  - js
+  - javascript
   - react
 categories:
   - 前端 
