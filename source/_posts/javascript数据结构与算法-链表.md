@@ -44,15 +44,22 @@ function defaultEquals(a, b) {
   return a === b;
 }
 ```
-LinkedList类
+LinkedList类,链表的关键就是他不像是数组一样，可以直接拿到当前索引的值，他必须从head开始找，不停的找next。
+#### push
+push的时候，判断是否是第一个，或是，将头变成当前插入的node,若不是，循环找到最后一项，将他的next执行当前插入的node，循环的时候，若找到有个node的next为空，即把这个node的next指向当前这个node
+#### getElementAt
+根据索引返回node对象,注意循环的终止条件
+#### insert 
+插入，也要判断是否是第一个
+#### removeAt
+若是第一个，把头改成下一个
 ```
 class LinkedList {
 	constructor(equalsFn = defaultEquals) {
-		 this.equalsFn = equalsFn;
+		this.equalsFn = equalsFn;
 		this.count = 0;
 		this.head = undefined;
 	}
-	// push的时候，判断是否是第一个，或是，将头变成当前插入的node,若不是，循环找到最后一项，将他的next执行当前插入的node
 	push(element) {
 		const node = new Node(element);
 		let current;
@@ -68,7 +75,6 @@ class LinkedList {
 		this.count++;
 	}
 	getElementAt(index) {
-		// 根据索引返回node对象
 		if (index >= 0 && index <= this.count) {
 			let node = this.head;
 			for (let i = 0; i < index && node != null; i++) {
@@ -79,7 +85,6 @@ class LinkedList {
 		return undefined;
 	}
 	insert(element, index) {
-		// 插入，也要判断是否是第一个
 		if (index >= 0 && index <= this.count) {
 			const node = new Node(element);
 			if (index === 0) {
@@ -99,7 +104,6 @@ class LinkedList {
 	removeAt(index) {
 		if (index >= 0 && index < this.count) {
 			let current = this.head;
-			// 若是第一个，把头改成下一个
 			if (index === 0) {
 				this.head = current.next;
 			} else {

@@ -69,7 +69,7 @@ class Stack {
 }
 ```
 # 或者用对象来实现栈，但是没有数组原生的那些函数了
-入栈的时候，索引会变成对象的下标，就能set和get了,删除用delete
+入栈的时候，索引会变成对象的下标，对于对象用item[2] =3;key 会变成2 ，value是3,删除用delete
 ```
 class Stack {
   constructor() {
