@@ -70,11 +70,11 @@ class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode prev =null;
         ListNode curr =head;
-        while (head!=null){
+        while (curr!=null){
             ListNode nextTemp = curr.next;
             curr.next = prev;
             prev=curr;
-            curr=nextTemp;
+            curr=nextTemp;  // 遍历链表
         }
         return prev;
     }
