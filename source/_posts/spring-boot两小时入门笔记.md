@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-  @RequestMapping(value = "/girl",method = RequestMethod.GET)
+  // @RequestMapping(value = "/girl",method = RequestMethod.GET)
+  @GetMapping("/girl")
   public String say(){
     return "1111111";
   }
@@ -35,11 +36,16 @@ public class HelloController {
 ## 2. mvn 
 - mvn spring-boot:run
 ## 3. 打包成jar包启动
-- mvn install 
+- mvn clean target 
 - cd target 
 - java -jar jar包名
 - 
 # 项目属性配置
+## application.properties
+在里面添加
+- server.port=8080
+- server.servlet.context-path=/first
+## application.yml (推荐)
 resource 目录下 将application.xxx修改成application.yml
 ```
 server:
@@ -169,7 +175,8 @@ java -jar jar包名 --spring.profiles.active=prod
 ## @RequestMapping 
 ```
 // 如果想访问两个
-@RequestMapping(value = {"/girl","/hello"},method = RequestMethod.GET)
+// @RequestMapping(value = {"/girl","/hello"},method = RequestMethod.GET)
+@GetMapping({"/hello","/hi"})
 ```
 ```
 // 可以给类加，访问就得 ：localhost:8080/hello/girl了
@@ -196,7 +203,8 @@ public class HelloController {
 public class HelloController {
   @Autowired
   private GirlProperties girlProperties;
-  @RequestMapping(value = {"/girl/{id}"},method = RequestMethod.GET)
+  // @RequestMapping(value = {"/girl/{id}"},method = RequestMethod.GET)
+  @GetMapping({"/girl/{id}"})
   public Integer say(@PathVariable("id") Integer myId){
     return myId;
   }
@@ -210,7 +218,8 @@ public class HelloController {
 public class HelloController {
   @Autowired
   private GirlProperties girlProperties;
-  @RequestMapping(value = {"/girl"},method = RequestMethod.GET)
+  //@RequestMapping(value = {"/girl"},method = RequestMethod.GET)
+  @GetMapping({"/girl"})
   public Integer say(@RequestParam("id") Integer myId){
     return myId;
   }
@@ -220,7 +229,8 @@ public class HelloController {
 public class HelloController {
   @Autowired
   private GirlProperties girlProperties;
-  @RequestMapping(value = {"/girl"},method = RequestMethod.GET)
+  //@RequestMapping(value = {"/girl"},method = RequestMethod.GET)
+  @GetMapping({"/girl"})
   // 默认值和是否必须传入
   public Integer say(@RequestParam(value = "id",required = false,defaultValue = "10") Integer myId){
     return myId;
@@ -251,8 +261,10 @@ spring:
   profiles:
     active: dev
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dbgirl
+    # driver-class-name: com.mysql.jdbc.Driver
+    # 新版驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver 
+    url: jdbc:mysql://127.0.0.1:3306/dbgirl?characterEncoding=utf-8
     username: root
     password: 123456
   jpa:
@@ -384,14 +396,17 @@ public class GirlController {
 ```
   // 更新
   @PutMapping(value = "/girls/{id}")
-  public Girl  girlUpdate(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize,
-                          @RequestParam("age") Integer age){
-    Girl girl = new Girl();
-    girl.setId(id);
-    girl.setCupSize(cupSize);
-    girl.setAge(age);
-    return girlRepository.save(girl);
-
+  public Girl  girlUpdate(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize, @RequestParam("age") Integer age){
+    Optional<Girl> optional = repository.findById(id);
+    // 如果有内容在执行更新的操作
+    if(optional.isPresent()){
+      Girl girl = optional.get();
+      girl.setId(id);
+      girl.setCupSize(cupSize);
+      girl.setAge(age);
+      return girlRepository.save(girl);
+    }
+    return null;
   }
 ``` 
 ### 通过id删除一个女生
@@ -466,3 +481,4 @@ public class GirlService {
   }
 
 ```
+注意mysql引擎要innoDB才支持事务
