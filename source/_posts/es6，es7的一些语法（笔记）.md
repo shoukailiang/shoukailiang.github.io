@@ -8,9 +8,11 @@ tags:
   - es7
 categories:
  - 前端
+ - javascript
 ---
+
 ###  const 
-```
+```javascript
 const a=3; //定义常量
 // 如果要用es 5的方式怎么写呢？？
 Object.defineProperty(window, "a", {
@@ -22,7 +24,7 @@ console.log(window.a)
 
 ### 作用域
 es6的作用域
-```
+```javascript
 for (let i = 0; i < 10; i++) {
   // ...
 }
@@ -32,7 +34,7 @@ console.log(i);
 ```
 在es5中,并没有块级作用域，先用es5写一个作用域看看
 
-```
+```javascript
 var a = [];
 for (var i = 0; i < 10; i++) {
   a[i] = function () {
@@ -57,7 +59,7 @@ var object = {
 　　y: y
 };
 console.log(object.x); //output "1"
-```
+```javascript
 在es6中
 ```
 //给一个属性赋一个变量值，如果变量名和属性名相同，ES6 提供了一个简洁的语法，可以省略变量名
@@ -73,7 +75,7 @@ console.log(object.x); //output "1"
 
 
 ### 箭头函数
-```
+```javascript
 // es5中的this
 var A = function () {
     this.a = 'a';
@@ -102,7 +104,7 @@ var A = function () {
 console.log(new A().c.b()) // a,箭头函数this的指向是定义时this的指向，b函数在定义的时候this就指向函数体里面的this
 ```
 
-```
+```javascript
 //带有默认参数的箭头函数
 let hello =(name='world')=>{
   console.log(`hello ${name}`) //注意这边不是单引号
@@ -128,7 +130,7 @@ hello(...arr)
 
 ```
 ### 默认参数
-```
+```javascript
 // es5
 function a(x,y ) {
     x=x||1;
@@ -140,7 +142,7 @@ function b(x=1,y=2){
 }
 ```
 ### 可变参数
-```
+```javascript
 {   //es5
     function f() {
         var a = Array.prototype.slice.call(arguments);
@@ -181,7 +183,7 @@ function b(x=1,y=2){
 ```
 
 ### 对象扩展
-```
+```javascript
 var obj={
   name:'skl',
   age:18,
@@ -190,7 +192,7 @@ console.log(Object.keys(obj))//["name","age"]
 console.log(Object.values(obj))//["skl",18]
 console.log(Object.entries(obj))// key 和value变成一个数组
 ```
-```
+```javascript
 const name = 'skl'
 const age='nian';
 const height='shengao'
@@ -201,13 +203,13 @@ const obj = {
 obj[name] = 'hello skl';
 console.log(obj)//{nian: 18, height: "shengao", skl: "hello skl"}
 ```
-```
+```javascript
 const obj1={name:'skl',age:18}
 const obj2={type:'ha',aa:90}
 console.log({...obj1,...obj2})//{name: "skl", age: 18, type: "ha", aa: 90}
 
 ```
-```
+```javascript
 //结构赋值
 const arr =['skl','sk2'];
 let [arg1,arg2]=arr;
@@ -219,7 +221,7 @@ console.log(nian,height)//18 shengao
 ```
 ### 代理做数据保护
 #### es5中的数据保护
-```
+```javascript
 {
   // 数据保护（相当于私有变量）es5的写法,定义一个构造函数
   var Person = function () {
@@ -270,7 +272,7 @@ console.log(nian,height)//18 shengao
 }
 ```
 #### es6中通过代理的方式做数据保护
-```
+```javascript
 {
   // es的代理 
   let Person = {
@@ -293,7 +295,7 @@ console.log(nian,height)//18 shengao
 ```
 ### 字符串拼接
 在es5中，凭借字符串要不断的+,尤其是在html模板的时候，变得特别不方便
-```
+```javascript
 const a=3;
 console.log(`skl${a}`)//skl3
 `Hello ${'World'}`
@@ -301,7 +303,7 @@ console.log(`skl${a}`)//skl3
 ```
 
 ### for... of...
-```
+```javascript
 var arr = ["a", "b", "c"];
 var iterator = arr.entries();
 console.log(iterator) //Array Iterator {}
@@ -313,7 +315,7 @@ for (let e of iterator) {  //返回有下标的数组
     //[2, "c"]
 }
 ```
-```
+```javascript
 var arr = ["a", "b", "c"];
 var iterator = arr;
 
@@ -322,7 +324,7 @@ for (let e of iterator) {
     //a b c
 }
 ```
-```
+```javascript
 var arr = ["a", "b", "c"];
 var iterator = arr.entries();
 
@@ -333,7 +335,7 @@ for (let [index,e] of iterator) {
     // 2 "c"
 }
 ```
-```
+```javascript
 var arr = ["a", "b", "c"];
 var iterator = arr.entries();
 
@@ -348,7 +350,7 @@ for (let [index,e] of iterator) {
 
 ### promise
 
-```
+```javascript
 let state = 1;
 function step1(resolve, reject) {
   console.log('1.开始-做饭');
@@ -391,14 +393,14 @@ new Promise(step1)
 ```
 
 ### async
-```
+```javascript
 async function testAsync(){
   return 'hello async'
 }
 const result =testAsync();
 console.log(result); // 返回的是一个promise
 ```
-```
+```javascript
 
 function getSomething(){
   return 'something'
@@ -417,7 +419,7 @@ test()
 
 ```
  模拟异步请求
-```
+```javascript
 function takeLongTime(){
   return new Promise(resolve=>{
     setTimeout(()=>{
@@ -432,7 +434,4 @@ async function test(){
 }
 test()
 ```
-
-
-
 

@@ -21,7 +21,7 @@ categories:
 - list属性  存储队列  
 # 代码实现
 这里依然用js的数组模拟队列，毕竟高级语言（落泪），数组的shift时删除数组的第一个元素,这里list还是公用的
-```
+```javascript
 class Queue{
 	constructor(){
 	    this.list=[];
@@ -54,7 +54,7 @@ class Queue{
 简单来说，比方说我是会员，我就要排在你的前面，hhhhhh
 
 实现一个优先队列，有两种选项：设置优先级，然后在正确位置添加元素；或者用入列操作添加元素，然后按照优先级移除他们。
-```
+```javascript
 function PriorityQueue(){
 	let items = [];
 	// 辅助类
@@ -94,16 +94,15 @@ priorityQueue.enquequ("skl3",3);
 priorityQueue.print();
 ```
 如果队列为空，就直接插入，如果不为空，就进行优先级比较操作。中间使用了一个辅助类，用来创建名字和优先级的对象
-```
+```javascript
 {
   element:'skl',
   priority:'1',
 }
 ```
-
 # 实现击鼓传花
 不懂得网上百度一下啥事击鼓传花
-```
+```javascript
 function hotPotato(nameList,num){
 	let queue = new Queue();
 	// 先入队
@@ -137,6 +136,5 @@ Ingrid在击鼓传花中淘汰
 获胜者是Carl
 ```
 下图模拟了这个过程
-![](https://user-gold-cdn.xitu.io/2018/11/17/16721c48ef60e2a5?w=848&h=515&f=png&s=537168)
-
+![](/image/javascript数据结构与算法之队列/javascript数据结构与算法之队列-1.png)
 

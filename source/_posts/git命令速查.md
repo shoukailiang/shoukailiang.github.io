@@ -7,6 +7,7 @@ tags:
   - git
 categories:
  - 工具
+ - git
 ---
 ### 克隆项目：
 git clone https://github.com/shoukailiang/test.git

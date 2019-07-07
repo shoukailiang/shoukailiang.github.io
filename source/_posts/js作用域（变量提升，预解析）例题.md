@@ -6,13 +6,12 @@ tags:
   - javascript
 categories:
  - 前端
+ - javascript
 ---
-
 
 ### 典型例题如下：
 
-```
-<script>
+```javascript
   alert(a)   // function
   a()    //10
   var a=3;
@@ -22,13 +21,11 @@ categories:
   alert(a) //3
   a=6;
   a()  // 没有a这个函数了啊
-</script>
 ```
 > 为什么会有这样的结果呢？请看下面的例题
 
 ### 例题一
-```
-<script>
+```javascript
   /*1
   alert(a); //underfined（未定义）
   var a=1;
@@ -52,16 +49,12 @@ categories:
    alert(a)
    var a=1;
    function fn1() {alert(2)}
-   
    */
-</script>
-
 ```
 
 ### 例题二
 
-```
-<script>
+```javascript
   /*
   js预解析只会留下一个，！！！变量和函数重名了，只留下函数 
   第一步：
@@ -83,13 +76,11 @@ categories:
   alert(a);//3
 
   a()//报错，读完代码之后，js仓库里面只有a=3;
-</script>
-
 ```
 
 ### 例题三
 
-```
+```javascript
 <!--<script>-->
     <!--//1.预解析-->
     <!--//2.执行-->
@@ -126,8 +117,7 @@ categories:
 
 ### 例题四
 
-```
-<script>
+```javascript
   var a=1;
   function fn1() {
     alert(a);//undefined
@@ -149,14 +139,11 @@ categories:
     alert(a)=>未定义
           a=2;
    */
-</script>
-
 ```
 
 ### 例题4-1
 
-```
-<script>
+```javascript
   var a=1;
   function fn1() {
     alert(a);//1
@@ -179,14 +166,12 @@ categories:
     a=2也是
     先弹出1,再弹出2
    */
-</script>
 
 ```
 
 ### 例题4-2
 
-```
-<script>
+```javascript
   var a=1;
   function fn1(a) {//参数相当于是一个局部变量   相当于括号里面是var a;
     alert(a);//undefined
@@ -207,14 +192,11 @@ categories:
     2）逐行解读代码
           里面的a=2;
    */
-</script>
-
 ```
 
 ### 例题4-3
 
-```
-<script>
+```javascript
   var a=1;//标志1
   function fn1(a) {//参数相当于是一个局部变量   相当于括号里面是var a;
     alert(a);//1,这个a和标志1处的a是不相同的,这个a是局部的，外面的a是全局的
@@ -237,15 +219,11 @@ categories:
           读到fn1(a)的时候  就function fn1(var a=1)
           找到局部的a=2
    */
-</script>
-
 ```
 
 ### 例题4-4
 
-```
-
-<script>
+```javascript
   var a=1;
   function fn1(a) {       //相当于var a;a=1(外面的)
     alert(a);//1
@@ -254,14 +232,12 @@ categories:
   }
   fn1(a);
   alert(a);//1
-</script>
 
 ```
 
 ### 例题4-5
 
-```
-<script>
+```javascript
   var a=1;
   function fn1(a) { 
     arguments[0]=3;
@@ -271,14 +247,12 @@ categories:
   }
   fn1(a);
   alert(a);//1
-</script>
 
 ```
 
 ### 例题5 想要获取函数内的值
 
-```
-<script>
+```javascript
   //想要获取函数内的值
   // 一
   /*
@@ -299,14 +273,12 @@ categories:
   function fn3(b) {
     alert(b)
   }
-</script>
 
 ```
 
 ### 例题6
 
-```
-<script>
+```javascript
   /*
   函数的大括号才是一个域
   if条件判断的大括号不是一个作用域，var 写在大括号里面和外面是一样的
@@ -346,17 +318,18 @@ categories:
   if(true){
 
   }*/
-</script>
 
 ```
 
 ### 例题7
+```html
+<input type="button" value="1">
+<input type="button" value="2">
+<input type="button" value="3">
 ```
-<body>
-  <input type="button" value="1">
-  <input type="button" value="2">
-  <input type="button" value="3">
-  <script>
+
+```javascript
+
     /*
     //1.
     window.onload=function () {
@@ -381,12 +354,4 @@ categories:
         }
       }
     } */
-
-
-
-
-  </script>
-</body>
-
 ```
-

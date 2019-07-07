@@ -7,12 +7,12 @@ tags:
 categories:
   - 数据库   
 ---
----
+
 # 下载
 下载后，将zip解压后放到一个目录下，配置好环境变量
 # 配置文件
 下载好后，下载的根目录没有 my.ini 文件（或my-default.ini），没有my.ini文件，没关系可以自行创建。在安装根目录下添加 my.ini
-```
+```ini
 [mysqld]
 # 设置3306端口
 port=3306

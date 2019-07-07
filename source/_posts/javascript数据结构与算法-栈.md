@@ -24,10 +24,10 @@ categories:
 - length属性 栈的元素个数
 - list属性  存储栈  
 下面是出栈和入栈的示意图，照片来自网络
-![](https://user-gold-cdn.xitu.io/2018/11/14/1671023fd9b06701?w=389&h=270&f=jpeg&s=9410)
+![](/image/javascript数据结构与算法之栈/javascript数据结构与算法之栈-1.png)
 # 代码实现栈
 这里我们用js数组来模拟栈，应为js是一门强大的高级语言，数组的push和pop方法在栈中也同样适用
-```
+```javascript
 class Stack {
   constructor() {
     this.list = [];
@@ -69,8 +69,8 @@ class Stack {
 }
 ```
 # 或者用对象来实现栈，但是没有数组原生的那些函数了
-入栈的时候，索引会变成对象的下标，对于对象用item[2] =3;key 会变成2 ，value是3,删除用delete
-```
+入栈的时候，索引会变成对象的下标，就能set和get了
+```javascript
 class Stack {
   constructor() {
     this.length = 0;
@@ -121,7 +121,7 @@ class Stack {
 }
 ```
 # 用ts实现一遍
-```
+```typescript
 class Stack<T> {
   private count: number;
   private items: any;
@@ -190,7 +190,7 @@ class Stack<T> {
 - 使用 num / base 来代替 num ;
 - 重复上面的步骤，直到 n 为 0 ，并且没有余数；
 - 以此将栈内元素弹出，直到栈空，并依次将这些元素排列，就得到了转换后的形式
-```
+```javascript
 let mulBase =(num,base)=>{
     let s = new Stack();
     while(num>0){
@@ -207,7 +207,7 @@ let mulBase =(num,base)=>{
 
 # 用栈实现回文判断
 实现思路：将字符串的每一次一次入栈，探后循环出栈，判断出栈后的字符串和原来的字符串是否是相等的，若一致，则是回文
-```
+```javascript
 let isPalindrome=(str)=>{
     let s = new Stack();
     for(let i = 0;i<str.length;i++){
@@ -227,7 +227,7 @@ let isPalindrome=(str)=>{
 console.log(isPalindrome("123321")) // true
 ```
 另一种方法字符串直接翻转就好了
-```
+```javascript
  let isPalindrome =( word )=>{
     return String(word).split('').reverse().join('') == word ? true : false;
 }

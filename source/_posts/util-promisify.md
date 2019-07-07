@@ -7,10 +7,10 @@ tags:
   - promise 
 categories:
   - 前端
+  - promise
 ---
-
 # 原始的写法回调函数
-```
+```javascript
 const fs =require('fs')
 fs.readFile('./package.json',(err,data)=>{
   if(err) return console.log(err)
@@ -19,7 +19,7 @@ fs.readFile('./package.json',(err,data)=>{
 })
 ```
 # 用了promise
-```
+```javascript
 const fs =require('fs')
 
 function readFileAsync(path){
@@ -39,7 +39,7 @@ readFileAsync('./package.json').then(data=>{
 ```
 
 # 使用 util.promisify
-```
+```javascript
 const fs =require('fs')
 const until =require('util')
 until.promisify(fs.readFile)('./package.json').then(data=>{
@@ -51,7 +51,7 @@ until.promisify(fs.readFile)('./package.json').then(data=>{
 ```
 
 ## 加上async 
-```
+```javascript
 const fs = require('fs')
 const until = require('util')
 const readAsync = until.promisify(fs.readFile)

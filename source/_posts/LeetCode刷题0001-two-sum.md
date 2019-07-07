@@ -11,7 +11,6 @@ categories:
  - 数据结构
  - leetcode
 ---
-
 # 题目要求
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
@@ -31,7 +30,7 @@ return [0, 1].
 - 时间复杂度：O(n^2)
 - 空间复杂度：O(1)
 ## 代码实现java
-```
+```java
 class Solution {
   public int[] twoSum(int[] nums, int target) {
     for(int i = 0 ; i < nums.length; i ++){
@@ -52,7 +51,7 @@ class Solution {
 - 时间复杂度：O(n)
 - 空间复杂度：O(n)， 所需的额外空间取决于哈希表中存储的元素数量，该表最多需要存储 nn 个元素。
 ## java代码实现
-```
+```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer,Integer> map = new HashMap<>();

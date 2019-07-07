@@ -8,11 +8,13 @@ tags:
   - spring-boot
 categories:
   - 后端 
+  - java
+  - spring-boot
 ---
 初始化好工程之后
 # 入门
 新建一个HelloController.java
-```
+```java
 package com.example.girl1;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-  // @RequestMapping(value = "/girl",method = RequestMethod.GET)
-  @GetMapping("/girl")
+  @RequestMapping(value = "/girl",method = RequestMethod.GET)
   public String say(){
     return "1111111";
   }
@@ -36,18 +37,13 @@ public class HelloController {
 ## 2. mvn 
 - mvn spring-boot:run
 ## 3. 打包成jar包启动
-- mvn clean target 
+- mvn install 
 - cd target 
 - java -jar jar包名
 - 
 # 项目属性配置
-## application.properties
-在里面添加
-- server.port=8080
-- server.servlet.context-path=/first
-## application.yml (推荐)
 resource 目录下 将application.xxx修改成application.yml
-```
+```yml
 server:
   port: 8080
   servlet:
@@ -63,7 +59,7 @@ cupSize: A
 
 ```
 HelloController.java中
-```
+```java
 @RestController
 public class HelloController {
   // 通过注解把配置文件中的cupSize注入到变量中
@@ -79,7 +75,7 @@ public class HelloController {
 
 ### 属性多的时候就加个前缀来区分
 #### 新建一个类 GirlProperties.java
-```
+```java
 package com.example.girl1;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -112,7 +108,7 @@ public class GirlProperties {
 
 ```
 配置文件
-```
+```yml
 server:
   port: 8080
 girl:
@@ -120,7 +116,7 @@ girl:
   age: 18
 ```
 HelloController
-```
+```java
 @RestController
 public class HelloController {
   @Autowired
@@ -136,14 +132,14 @@ public class HelloController {
 ### 配置的开发环境和生产环境
 
 - application.yml
-```
+```yml
 // application.yml
  spring:
   profiles:
     active: dev   
 ```
 - application-dev.yml
-```
+```yml
 server:
   port: 8080
 girl:
@@ -152,7 +148,7 @@ girl:
 
 ```
 - application-prod.yml
-```
+```yml
 server:
   port: 8081
 girl:
@@ -163,7 +159,7 @@ girl:
 
 - 可以在idea中启动开发环境，
 - 在mvn install 后生成的jar包启动开发环境
-```
+```shell
 java -jar jar包名 --spring.profiles.active=prod
 ```
 
@@ -173,12 +169,11 @@ java -jar jar包名 --spring.profiles.active=prod
 - @RequestMapping 配置url映射
 
 ## @RequestMapping 
-```
+```java
 // 如果想访问两个
-// @RequestMapping(value = {"/girl","/hello"},method = RequestMethod.GET)
-@GetMapping({"/hello","/hi"})
+@RequestMapping(value = {"/girl","/hello"},method = RequestMethod.GET)
 ```
-```
+```java
 // 可以给类加，访问就得 ：localhost:8080/hello/girl了
 @RestController
 @RequestMapping("/hello")
@@ -198,13 +193,12 @@ public class HelloController {
 - @RequestParam  获取请求参数的值
 - @GetMapping  组合注解
 ### @PathVariable
-```
+```java
 @RestController
 public class HelloController {
   @Autowired
   private GirlProperties girlProperties;
-  // @RequestMapping(value = {"/girl/{id}"},method = RequestMethod.GET)
-  @GetMapping({"/girl/{id}"})
+  @RequestMapping(value = {"/girl/{id}"},method = RequestMethod.GET)
   public Integer say(@PathVariable("id") Integer myId){
     return myId;
   }
@@ -212,14 +206,13 @@ public class HelloController {
 // localhost:8080/girl/100
 ```
 ### @RequestParam
-```
+```java
 //localhost:8080/girl?id=100
 @RestController
 public class HelloController {
   @Autowired
   private GirlProperties girlProperties;
-  //@RequestMapping(value = {"/girl"},method = RequestMethod.GET)
-  @GetMapping({"/girl"})
+  @RequestMapping(value = {"/girl"},method = RequestMethod.GET)
   public Integer say(@RequestParam("id") Integer myId){
     return myId;
   }
@@ -229,8 +222,7 @@ public class HelloController {
 public class HelloController {
   @Autowired
   private GirlProperties girlProperties;
-  //@RequestMapping(value = {"/girl"},method = RequestMethod.GET)
-  @GetMapping({"/girl"})
+  @RequestMapping(value = {"/girl"},method = RequestMethod.GET)
   // 默认值和是否必须传入
   public Integer say(@RequestParam(value = "id",required = false,defaultValue = "10") Integer myId){
     return myId;
@@ -240,7 +232,7 @@ public class HelloController {
 ```
 # 数据库操作
 在pom.xml导入包
-```
+```xml
 // jpa和mysql的
   <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -254,17 +246,15 @@ public class HelloController {
 ```
 结束后导入一下包
 ### 配置文件的配置
-```
+```yml
 // 运行前先新建一个dbgirl的数据库，utf8mb4
 // application.yml
 spring:
   profiles:
     active: dev
   datasource:
-    # driver-class-name: com.mysql.jdbc.Driver
-    # 新版驱动
-    driver-class-name: com.mysql.cj.jdbc.Driver 
-    url: jdbc:mysql://127.0.0.1:3306/dbgirl?characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dbgirl
     username: root
     password: 123456
   jpa:
@@ -273,7 +263,7 @@ spring:
     show-sql: true
 ```
 ### 新建一个Girl类
-```
+```java
 package com.example.girl1;
 
 import javax.persistence.Entity;
@@ -335,12 +325,10 @@ delete    /girls/id    通过id删除一个女生
 ```
 ### 获取女生列表
 新建一个GirlRepository.java的接口
-```
+```java
 package com.example.girl1;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-
 // Girl类名，Integer是id的类型
 public interface GirlRepository extends JpaRepository<Girl,Integer> {
 
@@ -348,7 +336,7 @@ public interface GirlRepository extends JpaRepository<Girl,Integer> {
 
 ```
 新建GirlController.java
-```
+```java
 package com.example.girl1;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -371,7 +359,7 @@ public class GirlController {
 // 使用postman测试
 ```
 ### 创建一个女生
-```
+```java
  /*
    * 新增一个女生
    * */
@@ -385,7 +373,7 @@ public class GirlController {
   }
 ```
 ### 通过id查询一个女生
-```
+```java
  // 查询一个女生
   @GetMapping(value = "/girls/{id}")
   public Girl girlFindOne(@PathVariable("id") Integer id){
@@ -393,24 +381,21 @@ public class GirlController {
   }
 ```
 ### 通过id更新一个女生
-```
+```java
   // 更新
   @PutMapping(value = "/girls/{id}")
-  public Girl  girlUpdate(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize, @RequestParam("age") Integer age){
-    Optional<Girl> optional = repository.findById(id);
-    // 如果有内容在执行更新的操作
-    if(optional.isPresent()){
-      Girl girl = optional.get();
-      girl.setId(id);
-      girl.setCupSize(cupSize);
-      girl.setAge(age);
-      return girlRepository.save(girl);
-    }
-    return null;
+  public Girl  girlUpdate(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize,
+                          @RequestParam("age") Integer age){
+    Girl girl = new Girl();
+    girl.setId(id);
+    girl.setCupSize(cupSize);
+    girl.setAge(age);
+    return girlRepository.save(girl);
+
   }
 ``` 
 ### 通过id删除一个女生
-```
+```java
  // 删除
     @DeleteMapping(value = "/girls/{id}")
     public  void  girlDelete(@PathVariable("id") Integer id){
@@ -418,7 +403,7 @@ public class GirlController {
     }
 ```
 ## 通过年龄查询女生列表
-```
+```java
  // 通过年龄查询女生列表
     @GetMapping(value = "/girls/age/{age}")
     public List<Girl> girlListByAge(@PathVariable("age") Integer age){
@@ -427,11 +412,9 @@ public class GirlController {
 ```
 GirlRepository.java中
 
-```
+```java
 package com.first.first;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
 public interface GirlRepository extends JpaRepository<Girl,Integer> {
@@ -445,7 +428,7 @@ public interface GirlRepository extends JpaRepository<Girl,Integer> {
 > 需求是如果我有两条数据，一条插入失败的话另一条就不能插入，这时候需要加一个事务
 
 GirlService.java
-```
+```java
 package com.example.girl1;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -481,4 +464,3 @@ public class GirlService {
   }
 
 ```
-注意mysql引擎要innoDB才支持事务

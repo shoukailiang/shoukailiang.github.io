@@ -4,7 +4,9 @@ date: 2018-02-18 15:42:23
 tags: 前端
 categories:
  - 前端
+ - hexo 
 ---
+
 
 
 #### github page
@@ -21,7 +23,7 @@ categories:
 ## 生成SSH keys
 
 输入你自己的邮箱地址
-```
+```shell
 ssh-keygen -t rsa -C "435072096@qq.com"
 ```
 在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入，我们按回车不设置密码。
@@ -32,7 +34,7 @@ ssh-keygen -t rsa -C "435072096@qq.com"
 ## 测试
 
 可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：    
-```
+```shell
 ssh -T git@github.com   
 ```
 如果是下面的反馈：
@@ -48,7 +50,7 @@ Are you sure you want to continue connecting (yes/no)?
 
 现在你已经可以通过 SSH 链接到 GitHub 了，还有一些个人信息需要完善的。
 Git 会根据用户的名字和邮箱来记录提交。GitHub 也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的。
-```
+```shell
 git config --global user.name "shoukailiang"
 git config --global user.email "shoukailiang@qq.com"
 ```
@@ -57,7 +59,7 @@ git config --global user.email "shoukailiang@qq.com"
 在_config.yml文件中，找到Deployment，然后按照如下修改，用户名改成你的：
 
 需要注意的是：冒号后面记得空一格！
-```
+```yml
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
@@ -66,7 +68,7 @@ deploy:
   branch: master
 ```
 ## 本地文件提交到 GitHub Pages
-```
+```shell
 // 删除旧的 public 文件
 hexo clean
 
@@ -84,13 +86,13 @@ hexo d
 
 #### 注意1：
 若上面操作失败，则需要提前安装一个扩展：
-```
+```shell
 npm install hexo-deployer-git --save
 ```
 
 ## 写文章
 写一篇文章,默认是以post作为模板
-```
+```shell
 hexo new first(文章名)
 
 ```
@@ -114,10 +116,9 @@ categories:
 
 
 
-![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4c2ca6047b2?w=323&h=55&f=png&s=1677)
+![](/image/hexo的一些使用和配置/hexo的一些使用和配置-1.png)
 
 > 部分学习自：http://www.jianshu.com/p/39562a0d8eb6
-
 
 # 出错
 ## 部署出错

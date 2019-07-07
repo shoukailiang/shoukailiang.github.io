@@ -12,12 +12,15 @@ tags:
   - express
   - mongodb
 categories:
- - webpack配置 
+  - 前端
+  - javascript
+  - react
+  - webpack配置 
 ---
 ---
 
 ## 新建一个项目
-```
+```shell
 npm install -g create-react-app
 create-react-app my-app
 cd my-app
@@ -29,12 +32,12 @@ cd my-app
 npm start
 ```
 ## 暴露配置文件
-```
+```shell
 # 暴露配置文件，输入yes就好
 npm eject
 ```
 ## 下载依赖
-```
+```shell
 # scss依赖
 npm install sass-loader node-sass --save-dev
 # 如果node-sass下载不下来的话，即node-sass安装失败使用：
@@ -51,7 +54,7 @@ npm install babel-plugin-import --save
 ## 配置webpack参数
 ## scss
 在config 里面的webpack.config.dev.js和webpack.config.prod.js里面，前面一个是开发的配置文件，后面的是生产时的配置文件
-```
+```shell
 大约160行左右
 # 第一处是：  
 test: /\.css$/ 变成 test: /\.s?css$/  
@@ -59,7 +62,7 @@ test: /\.css$/ 变成 test: /\.s?css$/
 {loader: require.resolve('sass-loader')}
 ```
 
-![](https://user-gold-cdn.xitu.io/2018/3/28/1626c594586e794d?w=829&h=536&f=png&s=53733)
+![](/image/create-react-app配置/create-react-app配置-1.png)
 之后你随便新建一个a.scss ，import "路径/a.scss"就可以了
 > 缺点就是css代码会是全局的，一个人开发还好，多人的话，css命名冲突就很难受了，css-moudle是一种解决方案，但是我不怎么喜欢，我个人推荐可以用下style-component
 
@@ -69,7 +72,7 @@ test: /\.css$/ 变成 test: /\.s?css$/
 
 ## ant-design
 
-```
+```javascript
 # 修改babel配置，在package.json里面
 # 装饰器的包：npm i babel-plugin-transform-decorators-legacy --D
 # 1.按需加载,让nodejs支持最新的语法，装饰器
@@ -105,7 +108,7 @@ test: /\.css$/ 变成 test: /\.s?css$/
 ```
 之后就ok了。你引入一个ant的组件试试就知道了
 # 结果
-```
+```javascript
 # 导入
 import { Button } from 'antd';
 import React from 'react'
@@ -127,11 +130,11 @@ export default MsgCircle;
 
 [传送门](https://gist.github.com/Kruemelkatze/057f01b8e15216ae707dc7e6c9061ef7)
 
-![](https://user-gold-cdn.xitu.io/2018/3/30/1627484fc7122a6c?w=1033&h=373&f=png&s=44645)
+![](/image/create-react-app配置/create-react-app配置-2.png)
 # 注意
 > 修改配置文件后要重新npm start一下的
 - 若配置装饰器后，发现 `vscode` 有红色波浪线，解决方法
-```
+```javascript
 # 新建一个tsconfig.json，内容如下
 {
   "compilerOptions": {
@@ -142,7 +145,7 @@ export default MsgCircle;
 ```
 # 链接mongodb，后端node
 > 梦想还是要有的，万一实现了呢
-```
+```shell
 # 在根目录新建一个server 
 cd server
 # init后就会生成一个package.json，记录你每次安装的包
@@ -152,7 +155,7 @@ npm i bluebird express mongoose nodemon --save
 mkdir server.js
 ```
 准备启动后端了，链接mongodb
-```
+```javascript
 const express = require('express');
 const mongoose = require('mongoose')
 
@@ -187,30 +190,30 @@ app.listen(8888, () => {
 > 前面代理的端口要和后端启动的端口一致的
 
 修改package.json
-```
+```javascript
 # nodemon 就是你不用每次再去手动node server.js了，他会自动的帮你的（在外层的package.json）
   "scripts": {
     "server": "nodemon server/server.js"
   },
 ```
 # express怎么不是es6的语法?
-```
+``` shell
 # 那就实现一下
 # 用babel-cli 
 npm i bebel-cli --save 
 修改scripts命令
   "server": "NODE_ENV=test nodemon --exec babel-node server/server.js"
- # 不指定babel-node的话，默认是node
- # 之后你把里面的require改成import是不会报错的
+# 不指定babel-node的话，默认是node
+# 之后你把里面的require改成import是不会报错的
 ```
 # mongodb 存储配置
 - 默认你已经安装好mongodb,配好mongodb的环境变量，不配也没关系，多打几个路径而已
 - 在某一盘符下新建一个test(名字随意)，里面新建data,etc,logs三个文件夹
 - data是存放数据的，etc是配置文件，logs是日志
 - 在etc下新建mongo.conf
-```
+```shell
 # 内容范例
-#数据库路径 (你自己的路径)
+# 数据库路径 (你自己的路径)
 dbpath=/home/skl/Desktop/test/data
 # 日志输出文件路径 
 logpath=/home/skl/Desktop/test/logs/mongodb.log
@@ -230,15 +233,15 @@ port=27018
 - 在etc文件里面运行 mongod --config mongo.conf （指定配置文件）
 > 启动server.js前先链接数据库 ，在etc文件里面运行 mongod --config mongo.conf （指定配置文件）
 ## 启动
-```
+```shell
 cd server
 npm start
 ```
 
-![](https://user-gold-cdn.xitu.io/2018/3/30/162747a7d6c5682c?w=417&h=54&f=png&s=5208)
+![](/image/create-react-app配置/create-react-app配置-3.png)
 访问localhost:8888，会出现
 
 
-![](https://user-gold-cdn.xitu.io/2018/3/30/162747b7e7798123?w=419&h=156&f=png&s=5405)
+![](/image/create-react-app配置/create-react-app配置.png)
 
 [传送门](https://github.com/shoukailiang/react-scaffolding)  项目放github上了，可以自己查看

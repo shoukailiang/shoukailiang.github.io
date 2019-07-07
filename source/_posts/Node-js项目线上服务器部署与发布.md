@@ -8,30 +8,29 @@ tags:
   - 运维
 categories:
  - 运维   
----
-## ssh
+---## ssh
 > 配置公钥 和密钥 可以登录服务器不需要密码
 看是否已经存在公钥和密钥 
 看用户文件夹下是否存在
-![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f3082fbf44?w=579&h=18&f=png&s=1451)
+![](/image/nodejs项目服务器部署/nodejs项目服务器部署-1.png)
 
-![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f3087a54f7?w=673&h=81&f=png&s=5616)
+![](/image/nodejs项目服务器部署/nodejs项目服务器部署-2.png)
 
 
 ctrl +d 退出用户
 sudo  rm -f  xxx 删除一个文件
 
-```
+```shell
 //连接
 ssh ubuntu@ip地址
 ```
-```
+```shell
 // 先给root一个密码
 sudo passwd root
 // 然后切换到root su root
 ```
 
-```
+```shell
 //在root下
 sudo adduser shoukailiang
 增加一个用户
@@ -43,7 +42,7 @@ sudo adduser shoukailiang
  sudo visudo
  增加下面的shoukailiang
 ```
-![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f308821dfe?w=294&h=58&f=png&s=4375)
+![](/image/nodejs项目服务器部署/nodejs项目服务器部署-3.png)
 
 ctrl +X保存 之后shift+Y enter 退出
 
@@ -51,16 +50,16 @@ ctrl +X保存 之后shift+Y enter 退出
 或者 sudo su shoukailiang 
 
 -----------------------------------------------------------------
-```
+```shell
 //重启服务
  sudo service ssh restart
 ```
-```
+```shell
 //生成公钥和私钥
  ssh-keygen -t rsa -C "shoukailiang@qq.com"
 ```
 
-```
+```shell
 //配置文件 修改默认端口
 sudo vi /etc/ssh/sshd_config
 ```
@@ -73,7 +72,7 @@ sudo vi /etc/ssh/sshd_config
 -  ssh -p 8888 ubuntu@ip地址
 (8888是刚刚改过的端口)
 
-```
+```shell
 //更新
 sudo apt-get update
 
@@ -86,7 +85,7 @@ https://github.com/creationix/nvm
 ```
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 
-![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f30892b4b8?w=857&h=268&f=png&s=9963)
+![](/image/nodejs项目服务器部署/nodejs项目服务器部署-4.png)
 
 装完后若发现nvm 不是一个命令 在来一个命令窗口
 
@@ -109,7 +108,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | b
 
 #### 创建 app.js  如下
 > 创建 sudo  vi app.js 
-```
+```javascript
 var http=require('http');
 var server=http.createServer(function (req,res) {
     res.writeHead(200,{'Content-Type':'text/plain'})
@@ -129,14 +128,14 @@ console.log('Server running at http://ip地址:8081');
 
 > 停止apache 服务
    sudo service apache2 stop
-   ```
+   ```shell
  移除Apache 2
  
  sudo update-rc.d -f apache2 remove
  
  sudo apt-get remove apache2
  ```
- ```
+ ```shell
  下载 nginx 
     sudo apt-get install nginx
 ```
@@ -181,7 +180,7 @@ sudo vi nginx.conf
 去掉下面配置文件前的# 保存
 ``` 
 去掉 
-![](https://user-gold-cdn.xitu.io/2018/7/15/1649d4f31eb283cb?w=192&h=24&f=png&s=2666)
+![](/image/nodejs项目服务器部署/nodejs项目服务器部署-5.png)
 然后 sudo service nginx reload
 
 
@@ -391,6 +390,9 @@ lsof -i 查看端口
 
 
    
+
+
+
 
 
 
