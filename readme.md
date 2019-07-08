@@ -37,6 +37,8 @@
 | [栈（三）](https://shoukailiang.github.io/2019/06/17/%E6%A0%88%EF%BC%88%E4%B8%89%EF%BC%89/) | 数据结构 |
 | [递归](https://shoukailiang.github.io/2019/06/18/%E9%80%92%E5%BD%92/) | 数据结构 |
 | [时间复杂度与空间复杂度](https://shoukailiang.github.io/2019/06/20/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/) | 算法 |
+| [冒泡排序](https://shoukailiang.github.io/2019/07/06/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/) | 算法 |
+| [选择排序](https://shoukailiang.github.io/2019/07/07/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/) | 算法 |
 ## 注意
 此为blog分支，是hexo源代码，master分支上为生成后的网页代码
 ## hexo 主题

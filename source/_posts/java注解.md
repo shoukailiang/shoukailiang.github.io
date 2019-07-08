@@ -52,7 +52,7 @@ categories:
 2：成员方法以无参无异常的方式声明<br>
 3：可以使用default为成员方法指定一个默认值<br>
 4：成员的类型是有限制的，合法的成员类型包括原始类型/String/Class/Annotation/Enumeration<br>
-```
+```java
 import java.lang.annotation.*;
 
 @Target({ElementType.METHOD,ElementType.TYPE})

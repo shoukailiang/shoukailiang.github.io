@@ -19,7 +19,7 @@ styled-components 是一个常用的 css in js 类库。使得css代码也有了
 npm install styled-components 
 ```
 
-```
+```javascript
 import React from 'react';
 import styled from 'styled-components'
 class InfoNav extends React.Component {
@@ -50,7 +50,7 @@ vscode-styled-components
 ```
 
 ## 组件样式继承
-```
+```javascript
 import React from 'react';
 import styled from 'styled-components'
 class InfoNav extends React.Component {
@@ -75,14 +75,14 @@ class InfoNav extends React.Component {
 export default InfoNav;
 ```
 ## 组件内部使用 className
-```
+```javascript
 <Wrapper>
   <h4>Hello Word</h4>
   <div className="detail"></div>
 </Wrapper>
 ```
 对于这种 styled-components 和 className 混用，或者是一些伪类的情况同样是支持的：
-```
+```javascript
 import styled from 'styled-components';
 const Wrapper = styled.div`
   display: block;
@@ -98,7 +98,7 @@ const Wrapper = styled.div`
 `;
 ```
 当然还可以通过 injectGlobal 的方式将通用的样式注入到全局中：
-```
+```javascript
 import styled, { injectGlobal } from 'styled-components';
 injectGlobal`
   @font-face {
@@ -113,7 +113,7 @@ injectGlobal`
 ```
 ## CSS 动画支持
 styled-components 同样对 css 动画中的 @keyframe 做了很好的支持。
-```
+```javascript
 import { keyframes } from 'styled-components';
 const fadeIn = keyframes`
   0% {
