@@ -7,7 +7,6 @@ tags:
 categories:
  - linux
 ---
-
 # 下载
 ```shell
 wget http://download.redis.io/releases/redis-5.0.5.tar.gz
@@ -57,6 +56,10 @@ daemonize yes
 ```
  requirepass 123456
 ```
+还可以指定日志文件,默认为空
+```
+logfile /var/log/redis/redis-server.log
+```
 # 指定配置文件启动
 ```
 cd bin
@@ -67,4 +70,9 @@ cd bin
  ./redis-cli -p 6379 -a 123456
 ```
 之后就可以在命令行中插入数据了
-
+# 常见错误
+启动几分钟后，无法连接redis,并且有以下错误信息
+```
+MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error．
+```
+在/etc/sysctl.conf 添加一项 ‘vm.overcommit_memory = 1’ ，然后重启（或者运行命令’sysctl vm.overcommit_memory=1’ ）使其生效
