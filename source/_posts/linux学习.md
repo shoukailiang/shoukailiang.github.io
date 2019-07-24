@@ -9,6 +9,12 @@ categories:
 ---
 记录一些我曾经遇到过的问题--------------勿看
 # ubuntu
+## 命令
+```shell 
+
+ps -aux | grep java   检查java进程是否存在
+
+```
 ### ubuntu 的软件安装
 - 1 deb 包的安装方式
 deb 是 debian 系 Linux 的包管理方式, ubuntu 是属于 debian 系的 Linux 发行版,所
@@ -44,11 +50,11 @@ sudo apt-get install 软件名
 了
 > 在使用 dpkg -i 安装deb包后，会出现依赖关系而不能正常安装软件，这个时候先更新下源然后解决依赖关系后重装即可。
 ```
-sudo apt-get update # 更新
+sudo apt-get update # 检查是否有更新
+sudo apt-get upgrate # 更新
 sudo apt-get -f install # 解决依赖关系
 sudo dpkg -i xxx.deb # 重新安装
 ```
-
 #### 安装搜狗
 http://blog.csdn.net/qq_21792169/article/details/53152700
 
