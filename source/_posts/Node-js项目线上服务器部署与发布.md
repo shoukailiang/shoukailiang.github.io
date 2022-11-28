@@ -13,9 +13,9 @@ categories:
 > 配置公钥 和密钥 可以登录服务器不需要密码
 看是否已经存在公钥和密钥 
 看用户文件夹下是否存在
-![](/image/nodejs项目服务器部署/nodejs项目服务器部署-1.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281529886.png)
 
-![](/image/nodejs项目服务器部署/nodejs项目服务器部署-2.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281529237.png)
 
 
 ctrl +d 退出用户
@@ -43,7 +43,7 @@ sudo adduser shoukailiang
  sudo visudo
  增加下面的shoukailiang
 ```
-![](/image/nodejs项目服务器部署/nodejs项目服务器部署-3.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281529012.png)
 
 ctrl +X保存 之后shift+Y enter 退出
 
@@ -86,7 +86,7 @@ https://github.com/creationix/nvm
 ```
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 
-![](/image/nodejs项目服务器部署/nodejs项目服务器部署-4.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281529199.png)
 
 装完后若发现nvm 不是一个命令 在来一个命令窗口
 
@@ -181,7 +181,7 @@ sudo vi nginx.conf
 去掉下面配置文件前的# 保存
 ``` 
 去掉 
-![](/image/nodejs项目服务器部署/nodejs项目服务器部署-5.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281530769.png)
 然后 sudo service nginx reload
 
 

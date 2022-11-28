@@ -24,7 +24,7 @@ categories:
 - length属性 栈的元素个数
 - list属性  存储栈  
 下面是出栈和入栈的示意图，照片来自网络
-![](/image/javascript数据结构与算法之栈/javascript数据结构与算法之栈-1.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281527078.png)
 # 代码实现栈
 这里我们用js数组来模拟栈，应为js是一门强大的高级语言，数组的push和pop方法在栈中也同样适用
 ```javascript

@@ -62,7 +62,7 @@ test: /\.css$/ 变成 test: /\.s?css$/
 {loader: require.resolve('sass-loader')}
 ```
 
-![](/image/create-react-app配置/create-react-app配置-1.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525283.png)
 之后你随便新建一个a.scss ，import "路径/a.scss"就可以了
 > 缺点就是css代码会是全局的，一个人开发还好，多人的话，css命名冲突就很难受了，css-moudle是一种解决方案，但是我不怎么喜欢，我个人推荐可以用下style-component
 
@@ -130,7 +130,7 @@ export default MsgCircle;
 
 [传送门](https://gist.github.com/Kruemelkatze/057f01b8e15216ae707dc7e6c9061ef7)
 
-![](/image/create-react-app配置/create-react-app配置-2.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525084.png)
 # 注意
 > 修改配置文件后要重新npm start一下的
 - 若配置装饰器后，发现 `vscode` 有红色波浪线，解决方法
@@ -238,10 +238,10 @@ cd server
 npm start
 ```
 
-![](/image/create-react-app配置/create-react-app配置-3.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525730.png)
 访问localhost:8888，会出现
 
 
-![](/image/create-react-app配置/create-react-app配置.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281526050.png)
 
 [传送门](https://github.com/shoukailiang/react-scaffolding)  项目放github上了，可以自己查看

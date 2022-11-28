@@ -41,7 +41,7 @@ categories:
 
 在该方法中执行任何必要的清理,收尾工作，比如无效的定时器，或者清除在 componentDidMount 中创建的 DOM 元素。
 
-![](/image/react生命周期笔记/react生命周期笔记-1.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281528605.png)
 
 
 

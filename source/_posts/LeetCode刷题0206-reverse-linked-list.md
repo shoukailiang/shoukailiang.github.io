@@ -22,7 +22,7 @@ Output: 5->4->3->2->1->NULL
 
 # 方法一:迭代
 
-![](/image/leetcode206/leetcode206-1.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281528492.png)
 
 ## 复杂度分析
 - 时间复杂度：O(n)，假设 n 是列表的长度，那么时间复杂度为 O(n)。

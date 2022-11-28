@@ -116,7 +116,7 @@ categories:
 
 
 
-![](/image/hexo的一些使用和配置/hexo的一些使用和配置-1.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281526714.png)
 
 > 部分学习自：http://www.jianshu.com/p/39562a0d8eb6
 

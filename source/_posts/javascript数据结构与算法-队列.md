@@ -136,5 +136,5 @@ Ingrid在击鼓传花中淘汰
 获胜者是Carl
 ```
 下图模拟了这个过程
-![](/image/javascript数据结构与算法之队列/javascript数据结构与算法之队列-1.png)
+![](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281527257.png)
 
