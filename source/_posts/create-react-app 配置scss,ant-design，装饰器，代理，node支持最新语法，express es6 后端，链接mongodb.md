@@ -11,11 +11,9 @@ tags:
   - webpack
   - express
   - mongodb
+  - react
 categories:
   - 前端
-  - javascript
-  - react
-  - webpack配置 
 ---
 ---
 

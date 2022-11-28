@@ -7,7 +7,6 @@ tags:
   - react
 categories:
   - 前端 
-  - react
 ---
 
 # 受控组件

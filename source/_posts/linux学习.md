@@ -5,7 +5,7 @@ tags:
   - ubuntu
   - deepin
 categories:
- - linux
+  - linux
 ---
 记录一些我曾经遇到过的问题--------------勿看
 # ubuntu

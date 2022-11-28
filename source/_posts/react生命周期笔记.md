@@ -9,7 +9,6 @@ tags:
   - javascript
 categories:
  - 前端
- - react
 ---
 ### 组件的生命周期分成三个状态
 - Mounting：已插入真实 DOM

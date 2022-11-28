@@ -8,9 +8,7 @@ tags:
   - 数据结构
   - leetcode
 categories:
- - 算法
- - 数据结构
- - leetcode
+  - 算法
 ---
 # 题目要求
 Reverse a singly linked list.

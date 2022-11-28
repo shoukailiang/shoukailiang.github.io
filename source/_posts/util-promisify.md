@@ -7,7 +7,6 @@ tags:
   - promise 
 categories:
   - 前端
-  - promise
 ---
 # 原始的写法回调函数
 ```javascript

@@ -5,8 +5,7 @@ tags:
   - 前端
   - javascript
 categories:
- - 前端
- - javascript
+  - 前端
 ---
 
 ### 典型例题如下：

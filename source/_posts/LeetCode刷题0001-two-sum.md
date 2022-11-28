@@ -7,9 +7,7 @@ tags:
   - 数据结构
   - leetcode
 categories:
- - 算法
- - 数据结构
- - leetcode
+  - 算法
 ---
 # 题目要求
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.

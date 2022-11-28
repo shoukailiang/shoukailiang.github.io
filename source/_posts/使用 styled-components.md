@@ -9,8 +9,8 @@ tags:
   - css
   - javascript
 categories:
- - 前端
- - 工具
+  - 前端
+  - 工具
 ---
 
 styled-components 是一个常用的 css in js 类库。使得css代码也有了作用域。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。诸如 sass&less 等预处理可以解决部分 css 的局限性，但还是要学习新的语法，而且需要对其编译，其复杂的 webpack 配置也总是让开发者抵触。而 styled-componens 很好的解决了这些问题，很适合 React 技术栈的项目开发。

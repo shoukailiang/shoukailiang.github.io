@@ -8,7 +8,6 @@ tags:
   - es7
 categories:
  - 前端
- - javascript
 ---
 
 ###  const 

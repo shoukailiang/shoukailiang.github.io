@@ -1,10 +1,10 @@
 ---
 title: hexo的一些使用和配置
 date: 2018-02-18 15:42:23
-tags: 前端
+tags: 
+  - hexo
 categories:
- - 前端
- - hexo 
+  - 前端
 ---
 
 

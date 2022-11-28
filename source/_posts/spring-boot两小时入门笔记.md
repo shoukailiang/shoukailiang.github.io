@@ -8,8 +8,6 @@ tags:
   - spring-boot
 categories:
   - 后端 
-  - java
-  - spring-boot
 ---
 初始化好工程之后
 # 入门
