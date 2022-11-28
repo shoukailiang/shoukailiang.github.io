@@ -1,0 +1,713 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="首先，是最基本的面向过程的拖拽代码1&lt;div id&#x3D;&quot;box&quot;&gt;&lt;&#x2F;div&gt; 123456#box&amp;#123;    width: 100px;    height: 100px;    background-color: red;    position: absolute;  &amp;#125;  12345678910111213141516171819">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从面相过程的拖拽到面向对象的拖拽再到简易的组件拖拽">
+<meta property="og:url" content="http://example.com/2018/02/21/%E4%BB%8E%E9%9D%A2%E7%9B%B8%E8%BF%87%E7%A8%8B%E7%9A%84%E6%8B%96%E6%8B%BD%E5%88%B0%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8B%96%E6%8B%BD%E5%86%8D%E5%88%B0%E7%AE%80%E6%98%93%E7%9A%84%E7%BB%84%E4%BB%B6%E6%8B%96%E6%8B%BD/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先，是最基本的面向过程的拖拽代码1&lt;div id&#x3D;&quot;box&quot;&gt;&lt;&#x2F;div&gt; 123456#box&amp;#123;    width: 100px;    height: 100px;    background-color: red;    position: absolute;  &amp;#125;  12345678910111213141516171819">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-02-21T14:57:49.000Z">
+<meta property="article:modified_time" content="2022-11-28T03:24:45.221Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面向对象">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>从面相过程的拖拽到面向对象的拖拽再到简易的组件拖拽 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从面相过程的拖拽到面向对象的拖拽再到简易的组件拖拽"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-02-21 22:57" pubdate>
+          2018年2月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          84 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">从面相过程的拖拽到面向对象的拖拽再到简易的组件拖拽</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="首先，是最基本的面向过程的拖拽代码"><a href="#首先，是最基本的面向过程的拖拽代码" class="headerlink" title="首先，是最基本的面向过程的拖拽代码"></a>首先，是最基本的面向过程的拖拽代码</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#box</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">background-color</span>: red;<br>    <span class="hljs-attribute">position</span>: absolute;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">var</span> oDiv=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;box&#x27;</span>);<br>  <span class="hljs-keyword">var</span> disX=<span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">var</span> disY=<span class="hljs-number">0</span>;<br>  oDiv.<span class="hljs-property">onmousedown</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)&#123;<br>  <span class="hljs-comment">//获取事件对象</span><br>    <span class="hljs-keyword">var</span> event=event||<span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>    <span class="hljs-comment">// disX相当于鼠标到div左侧的距离，同理disY</span><br>    disX=event.<span class="hljs-property">clientX</span>-oDiv.<span class="hljs-property">offsetLeft</span>;<br>    disY=event.<span class="hljs-property">clientY</span>-oDiv.<span class="hljs-property">offsetTop</span>;<br>    <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)&#123;<br>      <span class="hljs-keyword">var</span> event=event||<span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>      oDiv.<span class="hljs-property">style</span>.<span class="hljs-property">left</span>=event.<span class="hljs-property">clientX</span>-disX+<span class="hljs-string">&#x27;px&#x27;</span>;<br>      oDiv.<span class="hljs-property">style</span>.<span class="hljs-property">top</span>=event.<span class="hljs-property">clientY</span>-disY+<span class="hljs-string">&#x27;px&#x27;</span>;<br>    &#125;<br>    <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 鼠标释放时事件清空</span><br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span>=<span class="hljs-literal">null</span>;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span>=<span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="开始改写版本一"><a href="#开始改写版本一" class="headerlink" title="开始改写版本一"></a>开始改写版本一</h4><p>尽量不要出现函数嵌套函数</p>
+<ul>
+<li>可以有全局变量</li>
+<li>把onload中不是赋值的语句放在单独函数中<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> oDiv=<span class="hljs-literal">null</span>;<br><span class="hljs-keyword">var</span> disX=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">var</span> disY=<span class="hljs-number">0</span>;<br><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  oDiv=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;box&#x27;</span>);<br>  <span class="hljs-title function_">init</span>()<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">init</span>(<span class="hljs-params"></span>) &#123;<br>  oDiv.<span class="hljs-property">onmousedown</span>=fnDown;<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">fnDown</span>(<span class="hljs-params">event</span>)&#123;<br>  <span class="hljs-keyword">var</span> event=event||<span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>  disX=event.<span class="hljs-property">clientX</span>-oDiv.<span class="hljs-property">offsetLeft</span>;<br>  disY=event.<span class="hljs-property">clientY</span>-oDiv.<span class="hljs-property">offsetTop</span>;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span>=fnMove;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span>=fnUp;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">fnMove</span>(<span class="hljs-params">event</span>)&#123;<br>  <span class="hljs-keyword">var</span> event=event||<span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>  oDiv.<span class="hljs-property">style</span>.<span class="hljs-property">left</span>=event.<span class="hljs-property">clientX</span>-disX+<span class="hljs-string">&#x27;px&#x27;</span>;<br>  oDiv.<span class="hljs-property">style</span>.<span class="hljs-property">top</span>=event.<span class="hljs-property">clientY</span>-disY+<span class="hljs-string">&#x27;px&#x27;</span>;<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">fnUp</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span>=<span class="hljs-literal">null</span>;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span>=<span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="面向对象的改写-es5"><a href="#面向对象的改写-es5" class="headerlink" title="面向对象的改写 es5"></a>面向对象的改写 es5</h4><ul>
+<li>全局变量就是属性<ul>
+<li>函数就是方法</li>
+<li>onload中创建对象</li>
+<li>改this指向问题</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在ie和谷歌下，这样是可以的，但是火狐下，应为有些地方为了this指向 嵌套了一层函数，但火狐可不这样，他认为event是事件函数传递的，也就是事件后面更着的函数，这是好就需要把event当做参数传递了</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">var</span> d=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Drag</span>(<span class="hljs-string">&#x27;box&#x27;</span>);<br>  d.<span class="hljs-title function_">init</span>();<br>&#125;<br><span class="hljs-comment">//构造函数</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Drag</span>(<span class="hljs-params">id</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span>=<span class="hljs-number">0</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span>=<span class="hljs-number">0</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id);<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">init</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br> <span class="hljs-comment">// 这里的this 指向的是Drag这个类</span><br>  <span class="hljs-keyword">var</span> _this=<span class="hljs-variable language_">this</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">onmousedown</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123; <span class="hljs-comment">//这里嵌套一层是为了解决若写成this.fnDown的话，下面fnDown里面的this就会变成this.oDiv，相当于this就变成div了</span><br>  <span class="hljs-comment">// 匿名函数里的this是指window,因为this指的是调用他的对象，但是匿名函数不知道是谁调用的，所以可以认为是被window调用的</span><br>    _this.<span class="hljs-title function_">fnDown</span>()<br>  &#125;;<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnDown</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-keyword">var</span> event=event||<span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span>=event.<span class="hljs-property">clientX</span>-<span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetLeft</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span>=event.<span class="hljs-property">clientY</span>-<span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetTop</span>;<br>  <span class="hljs-keyword">var</span> _this=<span class="hljs-variable language_">this</span>;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    _this.<span class="hljs-title function_">fnMove</span>()<br>  &#125;;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span>=<span class="hljs-variable language_">this</span>.<span class="hljs-property">fnUp</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnMove</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-keyword">var</span> event=event||<span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">left</span>=event.<span class="hljs-property">clientX</span>- <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span>+<span class="hljs-string">&#x27;px&#x27;</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">top</span>=event.<span class="hljs-property">clientY</span>- <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span>+<span class="hljs-string">&#x27;px&#x27;</span>;<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnUp</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span>=<span class="hljs-literal">null</span>;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span>=<span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>但是火狐下报错:TypeError: event is undefined</p>
+</blockquote>
+<h5 id="火狐的解决办法"><a href="#火狐的解决办法" class="headerlink" title="火狐的解决办法"></a>火狐的解决办法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">var</span> d = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Drag</span>(<span class="hljs-string">&#x27;box&#x27;</span>);<br>  d.<span class="hljs-title function_">init</span>();<br>&#125;<br><span class="hljs-comment">//构造函数</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Drag</span>(<span class="hljs-params">id</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = <span class="hljs-number">0</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = <span class="hljs-number">0</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;box&#x27;</span>);<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">init</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">var</span> _this = <span class="hljs-variable language_">this</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">onmousedown</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123; <span class="hljs-comment">//嵌套是为了解决this问题</span><br>    <span class="hljs-keyword">var</span> event = event || <span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>    _this.<span class="hljs-title function_">fnDown</span>(event)<br>  &#125;;<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnDown</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = event.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetLeft</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = event.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetTop</span>;<br>  <span class="hljs-keyword">var</span> _this = <span class="hljs-variable language_">this</span>;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>    _this.<span class="hljs-title function_">fnMove</span>(event)<br>  &#125;;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">fnUp</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnMove</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = event.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">top</span> = event.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnUp</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span> = <span class="hljs-literal">null</span>;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span> = <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>也可以吧init 放进构造函数里面，这样只要new 一个就可以生成拖拽了<br> ,如下所示</p>
+</blockquote>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">var</span> d=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Drag</span>(<span class="hljs-string">&#x27;box&#x27;</span>);<br>&#125;<br><span class="hljs-comment">//构造函数</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Drag</span>(<span class="hljs-params">id</span>) &#123;<br>  <span class="hljs-keyword">var</span> _this=<span class="hljs-variable language_">this</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span>=<span class="hljs-number">0</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span>=<span class="hljs-number">0</span>;<br>		<span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;box&#x27;</span>);<br>		<span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">onmousedown</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123; <span class="hljs-comment">//嵌套是为了解决this问题</span><br>			<span class="hljs-keyword">var</span> event=event||<span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>			_this.<span class="hljs-title function_">fnDown</span>(event)<br>		&#125;;<br>&#125;<br><br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnDown</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span>=event.<span class="hljs-property">clientX</span>-<span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetLeft</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span>=event.<span class="hljs-property">clientY</span>-<span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetTop</span>;<br>  <span class="hljs-keyword">var</span> _this=<span class="hljs-variable language_">this</span>;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>    _this.<span class="hljs-title function_">fnMove</span>(event)<br>  &#125;;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span>=<span class="hljs-variable language_">this</span>.<span class="hljs-property">fnUp</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnMove</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">left</span>=event.<span class="hljs-property">clientX</span>- <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span>+<span class="hljs-string">&#x27;px&#x27;</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">top</span>=event.<span class="hljs-property">clientY</span>- <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span>+<span class="hljs-string">&#x27;px&#x27;</span>;<br>&#125;<br><span class="hljs-title class_">Drag</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">fnUp</span>=<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span>=<span class="hljs-literal">null</span>;<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span>=<span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="es6-面向对象的改写-也可以吧init-放进构造函数里面"><a href="#es6-面向对象的改写-也可以吧init-放进构造函数里面" class="headerlink" title="es6 面向对象的改写,也可以吧init 放进构造函数里面"></a>es6 面向对象的改写,也可以吧init 放进构造函数里面</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">var</span> d = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Drag</span>(<span class="hljs-string">&#x27;box&#x27;</span>);<br>  d.<span class="hljs-title function_">init</span>();<br>&#125;<br><span class="hljs-comment">// 类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Drag</span> &#123;<br>  <span class="hljs-comment">//构造函数</span><br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">id</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = <span class="hljs-number">0</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = <span class="hljs-number">0</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id);<br>  &#125;<br>  <span class="hljs-title function_">init</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> _this = <span class="hljs-variable language_">this</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">onmousedown</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>      <span class="hljs-keyword">var</span> event = event || <span class="hljs-variable language_">window</span>.<span class="hljs-property">event</span>;<br>      _this.<span class="hljs-title function_">fnDown</span>(event)<br>    &#125;;<br>  &#125;<br>  <span class="hljs-title function_">fnDown</span>(<span class="hljs-params">event</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = event.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetLeft</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = event.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetTop</span>;<br>    <span class="hljs-keyword">var</span> _this = <span class="hljs-variable language_">this</span>;<br>    <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>      _this.<span class="hljs-title function_">fnMove</span>(event)<br>    &#125;;<br>    <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">fnUp</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>  &#125;<br>  <span class="hljs-title function_">fnMove</span>(<span class="hljs-params">event</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = event.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">top</span> = event.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>  &#125;<br>  <span class="hljs-title function_">fnUp</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span> = <span class="hljs-literal">null</span>;<br>    <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span> = <span class="hljs-literal">null</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="初步总结"><a href="#初步总结" class="headerlink" title="初步总结"></a>初步总结</h4><ul>
+<li>原则<br>先写出普通的写法，然后改写成面向对象的写法<blockquote>
+<p>普通方法变形</p>
+</blockquote>
+<ul>
+<li>尽量不要出现函数嵌套函数</li>
+<li>可以有全局变量</li>
+<li>把onload中不是赋值的语句放在单独函数中<blockquote>
+<p>改写面向对象</p>
+</blockquote>
+</li>
+<li>全局变量就是属性</li>
+<li>函数就是方法</li>
+<li>onload中创建对象</li>
+<li>改this指向问题</li>
+</ul>
+</li>
+</ul>
+<h4 id="说了这么多，我们来封装一个拖拽组件吧"><a href="#说了这么多，我们来封装一个拖拽组件吧" class="headerlink" title="说了这么多，我们来封装一个拖拽组件吧"></a>说了这么多，我们来封装一个拖拽组件吧</h4><p>组件就该可以自自定义样式吧～～～～～，data-config写入自定义的样式，有人说你怎么怎么鸡肋，不如css里面写写快，但也是可以不写的，有默认参数，js里面已经写好了，如果data-config写了的话是可以覆盖js里面的，具体看js代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;box1&quot;</span> <span class="hljs-attr">data-config</span>=<span class="hljs-string">&#x27;&#123;&quot;width&quot;: &quot;100px&quot;,&quot;height&quot;: &quot;100px&quot;,&quot;backgroundColor&quot;: &quot;black&quot;,&quot;position&quot;: &quot;absolute&quot;&#125;&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./index.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">var</span> div1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Drag</span>(<span class="hljs-string">&#x27;box1&#x27;</span>);</span><br><span class="language-javascript">  div1.<span class="hljs-title function_">init</span>();</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+<p>尽量让用户少写css,那你就帮他考虑周全吧</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css">*&#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-tag">div</span>&#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 外层包裹防止函数被污染</span><br>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// Drag 类</span><br>  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Drag</span> &#123;<br>    <span class="hljs-title function_">constructor</span> (id) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = <span class="hljs-number">0</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = <span class="hljs-number">0</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id);<br>      <span class="hljs-comment">// 默认设置</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span> = &#123;<br>        <span class="hljs-string">&#x27;width&#x27;</span>: <span class="hljs-string">&#x27;200px&#x27;</span>,<br>        <span class="hljs-string">&#x27;height&#x27;</span>: <span class="hljs-string">&#x27;200px&#x27;</span>,<br>        <span class="hljs-string">&#x27;backgroundColor&#x27;</span>: <span class="hljs-string">&#x27;red&#x27;</span>,<br>        <span class="hljs-string">&#x27;position&#x27;</span>: <span class="hljs-string">&#x27;absolute&#x27;</span><br>      &#125;;<br>      <span class="hljs-comment">// 若有自定义属性，那就合并</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getConfig</span>()) &#123;<br>        <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getConfig</span>());<br>      &#125;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">init</span>();<br>    &#125;<br>    getConfig () &#123;<br>      <span class="hljs-keyword">var</span> config = <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;data-config&#x27;</span>);<br>      <span class="hljs-keyword">if</span> (config &amp;&amp; config !== <span class="hljs-string">&#x27;&#x27;</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(config);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>      &#125;<br>    &#125;<br>    init () &#123;<br>      <span class="hljs-keyword">var</span> _this = <span class="hljs-variable language_">this</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">onmousedown</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">ev</span>) &#123;<br>        <span class="hljs-comment">/* 传入_this,为了下面不在重复写 */</span><br>        _this.<span class="hljs-title function_">fnDown</span>(ev, _this);<br>      &#125;;<br>      <span class="hljs-comment">// 改变设置的属性</span><br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">in</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>[i] = <span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>[i];<br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">/* 拖拽本体 */</span><br>    fnDown (ev, _this) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = ev.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetLeft</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = ev.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetTop</span>;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">ev</span>) &#123;<br>        _this.<span class="hljs-title function_">fnMove</span>(ev);<br>      &#125;;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">fnUp</span>;<br>      <span class="hljs-comment">/* 阻止默认事件 */</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    fnMove (ev) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = ev.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">top</span> = ev.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>    &#125;;<br>    fnUp () &#123;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span> = <span class="hljs-literal">null</span>;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span> = <span class="hljs-literal">null</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-variable language_">window</span>.<span class="hljs-property">Drag</span> = <span class="hljs-title class_">Drag</span>;<br>&#125;)();<br></code></pre></td></tr></table></figure>
+<h4 id="你说啥？？不支持手机端？？那就来支持一下吧"><a href="#你说啥？？不支持手机端？？那就来支持一下吧" class="headerlink" title="你说啥？？不支持手机端？？那就来支持一下吧"></a>你说啥？？不支持手机端？？那就来支持一下吧</h4><p>支持的不够怎么完美，见谅。。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 在fnDown里面先判断一下</span><br><span class="hljs-comment">// 判断是否为手机端</span><br>    <span class="hljs-keyword">var</span> touch;<br>    <span class="hljs-keyword">if</span> (ev.<span class="hljs-property">touches</span>) &#123;<br>        touch = ev.<span class="hljs-property">touches</span>[<span class="hljs-number">0</span>];<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        touch = ev;<br>    &#125;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = touch.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetLeft</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = touch.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetTop</span>;<br></code></pre></td></tr></table></figure>
+<p>pc上的web页面鼠 标会产生onmousedown、onmouseup、onmouseout、onmouseover、onmousemove的事件，但是在移动终端如 iphone、Touch、ipad,android上的web页面触屏时会产生ontouchstart、ontouchmove、ontouchend、ontouchcancel 事件，分别对应了触屏开始、拖拽及完成触屏事件和取消。<br>当按下手指时，触发ontouchstart；<br>当移动手指时，触发ontouchmove；<br>当移走手指时，触发ontouchend。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 原理还是一样的</span><br><span class="hljs-comment">// js代码如下</span><br>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// Drag 类</span><br>  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Drag</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">id</span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = <span class="hljs-number">0</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = <span class="hljs-number">0</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id);<br>      <span class="hljs-comment">// 默认设置</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span> = &#123;<br>        <span class="hljs-string">&#x27;width&#x27;</span>: <span class="hljs-string">&#x27;200px&#x27;</span>,<br>        <span class="hljs-string">&#x27;height&#x27;</span>: <span class="hljs-string">&#x27;200px&#x27;</span>,<br>        <span class="hljs-string">&#x27;backgroundColor&#x27;</span>: <span class="hljs-string">&#x27;red&#x27;</span>,<br>        <span class="hljs-string">&#x27;position&#x27;</span>: <span class="hljs-string">&#x27;absolute&#x27;</span><br>      &#125;;<br>      <span class="hljs-comment">// 若有自定义属性，那就合并</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getConfig</span>()) &#123;<br>        <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getConfig</span>());<br>      &#125;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">init</span>();<br>    &#125;<br>    <span class="hljs-title function_">getConfig</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">var</span> config = <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;data-config&#x27;</span>);<br>      <span class="hljs-keyword">if</span> (config &amp;&amp; config !== <span class="hljs-string">&#x27;&#x27;</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(config);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>      &#125;<br>    &#125;<br>    <span class="hljs-title function_">init</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">var</span> _this = <span class="hljs-variable language_">this</span>;<br>      <span class="hljs-comment">// pc端</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">onmousedown</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">ev</span>) &#123;<br>        <span class="hljs-comment">/* 传入_this,为了下面不在重复写 */</span><br>        _this.<span class="hljs-title function_">fnDown</span>(ev, _this);<br>      &#125;;<br>      <span class="hljs-comment">// 移动端</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">ontouchstart</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>)&#123;<br>        _this.<span class="hljs-title function_">fnDown</span>(ev, _this);<br>      &#125;<br>      <span class="hljs-comment">// 改变设置的属性</span><br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">in</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>[i] = <span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>[i];<br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">/* 拖拽本体 */</span><br>    <span class="hljs-title function_">fnDown</span>(<span class="hljs-params">ev, _this</span>) &#123;<br>      <span class="hljs-comment">// 判断是否为手机端</span><br>      <span class="hljs-keyword">var</span> touch;<br>      <span class="hljs-keyword">if</span> (ev.<span class="hljs-property">touches</span>) &#123;<br>        touch = ev.<span class="hljs-property">touches</span>[<span class="hljs-number">0</span>];<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        touch = ev;<br>      &#125;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> = touch.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetLeft</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> = touch.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">offsetTop</span>;<br>      <span class="hljs-comment">// pc</span><br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">ev</span>) &#123;<br>        _this.<span class="hljs-title function_">fnMove</span>(ev);<br>      &#125;;<br>      <span class="hljs-comment">// 移动端</span><br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">ontouchmove</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">ev</span>) &#123;<br>        _this.<span class="hljs-title function_">fnMove</span>(ev);<br>      &#125;;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">fnUp</span>;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">ontouchend</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">fnUp</span>;<br>      <span class="hljs-comment">/* 阻止默认事件 */</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-title function_">fnMove</span>(<span class="hljs-params">ev</span>) &#123;<br>      <span class="hljs-keyword">var</span> touch;<br>      <span class="hljs-keyword">if</span> (ev.<span class="hljs-property">touches</span>) &#123;<br>        touch = ev.<span class="hljs-property">touches</span>[<span class="hljs-number">0</span>];<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        touch = ev;<br>      &#125;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = touch.<span class="hljs-property">clientX</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">disX</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">oDiv</span>.<span class="hljs-property">style</span>.<span class="hljs-property">top</span> = touch.<span class="hljs-property">clientY</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">disY</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>    &#125;;<br>    <span class="hljs-title function_">fnUp</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmousemove</span> = <span class="hljs-literal">null</span>;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">ontouchmove</span> = <span class="hljs-literal">null</span>;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">onmouseup</span> = <span class="hljs-literal">null</span>;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">ontouchend</span> = <span class="hljs-literal">null</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-variable language_">window</span>.<span class="hljs-property">Drag</span> = <span class="hljs-title class_">Drag</span>;<br>&#125;)();<br><br></code></pre></td></tr></table></figure>
+
+<p> 传送门：<a target="_blank" rel="noopener" href="https://shoukailiang.github.io/my-component/drag/">点击查看演示</a><br> <a target="_blank" rel="noopener" href="https://github.com/shoukailiang/my-component/tree/master/drag">点击查看源码</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/%E6%8B%96%E6%8B%BD/" class="category-chain-item">拖拽</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+        <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">#面向对象</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从面相过程的拖拽到面向对象的拖拽再到简易的组件拖拽</div>
+      <div>http://example.com/2018/02/21/从面相过程的拖拽到面向对象的拖拽再到简易的组件拖拽/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年2月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/02/26/%E4%BD%BF%E7%94%A8%20styled-components/" title="styled-components">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">styled-components</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/02/18/Node-js%E9%A1%B9%E7%9B%AE%E7%BA%BF%E4%B8%8A%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%8F%91%E5%B8%83/" title="Node.js项目线上服务器部署与发布">
+                        <span class="hidden-mobile">Node.js项目线上服务器部署与发布</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

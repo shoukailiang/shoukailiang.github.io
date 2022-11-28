@@ -1,0 +1,701 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基数排序(桶排序)介绍:1）基数排序（radix sort）属于“分配式排序”（distribution sort），又称“桶子法”（bucket sort）或bin sort，顾名思义，它是通过键值的各个位的值，将要排序的元素分配至某些“桶”中，达到排序的作用 2）基数排序法是属于稳定性的排序，基数排序法的是效率高的稳定性排序法 3）基数排序(Radix Sort)是桶排序的扩展 4）基数排序是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基数排序">
+<meta property="og:url" content="http://example.com/2019/08/17/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基数排序(桶排序)介绍:1）基数排序（radix sort）属于“分配式排序”（distribution sort），又称“桶子法”（bucket sort）或bin sort，顾名思义，它是通过键值的各个位的值，将要排序的元素分配至某些“桶”中，达到排序的作用 2）基数排序法是属于稳定性的排序，基数排序法的是效率高的稳定性排序法 3）基数排序(Radix Sort)是桶排序的扩展 4）基数排序是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-1.png">
+<meta property="og:image" content="http://example.com/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-2.png">
+<meta property="og:image" content="http://example.com/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-3.png">
+<meta property="og:image" content="http://example.com/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-4.png">
+<meta property="article:published_time" content="2019-08-17T06:06:34.000Z">
+<meta property="article:modified_time" content="2022-11-28T03:24:45.224Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="排序">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-1.png">
+  
+  
+  
+  <title>基数排序 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="基数排序"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-08-17 14:06" pubdate>
+          2019年8月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">基数排序</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="基数排序-桶排序-介绍"><a href="#基数排序-桶排序-介绍" class="headerlink" title="基数排序(桶排序)介绍:"></a>基数排序(桶排序)介绍:</h1><p>1）基数排序（radix sort）属于“分配式排序”（distribution sort），又称“桶子法”（bucket sort）或bin sort，顾名思义，它是通过键值的各个位的值，将要排序的元素分配至某些“桶”中，达到排序的作用</p>
+<p>2）基数排序法是属于稳定性的排序，基数排序法的是效率高的稳定性排序法</p>
+<p>3）基数排序(Radix Sort)是<strong>桶排序</strong>的扩展</p>
+<p>4）基数排序是1887年赫尔曼·何乐礼发明的。它是这样实现的：将整数按位数切割成不同的数字，然后按每个位数分别比较。</p>
+<h1 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h1><p>将所有待比较数值统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后, 数列就变成一个有序序列。</p>
+<h1 id="图文说明"><a href="#图文说明" class="headerlink" title="图文说明"></a>图文说明</h1><p>将数组 {53, 3, 542, 748, 14, 214} 使用基数排序, 进行升序排序。</p>
+<p>第1轮排序  [按照<strong>个位排序</strong>]: </p>
+<p>说明： 事先准备10个数组(10个桶)， 0-9 分别对应 位数的 0-9</p>
+<ul>
+<li>将 各个数，按照个位大小 放入到 对应的 各个数组中 </li>
+<li>然后从 0-9 个数组&#x2F;桶，依次，按照加入元素的先后顺序取出</li>
+</ul>
+<p>第1轮排序后：542 53 3 14 214 748 </p>
+<p><img src="/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>第2轮排序  [按照<strong>十位</strong>排序]</p>
+<ul>
+<li>将 各个数，按照十位大小 放入到 对应的 各个数组中 </li>
+<li>然后从 0-9 个数组&#x2F;桶，依次，按照加入元素的先后顺序取出<br>第2轮排序后： 3 14 214 542 748 53</li>
+</ul>
+<p><img src="/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>第3轮排序  [按照<strong>百位</strong>排序]</p>
+<ul>
+<li>将 各个数，按照百位大小 放入到 对应的 各个数组中 </li>
+<li>然后从 0-9 个数组&#x2F;桶，依次，按照加入元素的先后顺序取出</li>
+</ul>
+<p>第3轮排序后：3 14 53 214 542 748  【ok】</p>
+<p><img src="/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-3.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="逐步推导"><a href="#逐步推导" class="headerlink" title="逐步推导"></a>逐步推导</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.company;<br><br><span class="hljs-keyword">import</span> java.util.Arrays;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RadixSort</span> &#123;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">int</span> arr[] = &#123;<span class="hljs-number">53</span>, <span class="hljs-number">3</span>, <span class="hljs-number">542</span>, <span class="hljs-number">748</span>, <span class="hljs-number">14</span>, <span class="hljs-number">214</span>&#125;;<br>    System.out.println(<span class="hljs-string">&quot;基数排序前 &quot;</span> + Arrays.toString(arr));<br>    radixSort(arr);<br>    System.out.println(<span class="hljs-string">&quot;基数排序后 &quot;</span> + Arrays.toString(arr));<br>  &#125;<br><br>  <span class="hljs-comment">//基数排序方法</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">radixSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span> &#123;<br>    <span class="hljs-comment">//定义一个二维数组，表示10个桶, 每个桶就是一个一维数组</span><br>    <span class="hljs-comment">//说明</span><br>    <span class="hljs-comment">//1. 二维数组包含10个一维数组</span><br>    <span class="hljs-comment">//2. 为了防止在放入数的时候，数据溢出，则每个一维数组(桶)，大小定为arr.length</span><br>    <span class="hljs-comment">//3. 明确，基数排序是使用空间换时间的经典算法</span><br>    <span class="hljs-type">int</span>[][] bucket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">10</span>][arr.length];<br><br>    <span class="hljs-comment">//为了记录每个桶中，实际存放了多少个数据,我们定义一个一维数组来记录各个桶的每次放入的数据个数</span><br>    <span class="hljs-comment">//可以这里理解</span><br>    <span class="hljs-comment">//比如：bucketElementCounts[0] , 记录的就是  bucket[0] 桶的放入数据个数</span><br>    <span class="hljs-type">int</span>[] bucketElementCounts = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">10</span>];<br><br>    <span class="hljs-comment">//第1轮(针对每个元素的个位进行排序处理)</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; arr.length; j++) &#123;<br>      <span class="hljs-comment">//取出每个元素的个位的值</span><br>      <span class="hljs-type">int</span> <span class="hljs-variable">digitOfElement</span> <span class="hljs-operator">=</span> arr[j] / <span class="hljs-number">1</span> % <span class="hljs-number">10</span>;<br>      <span class="hljs-comment">//放入到对应的桶中</span><br>      bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];<br>      bucketElementCounts[digitOfElement]++;<br>    &#125;<br>    <span class="hljs-comment">//按照这个桶的顺序(一维数组的下标依次取出数据，放入原来数组)</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//遍历每一桶，并将桶中是数据，放入到原数组</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; k &lt; bucketElementCounts.length; k++) &#123;<br>      <span class="hljs-comment">//如果桶中，有数据，我们才放入到原数组</span><br>      <span class="hljs-keyword">if</span> (bucketElementCounts[k] != <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">//循环该桶即第k个桶(即第k个一维数组), 放入</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; l &lt; bucketElementCounts[k]; l++) &#123;<br>          <span class="hljs-comment">//取出元素放入到arr</span><br>          arr[index++] = bucket[k][l];<br>        &#125;<br>      &#125;<br>      <span class="hljs-comment">//第l轮处理后，需要将每个 bucketElementCounts[k] = 0 </span><br>      bucketElementCounts[k] = <span class="hljs-number">0</span>;<br><br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;第1轮，对个位的排序处理 arr =&quot;</span> + Arrays.toString(arr));<br><br><br>    <span class="hljs-comment">//==========================================</span><br><br>    <span class="hljs-comment">//第2轮(针对每个元素的十位进行排序处理)</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; arr.length; j++) &#123;<br>      <span class="hljs-comment">// 取出每个元素的十位的值</span><br>      <span class="hljs-type">int</span> <span class="hljs-variable">digitOfElement</span> <span class="hljs-operator">=</span> arr[j] / <span class="hljs-number">10</span> % <span class="hljs-number">10</span>; <span class="hljs-comment">//748 / 10 =&gt; 74 % 10 =&gt; 4</span><br>      <span class="hljs-comment">// 放入到对应的桶中</span><br>      bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];<br>      bucketElementCounts[digitOfElement]++;<br>    &#125;<br>    <span class="hljs-comment">// 按照这个桶的顺序(一维数组的下标依次取出数据，放入原来数组)</span><br>    index = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 遍历每一桶，并将桶中是数据，放入到原数组</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; k &lt; bucketElementCounts.length; k++) &#123;<br>      <span class="hljs-comment">// 如果桶中，有数据，我们才放入到原数组</span><br>      <span class="hljs-keyword">if</span> (bucketElementCounts[k] != <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 循环该桶即第k个桶(即第k个一维数组), 放入</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; l &lt; bucketElementCounts[k]; l++) &#123;<br>          <span class="hljs-comment">// 取出元素放入到arr</span><br>          arr[index++] = bucket[k][l];<br>        &#125;<br>      &#125;<br>      <span class="hljs-comment">//第2轮处理后，需要将每个 bucketElementCounts[k] = 0 ！！！！</span><br>      bucketElementCounts[k] = <span class="hljs-number">0</span>;<br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;第2轮，对个位的排序处理 arr =&quot;</span> + Arrays.toString(arr));<br><br><br>    <span class="hljs-comment">//第3轮(针对每个元素的百位进行排序处理)</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; arr.length; j++) &#123;<br>      <span class="hljs-comment">// 取出每个元素的百位的值</span><br>      <span class="hljs-type">int</span> <span class="hljs-variable">digitOfElement</span> <span class="hljs-operator">=</span> arr[j] / <span class="hljs-number">100</span> % <span class="hljs-number">10</span>; <span class="hljs-comment">// 748 / 100 =&gt; 7 % 10 = 7</span><br>      <span class="hljs-comment">// 放入到对应的桶中</span><br>      bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];<br>      bucketElementCounts[digitOfElement]++;<br>    &#125;<br>    <span class="hljs-comment">// 按照这个桶的顺序(一维数组的下标依次取出数据，放入原来数组)</span><br>    index = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 遍历每一桶，并将桶中是数据，放入到原数组</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; k &lt; bucketElementCounts.length; k++) &#123;<br>      <span class="hljs-comment">// 如果桶中，有数据，我们才放入到原数组</span><br>      <span class="hljs-keyword">if</span> (bucketElementCounts[k] != <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 循环该桶即第k个桶(即第k个一维数组), 放入</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; l &lt; bucketElementCounts[k]; l++) &#123;<br>          <span class="hljs-comment">// 取出元素放入到arr</span><br>          arr[index++] = bucket[k][l];<br>        &#125;<br>      &#125;<br>      <span class="hljs-comment">//第3轮处理后，需要将每个 bucketElementCounts[k] = 0 ！！！！</span><br>      bucketElementCounts[k] = <span class="hljs-number">0</span>;<br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;第3轮，对个位的排序处理 arr =&quot;</span> + Arrays.toString(arr));<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.company;<br><br><span class="hljs-keyword">import</span> java.util.Arrays;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RadixSort</span> &#123;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">int</span> arr[] = &#123;<span class="hljs-number">53</span>, <span class="hljs-number">3</span>, <span class="hljs-number">542</span>, <span class="hljs-number">748</span>, <span class="hljs-number">14</span>, <span class="hljs-number">214</span>&#125;;<br>    System.out.println(<span class="hljs-string">&quot;基数排序前 &quot;</span> + Arrays.toString(arr));<br>    radixSort(arr);<br>    System.out.println(<span class="hljs-string">&quot;基数排序后 &quot;</span> + Arrays.toString(arr));<br>  &#125;<br><br>  <span class="hljs-comment">//基数排序方法</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">radixSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span> &#123;<br><br>    <span class="hljs-comment">//根据前面的推导过程，我们可以得到最终的基数排序代码</span><br><br>    <span class="hljs-comment">//1. 得到数组中最大的数的位数</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">max</span> <span class="hljs-operator">=</span> arr[<span class="hljs-number">0</span>]; <span class="hljs-comment">//假设第一数就是最大数</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; arr.length; i++) &#123;<br>      <span class="hljs-keyword">if</span> (arr[i] &gt; max) &#123;<br>        max = arr[i];<br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">//得到最大数是几位数</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">maxLength</span> <span class="hljs-operator">=</span> (max + <span class="hljs-string">&quot;&quot;</span>).length();<br><br><br>    <span class="hljs-comment">//定义一个二维数组，表示10个桶, 每个桶就是一个一维数组</span><br>    <span class="hljs-comment">//说明</span><br>    <span class="hljs-comment">//1. 二维数组包含10个一维数组</span><br>    <span class="hljs-comment">//2. 为了防止在放入数的时候，数据溢出，则每个一维数组(桶)，大小定为arr.length</span><br>    <span class="hljs-comment">//3. 明确，基数排序是使用空间换时间的经典算法</span><br>    <span class="hljs-type">int</span>[][] bucket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">10</span>][arr.length];<br><br>    <span class="hljs-comment">//为了记录每个桶中，实际存放了多少个数据,我们定义一个一维数组来记录各个桶的每次放入的数据个数</span><br>    <span class="hljs-comment">//可以这里理解</span><br>    <span class="hljs-comment">//比如：bucketElementCounts[0] , 记录的就是  bucket[0] 桶的放入数据个数</span><br>    <span class="hljs-type">int</span>[] bucketElementCounts = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">10</span>];<br><br><br>    <span class="hljs-comment">//这里我们使用循环将代码处理</span><br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, n = <span class="hljs-number">1</span>; i &lt; maxLength; i++, n *= <span class="hljs-number">10</span>) &#123;<br>      <span class="hljs-comment">//(针对每个元素的对应位进行排序处理)， 第一次是个位，第二次是十位，第三次是百位..</span><br>      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; arr.length; j++) &#123;<br>        <span class="hljs-comment">//取出每个元素的对应位的值</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">digitOfElement</span> <span class="hljs-operator">=</span> arr[j] / n % <span class="hljs-number">10</span>;<br>        <span class="hljs-comment">//放入到对应的桶中</span><br>        bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];<br>        bucketElementCounts[digitOfElement]++;<br>      &#125;<br>      <span class="hljs-comment">//按照这个桶的顺序(一维数组的下标依次取出数据，放入原来数组)</span><br>      <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>      <span class="hljs-comment">//遍历每一桶，并将桶中是数据，放入到原数组</span><br>      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; k &lt; bucketElementCounts.length; k++) &#123;<br>        <span class="hljs-comment">//如果桶中，有数据，我们才放入到原数组</span><br>        <span class="hljs-keyword">if</span> (bucketElementCounts[k] != <span class="hljs-number">0</span>) &#123;<br>          <span class="hljs-comment">//循环该桶即第k个桶(即第k个一维数组), 放入</span><br>          <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; l &lt; bucketElementCounts[k]; l++) &#123;<br>            <span class="hljs-comment">//取出元素放入到arr</span><br>            arr[index++] = bucket[k][l];<br>          &#125;<br>        &#125;<br>        <span class="hljs-comment">//第i+1轮处理后，需要将每个 bucketElementCounts[k] = 0 </span><br>        bucketElementCounts[k] = <span class="hljs-number">0</span>;<br><br>      &#125;<br>      <span class="hljs-comment">//System.out.println(&quot;第&quot;+(i+1)+&quot;轮，对个位的排序处理 arr =&quot; + Arrays.toString(arr));</span><br>    &#125;<br>  &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+<h1 id="基数排序的说明"><a href="#基数排序的说明" class="headerlink" title="基数排序的说明:"></a>基数排序的说明:</h1><ul>
+<li>基数排序是对传统桶排序的扩展，速度很快.</li>
+<li>基数排序是经典的空间换时间的方式，占用内存很大, 当对海量数据排序时，容易造成 OutOfMemoryError 。</li>
+<li>基数排序时稳定的。[注:假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变，即在原序列中，r[i]&#x3D;r[j]，且r[i]在r[j]之前，而在排序后的序列中，r[i]仍在r[j]之前，则称这种排序算法是稳定的；否则称为不稳定的]</li>
+<li><strong>有负数的数组，我们不用基数排序来进行排序</strong>, 如果要支持负数，参考: <a target="_blank" rel="noopener" href="https://code.i-harness.com/zh-CN/q/e98fa9">https://code.i-harness.com/zh-CN/q/e98fa9</a></li>
+</ul>
+<h1 id="常用排序算法对比"><a href="#常用排序算法对比" class="headerlink" title="常用排序算法对比"></a>常用排序算法对比</h1><p><img src="/image/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-4.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="相关术语解释："><a href="#相关术语解释：" class="headerlink" title="相关术语解释："></a>相关术语解释：</h2><ul>
+<li><strong>稳定</strong>：如果a原本在b前面，而a&#x3D;b，排序之后a仍然在b的前面；</li>
+<li><strong>不稳定</strong>：如果a原本在b的前面，而a&#x3D;b，排序之后a可能会出现在b的后面；</li>
+<li><strong>内排序</strong>：所有排序操作都在内存中完成；</li>
+<li><strong>外排序</strong>：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；</li>
+<li><strong>时间复杂度</strong>： 一个算法执行所耗费的时间。</li>
+<li><strong>空间复杂度</strong>：运行完一个程序所需内存的大小。</li>
+<li><strong>n</strong>: 数据规模</li>
+<li><strong>k</strong>: “桶”的个数</li>
+<li><strong>In-place</strong>:    不占用额外内存</li>
+<li><strong>Out-place</strong>: 占用额外内存</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/">#java</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+      
+        <a href="/tags/%E6%8E%92%E5%BA%8F/">#排序</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>基数排序</div>
+      <div>http://example.com/2019/08/17/基数排序/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年8月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/17/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%B3%95/" title="二分查找法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">二分查找法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/14/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="快速排序">
+                        <span class="hidden-mobile">快速排序</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

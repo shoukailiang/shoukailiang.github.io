@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="github page在github 上的项目名称必须和自己用户名一样 自己的用户名是aaa项目名得是 aaa.github.io 安装hexo ,一些工具(git,node)  略过 关联 Hexo 与 GitHub Pages我们如何让本地git项目与远程的github建立联系呢？用 SSH keys 生成SSH keys输入你自己的邮箱地址 1ssh-keygen -t rsa -C &amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo的一些使用和配置">
+<meta property="og:url" content="http://example.com/2018/02/18/hexo%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="github page在github 上的项目名称必须和自己用户名一样 自己的用户名是aaa项目名得是 aaa.github.io 安装hexo ,一些工具(git,node)  略过 关联 Hexo 与 GitHub Pages我们如何让本地git项目与远程的github建立联系呢？用 SSH keys 生成SSH keys输入你自己的邮箱地址 1ssh-keygen -t rsa -C &amp;qu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/hexo%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE/hexo%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE-1.png">
+<meta property="article:published_time" content="2018-02-18T07:42:23.000Z">
+<meta property="article:modified_time" content="2022-11-28T03:24:45.214Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/hexo%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE/hexo%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE-1.png">
+  
+  
+  
+  <title>hexo的一些使用和配置 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="hexo的一些使用和配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-02-18 15:42" pubdate>
+          2018年2月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">hexo的一些使用和配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="github-page"><a href="#github-page" class="headerlink" title="github page"></a>github page</h4><p>在github 上的项目名称必须和自己用户名一样</p>
+<p>自己的用户名是aaa项目名得是 aaa.github.io</p>
+<p>安装hexo ,一些工具(git,node)  略过</p>
+<h1 id="关联-Hexo-与-GitHub-Pages"><a href="#关联-Hexo-与-GitHub-Pages" class="headerlink" title="关联 Hexo 与 GitHub Pages"></a>关联 Hexo 与 GitHub Pages</h1><p>我们如何让本地git项目与远程的github建立联系呢？用 SSH keys</p>
+<h2 id="生成SSH-keys"><a href="#生成SSH-keys" class="headerlink" title="生成SSH keys"></a>生成SSH keys</h2><p>输入你自己的邮箱地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ssh-keygen -t rsa -C &quot;435072096@qq.com&quot;<br></code></pre></td></tr></table></figure>
+<p>在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入，我们按回车不设置密码。</p>
+<h2 id="添加-SSH-Key-到-GitHub"><a href="#添加-SSH-Key-到-GitHub" class="headerlink" title="添加 SSH Key 到 GitHub"></a>添加 SSH Key 到 GitHub</h2><p>打开 C:\Users\shouk \ .ssh\id_rsa.pub，此文件里面内容为刚才生成的密钥，准确的复制这个文件的内容，粘贴到 <a target="_blank" rel="noopener" href="https://github.com/settings/ssh">https://github.com/settings/ssh</a> 的 new SSH key 中</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>可以输入下面的命令，看看设置是否成功，<a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#111;&#x6d;">&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#111;&#x6d;</a>的部分不要修改：    </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ssh -T git@github.com   <br></code></pre></td></tr></table></figure>
+<p>如果是下面的反馈：</p>
+<blockquote>
+<p> The authenticity of host ‘github.com (207.97.227.239)’ can’t be established.<br>RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.<br>Are you sure you want to continue connecting (yes&#x2F;no)?</p>
+</blockquote>
+<p>不要紧张，输入yes就好，然后会看到：</p>
+<blockquote>
+<p>Hi shoukailiang! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+<h2 id="配置Git个人信息"><a href="#配置Git个人信息" class="headerlink" title="配置Git个人信息"></a>配置Git个人信息</h2><p>现在你已经可以通过 SSH 链接到 GitHub 了，还有一些个人信息需要完善的。<br>Git 会根据用户的名字和邮箱来记录提交。GitHub 也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;shoukailiang&quot;<br>git config --global user.email &quot;shoukailiang@qq.com&quot;<br></code></pre></td></tr></table></figure>
+<h2 id="配置-Deployment"><a href="#配置-Deployment" class="headerlink" title="配置 Deployment"></a>配置 Deployment</h2><p>在_config.yml文件中，找到Deployment，然后按照如下修改，用户名改成你的：</p>
+<p>需要注意的是：冒号后面记得空一格！</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">git@github.com:shoukailiang/shoukailiang.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+<h2 id="本地文件提交到-GitHub-Pages"><a href="#本地文件提交到-GitHub-Pages" class="headerlink" title="本地文件提交到 GitHub Pages"></a>本地文件提交到 GitHub Pages</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">// 删除旧的 public 文件<br>hexo clean<br><br>// 生成新的 public 文件<br>hexo generate<br>或者<br>hexo g<br><br>// 开始部署<br>hexo deploye<br>或者<br>hexo d<br>在浏览器中输入 https://shoukailiang.github.io （用户名改成你的）看到了 Hexo 与 GitHub Pages 已经成功关联了<br></code></pre></td></tr></table></figure>
+
+<h4 id="注意1："><a href="#注意1：" class="headerlink" title="注意1："></a>注意1：</h4><p>若上面操作失败，则需要提前安装一个扩展：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
+
+<h2 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h2><p>写一篇文章,默认是以post作为模板</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo new first(文章名)<br><br></code></pre></td></tr></table></figure>
+<p>tags里面写标签</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">tags:</span><br>- 前端<br>- 后端<br><br>分类<br>categories:<br>- 技术<br></code></pre></td></tr></table></figure>
+<h5 id="生成页面"><a href="#生成页面" class="headerlink" title="生成页面"></a>生成页面</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">hexo <span class="hljs-keyword">new</span> <span class="hljs-type">page</span> about  <span class="hljs-comment">//以page 作为模版,会自动生成里面的index.md</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="搜索功能的实现"><a href="#搜索功能的实现" class="headerlink" title="搜索功能的实现"></a>搜索功能的实现</h5><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/alexbruno/hexo-generator-json-content">https://github.com/alexbruno/hexo-generator-json-content</a></p>
+</blockquote>
+<p><img src="/image/hexo%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE/hexo%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE-1.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>部分学习自：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/39562a0d8eb6">http://www.jianshu.com/p/39562a0d8eb6</a></p>
+</blockquote>
+<h1 id="出错"><a href="#出错" class="headerlink" title="出错"></a>出错</h1><h2 id="部署出错"><a href="#部署出错" class="headerlink" title="部署出错"></a>部署出错</h2><p>Error: Host key verification failed.<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists.</p>
+<p>解决方法：条件SSHkey<br>$ ssh-keygen -t rsa -C “<a href="mailto:&#105;&#109;&#x73;&#x6f;&#x66;&#x74;&#x65;&#114;&#64;&#49;&#x36;&#x33;&#x2e;&#x63;&#111;&#109;">&#105;&#109;&#x73;&#x6f;&#x66;&#x74;&#x65;&#114;&#64;&#49;&#x36;&#x33;&#x2e;&#x63;&#111;&#109;</a>“<br>三次回车，即可设置密码为空</p>
+<p>将生成的C:\Users\用户名.ssh目录下的id_rsa.pub添加到github上</p>
+<p>再测试是否可以连接到github上，<br>$ ssh <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#x74;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a><br>Hi imsofter! You’ve successfully authenticated, but GitHub does not provide shell access.<br>Connection to github.com closed.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/hexo/" class="category-chain-item">hexo</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>hexo的一些使用和配置</div>
+      <div>http://example.com/2018/02/18/hexo的一些使用和配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年2月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/02/18/Node-js%E9%A1%B9%E7%9B%AE%E7%BA%BF%E4%B8%8A%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%8F%91%E5%B8%83/" title="Node.js项目线上服务器部署与发布">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Node.js项目线上服务器部署与发布</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

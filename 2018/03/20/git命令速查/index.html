@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="克隆项目：git clone https:&#x2F;&#x2F;github.com&#x2F;shoukailiang&#x2F;test.git 设置 如果你不设置可能还push不上去，第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：   git config –global user.name “shoukail">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git命令速查">
+<meta property="og:url" content="http://example.com/2018/03/20/git%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="克隆项目：git clone https:&#x2F;&#x2F;github.com&#x2F;shoukailiang&#x2F;test.git 设置 如果你不设置可能还push不上去，第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：   git config –global user.name “shoukail">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-20T12:59:00.000Z">
+<meta property="article:modified_time" content="2022-11-28T03:24:45.212Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="命令行">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>git命令速查 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="git命令速查"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-03-20 20:59" pubdate>
+          2018年3月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">git命令速查</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="克隆项目："><a href="#克隆项目：" class="headerlink" title="克隆项目："></a>克隆项目：</h3><p>git clone <a target="_blank" rel="noopener" href="https://github.com/shoukailiang/test.git">https://github.com/shoukailiang/test.git</a></p>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><blockquote>
+<p>如果你不设置可能还push不上去，第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：</p>
+</blockquote>
+<ul>
+<li>git config –global user.name “shoukailiang”</li>
+<li>git config –global user.email <a href="mailto:&#x73;&#x68;&#111;&#117;&#x6b;&#97;&#x69;&#x6c;&#x69;&#x61;&#x6e;&#x67;&#x40;&#x71;&#113;&#46;&#99;&#111;&#x6d;">&#x73;&#x68;&#111;&#117;&#x6b;&#97;&#x69;&#x6c;&#x69;&#x61;&#x6e;&#x67;&#x40;&#x71;&#113;&#46;&#99;&#111;&#x6d;</a></li>
+</ul>
+<h3 id="git-status-查看状态"><a href="#git-status-查看状态" class="headerlink" title="git status 查看状态"></a>git status 查看状态</h3><ul>
+<li><p>[master ≡ +2 ~0 -0!]（红色代表是工作区）：工作区有两个添加的文件，0个修改，0个删除   </p>
+</li>
+<li><p>[master ≡ +1 ~0 -0（绿色） | +1 ~0 -0 !（红色）]：绿色表示暂存区   ！表示有冲突</p>
+</li>
+<li><p>git add 添加到暂存区</p>
+</li>
+<li><p>git commit 提交到版本库，会弹出一个文件填注释</p>
+</li>
+<li><p>git add .把修改过得文件全部提交到暂存区（后面是.）</p>
+</li>
+<li><p>git commit -m “change demo01”:注释写在引号里面，不会弹出记事本</p>
+</li>
+<li><p>git commit -a -m “drag.js”：先添加到暂存区后添加到版本库的简写，引号里面写注释</p>
+</li>
+<li><p>git log：查看提交的历史，历史多了之后要按回车来显示，退出按q</p>
+</li>
+<li><p>git diff :工作区和暂存区的文件的差异的对比</p>
+</li>
+<li><p>git diff –cached：暂存区与版本库之间的对比（或者git diff –staged）</p>
+</li>
+<li><p>git diff master:工作区与版本库之间的差异 ，master那个是分支的名字</p>
+</li>
+</ul>
+<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><ul>
+<li>git reset HEAD drag.js  从暂存区撤销回工作区</li>
+<li>git checkout – drag.js 从版本库撤销回工作区（会先从暂存区撤销，如果没有才会到版本库中撤销）</li>
+<li>git commit -m “change3 drag.js and demo01.html” –amend  ：比如有两个文件1,2 我把1 add到暂存区，然后commit了全部，<br>这时候就除了错误，可以使用上述代码：就达到了撤销上一次的commit 然后把文件全部commit ；使用git log 并不会有那次commit的注释信息</li>
+</ul>
+<h3 id="删除："><a href="#删除：" class="headerlink" title="删除："></a>删除：</h3><ul>
+<li>git rm test.txt ：把暂存区中的test.txt删除（要先把工作区中的这个文件删除，否侧会报错）</li>
+<li>git rm -f test.txt 会把暂存区和工作区的test.txt删掉（要先把test.txt  add 到暂存区）</li>
+<li>git rm –cached test.txt 把暂存区的test.txt删掉，不会吧工作区的test.txt删掉</li>
+</ul>
+<h3 id="恢复："><a href="#恢复：" class="headerlink" title="恢复："></a>恢复：</h3><ul>
+<li><p>指定文件：比如一不小心在工作区把一个文件给误删了，这时候git log 后找到commit 的id  然后 git checkout e154cb8c45eb drag.js</p>
+</li>
+<li><p>git reset –hard e154cb8c45eb   恢复版本，不管有多少文件，可以去过去也可以去未来（未来至回退之后的未来）</p>
+</li>
+<li><p>git reset  –hard HEAD^ 回到上一个版本</p>
+</li>
+<li><p>git reset  –hard HEAD~2 回退两个版本（跳过两个，回退到第三个）</p>
+</li>
+<li><p>git reflog：把历史版本全都打印出来</p>
+</li>
+<li><p>git remote 查看远程仓库的名字</p>
+</li>
+<li><p>git remote -v 查看名字所对应的远程仓库的地址</p>
+</li>
+<li><p>git push origin master  （origin是远程仓库的名字  master是分支名）</p>
+</li>
+</ul>
+<h3 id="解决冲突："><a href="#解决冲突：" class="headerlink" title="解决冲突："></a>解决冲突：</h3><ul>
+<li><p>git fetch 拉取远端仓库代码但不进行合并，需要手动合并（在工作区内并不会直接合并还是原来的代码，可以先查看区别后再合并）</p>
+<ul>
+<li>查看区别 git diff master origin&#x2F;master</li>
+<li>合并: git merge origin&#x2F;master,合并会把两个都合并，让我们自己选择（多余的删除）</li>
+</ul>
+</li>
+<li><p>git pull  拉取远端仓库代码直接合并</p>
+</li>
+</ul>
+<h3 id="开源项目协作（没权限）："><a href="#开源项目协作（没权限）：" class="headerlink" title="开源项目协作（没权限）："></a>开源项目协作（没权限）：</h3><ul>
+<li>fork:相当于一个镜像放在自己的仓库，克隆在本地，修改代码，（也可以在github上直接修改）发布到自己的仓库，<br>然后pull request  ,写一些留言，对方会看到，对方可以选择 合并</li>
+</ul>
+<h3 id="分支："><a href="#分支：" class="headerlink" title="分支："></a>分支：</h3><ul>
+<li><p>git branch 查看分支</p>
+</li>
+<li><p>git branch new1 创建new1的新分支</p>
+</li>
+<li><p>git checkout new1 切换到new1的分支</p>
+</li>
+<li><p>git checkout -b new2 创建new2分支并且切换到new2分支上</p>
+</li>
+<li><p>（先切换到master分支上）， git merge new1   将new1与master合并</p>
+</li>
+<li><p>git branch –merged ：可以知道当前分支下有被合并的分支 ，比如master分支下合并了new1</p>
+</li>
+<li><p>git branch –no-merged 当前分支下没有被合并的分支</p>
+</li>
+<li><p>git branch -d new1          </p>
+<ul>
+<li>new1和branch合并后，把new1删除，只能删掉被合并的分支，比如new2没有和master合并就不能删除new2</li>
+</ul>
+</li>
+<li><p>git branch -D new2 强制把没有合并的分支删掉</p>
+</li>
+<li><p>有冲突的合并（两个分支不同）</p>
+<ul>
+<li>在master上git merge new1  会让你自己选择留下哪个然后 git commit -a -m “…..”</li>
+</ul>
+</li>
+<li><p>git push origin  new1  把new1分支提交到远端仓库上</p>
+</li>
+<li><p>git tag 查看标签</p>
+</li>
+<li><p>git tag v1.0   v1.0版<br>之后：git push origin v1.0 （这里v1.0不是分支）</p>
+</li>
+<li><p>git reset HEAD~  撤销回上一次提交的，和之前在暂存区里提交前一样的状态</p>
+</li>
+</ul>
+<h3 id="推荐git-教程"><a href="#推荐git-教程" class="headerlink" title="推荐git 教程"></a>推荐git 教程</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰git，非常的好</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ituring.com.cn/book/1870">git小书</a></li>
+<li><a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">官方</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%B7%A5%E5%85%B7/git/" class="category-chain-item">git</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+      
+        <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">#命令行</a>
+      
+        <a href="/tags/git/">#git</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>git命令速查</div>
+      <div>http://example.com/2018/03/20/git命令速查/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年3月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/03/28/create-react-app%20%E9%85%8D%E7%BD%AEscss,ant-design%EF%BC%8C%E8%A3%85%E9%A5%B0%E5%99%A8%EF%BC%8C%E4%BB%A3%E7%90%86%EF%BC%8Cnode%E6%94%AF%E6%8C%81%E6%9C%80%E6%96%B0%E8%AF%AD%E6%B3%95%EF%BC%8Cexpress%20es6%20%E5%90%8E%E7%AB%AF%EF%BC%8C%E9%93%BE%E6%8E%A5mongodb/" title="create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/03/15/es6%EF%BC%8Ces7%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/" title="es6，es7的一些语法（笔记）">
+                        <span class="hidden-mobile">es6，es7的一些语法（笔记）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

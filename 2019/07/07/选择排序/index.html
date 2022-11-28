@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基本介绍选择式排序也属于内部排序法，是从欲排序的数据中，按指定的规则选出某一元素，再依规定交换位置后达到排序的目的。 选择排序思想:选择排序（select sorting）也是一种简单的排序方法。它的基本思想是：第一次从arr[0]arr[n-1]中选取最小值，与arr[0]交换，第二次从arr[1]arr[n-1]中选取最小值，与arr[1]交换，第三次从arr[2]arr[n-1]中选取最小值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="选择排序">
+<meta property="og:url" content="http://example.com/2019/07/07/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基本介绍选择式排序也属于内部排序法，是从欲排序的数据中，按指定的规则选出某一元素，再依规定交换位置后达到排序的目的。 选择排序思想:选择排序（select sorting）也是一种简单的排序方法。它的基本思想是：第一次从arr[0]arr[n-1]中选取最小值，与arr[0]交换，第二次从arr[1]arr[n-1]中选取最小值，与arr[1]交换，第三次从arr[2]arr[n-1]中选取最小值">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-07T04:43:51.000Z">
+<meta property="article:modified_time" content="2022-11-28T03:24:45.230Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="排序">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>选择排序 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="选择排序"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-07-07 12:43" pubdate>
+          2019年7月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">选择排序</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>选择式排序也属于内部排序法，是从欲排序的数据中，按指定的规则选出某一元素，再依规定交换位置后达到排序的目的。</p>
+<h1 id="选择排序思想"><a href="#选择排序思想" class="headerlink" title="选择排序思想:"></a>选择排序思想:</h1><p>选择排序（select sorting）也是一种简单的排序方法。它的基本思想是：第一次从arr[0]<del>arr[n-1]中选取最小值，与arr[0]交换，第二次从arr[1]</del>arr[n-1]中选取最小值，与arr[1]交换，第三次从arr[2]<del>arr[n-1]中选取最小值，与arr[2]交换，…，第i次从arr[i-1]</del>arr[n-1]中选取最小值，与arr[i-1]交换，…, 第n-1次从arr[n-2]~arr[n-1]中选取最小值，与arr[n-2]交换，总共通过n-1次，得到一个按排序码从小到大排列的有序序列。</p>
+<h1 id="思路图解"><a href="#思路图解" class="headerlink" title="思路图解"></a>思路图解</h1><p>原始的数组 ： 101, 34, 119, 1</p>
+<p>第一轮排序 :   <strong>1</strong>, 34, 119, 101</p>
+<p>第二轮排序 :   <strong>1, 34</strong>, 119, 101</p>
+<p>第三轮排序 :   <strong>1</strong>, <strong>34</strong>, <strong>101</strong>, 119</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ol>
+<li>选择排序一共有 数组大小 - 1 轮排序</li>
+<li>每1轮排序，又是一个循环, 循环的规则(代码)</li>
+</ol>
+<ul>
+<li>先假定当前这个数是最小数</li>
+<li>然后和后面的每个数进行比较，如果发现有比当前数更小的数，就重新确定最小数，并得到下标</li>
+<li>当遍历到数组的最后时，就得到本轮最小数和下标</li>
+<li>交换</li>
+</ul>
+<h1 id="代码推导"><a href="#代码推导" class="headerlink" title="代码推导"></a>代码推导</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">selectSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span> &#123;<br>    <span class="hljs-comment">//使用逐步推导的方式来，讲解选择排序</span><br>	<span class="hljs-comment">//第1轮</span><br>	<span class="hljs-comment">//原始的数组 ： 	101, 34, 119, 1</span><br>	<span class="hljs-comment">//第一轮排序 :   	1, 34, 119, 101</span><br>	<span class="hljs-comment">//算法 先简单--》 做复杂， 就是可以把一个复杂的算法，拆分成简单的问题-》逐步解决</span><br>	<br>	<span class="hljs-comment">//第1轮</span><br>	<span class="hljs-type">int</span> <span class="hljs-variable">minIndex</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> <span class="hljs-variable">min</span> <span class="hljs-operator">=</span> arr[<span class="hljs-number">0</span>];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span> + <span class="hljs-number">1</span>; j &lt; arr.length; j++) &#123;<br>		<span class="hljs-keyword">if</span> (min &gt; arr[j]) &#123; <span class="hljs-comment">//说明假定的最小值，并不是最小</span><br>			min = arr[j]; <span class="hljs-comment">//重置min</span><br>			minIndex = j; <span class="hljs-comment">//重置minIndex</span><br>		&#125;<br>	&#125;<br>	<br>	<br>	<span class="hljs-comment">//将最小值，放在arr[0], 即交换</span><br>	<span class="hljs-keyword">if</span>(minIndex != <span class="hljs-number">0</span>) &#123;<br>		arr[minIndex] = arr[<span class="hljs-number">0</span>];<br>		arr[<span class="hljs-number">0</span>] = min;<br>	&#125;<br>	<br>	System.out.println(<span class="hljs-string">&quot;第1轮后~~&quot;</span>);<br>	System.out.println(Arrays.toString(arr));<span class="hljs-comment">// 1, 34, 119, 101</span><br>	<br>	<br>	<span class="hljs-comment">//第2轮</span><br>	minIndex = <span class="hljs-number">1</span>;<br>	min = arr[<span class="hljs-number">1</span>];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> + <span class="hljs-number">1</span>; j &lt; arr.length; j++) &#123;<br>		<span class="hljs-keyword">if</span> (min &gt; arr[j]) &#123; <span class="hljs-comment">// 说明假定的最小值，并不是最小</span><br>			min = arr[j]; <span class="hljs-comment">// 重置min</span><br>			minIndex = j; <span class="hljs-comment">// 重置minIndex</span><br>		&#125;<br>	&#125;<br><br>	<span class="hljs-comment">// 将最小值，放在arr[0], 即交换</span><br>	<span class="hljs-keyword">if</span>(minIndex != <span class="hljs-number">1</span>) &#123;<br>		arr[minIndex] = arr[<span class="hljs-number">1</span>];<br>		arr[<span class="hljs-number">1</span>] = min;<br>	&#125;<br><br>	System.out.println(<span class="hljs-string">&quot;第2轮后~~&quot;</span>);<br>	System.out.println(Arrays.toString(arr));<span class="hljs-comment">// 1, 34, 119, 101</span><br>	<br>	<span class="hljs-comment">//第3轮</span><br>	minIndex = <span class="hljs-number">2</span>;<br>	min = arr[<span class="hljs-number">2</span>];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span> + <span class="hljs-number">1</span>; j &lt; arr.length; j++) &#123;<br>		<span class="hljs-keyword">if</span> (min &gt; arr[j]) &#123; <span class="hljs-comment">// 说明假定的最小值，并不是最小</span><br>			min = arr[j]; <span class="hljs-comment">// 重置min</span><br>			minIndex = j; <span class="hljs-comment">// 重置minIndex</span><br>		&#125;<br>	&#125;<br><br>	<span class="hljs-comment">// 将最小值，放在arr[0], 即交换</span><br>	<span class="hljs-keyword">if</span> (minIndex != <span class="hljs-number">2</span>) &#123;<br>		arr[minIndex] = arr[<span class="hljs-number">2</span>];<br>		arr[<span class="hljs-number">2</span>] = min;<br>	&#125;<br><br>	System.out.println(<span class="hljs-string">&quot;第3轮后~~&quot;</span>);<br>	System.out.println(Arrays.toString(arr));<span class="hljs-comment">// 1, 34, 101, 119 </span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">selectSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span> &#123;<br>	<span class="hljs-comment">//在推导的过程，我们发现了规律，因此，可以使用for来解决</span><br>	<span class="hljs-comment">//选择排序时间复杂度是 O(n^2)</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; arr.length - <span class="hljs-number">1</span>; i++) &#123;<br>		<span class="hljs-type">int</span> <span class="hljs-variable">minIndex</span> <span class="hljs-operator">=</span> i;<br>		<span class="hljs-type">int</span> <span class="hljs-variable">min</span> <span class="hljs-operator">=</span> arr[i];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i + <span class="hljs-number">1</span>; j &lt; arr.length; j++) &#123;<br>			<span class="hljs-keyword">if</span> (min &gt; arr[j]) &#123; <span class="hljs-comment">// 说明假定的最小值，并不是最小</span><br>				min = arr[j]; <span class="hljs-comment">// 重置min</span><br>				minIndex = j; <span class="hljs-comment">// 重置minIndex</span><br>			&#125;<br>		&#125;<br><br>		<span class="hljs-comment">// 将最小值，放在arr[0], 即交换</span><br>		<span class="hljs-keyword">if</span> (minIndex != i) &#123;<br>			arr[minIndex] = arr[i];<br>			arr[i] = min;<br>		&#125;<br><br>		<span class="hljs-comment">//System.out.println(&quot;第&quot;+(i+1)+&quot;轮后~~&quot;);</span><br>		<span class="hljs-comment">//System.out.println(Arrays.toString(arr));// 1, 34, 119, 101</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="测试性能"><a href="#测试性能" class="headerlink" title="测试性能"></a>测试性能</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>	<span class="hljs-comment">//创建要给80000个的随机的数组</span><br>	<span class="hljs-type">int</span>[] arr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">80000</span>];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">80000</span>; i++) &#123;<br>		arr[i] = (<span class="hljs-type">int</span>) (Math.random() * <span class="hljs-number">8000000</span>); <span class="hljs-comment">// 生成一个[0, 8000000) 数</span><br>	&#125;<br>	System.out.println(<span class="hljs-string">&quot;排序前&quot;</span>);<br>	<span class="hljs-comment">//System.out.println(Arrays.toString(arr));</span><br>	<br>	<span class="hljs-type">Date</span> <span class="hljs-variable">data1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br>	<span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">simpleDateFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<br>	<span class="hljs-type">String</span> <span class="hljs-variable">date1Str</span> <span class="hljs-operator">=</span> simpleDateFormat.format(data1);<br>	System.out.println(<span class="hljs-string">&quot;排序前的时间是=&quot;</span> + date1Str);<br>	<br>	selectSort(arr);<br>	<br>	<br>	<span class="hljs-type">Date</span> <span class="hljs-variable">data2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br>	<span class="hljs-type">String</span> <span class="hljs-variable">date2Str</span> <span class="hljs-operator">=</span> simpleDateFormat.format(data2);<br>	System.out.println(<span class="hljs-string">&quot;排序前的时间是=&quot;</span> + date2Str);<br>	<br>	<span class="hljs-comment">//System.out.println(&quot;排序后&quot;);</span><br>	<span class="hljs-comment">//System.out.println(Arrays.toString(arr));</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>从运行速度来看，选择比冒泡快很多。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/">#java</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+      
+        <a href="/tags/%E6%8E%92%E5%BA%8F/">#排序</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>选择排序</div>
+      <div>http://example.com/2019/07/07/选择排序/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年7月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/07/08/ubuntu%E5%AE%89%E8%A3%85redis/" title="ubuntu安装redis">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ubuntu安装redis</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/07/06/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" title="冒泡排序">
+                        <span class="hidden-mobile">冒泡排序</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

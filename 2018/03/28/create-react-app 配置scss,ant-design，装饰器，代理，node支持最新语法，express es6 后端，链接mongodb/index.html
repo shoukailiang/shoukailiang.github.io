@@ -1,0 +1,744 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="新建一个项目123456789npm install -g create-react-appcreate-react-app my-appcd my-appnpm inpm start# 或者，npm 5.1版本以上自带npx,以下官方推荐npx create-react-app my-appcd my-appnpm start 暴露配置文件12# 暴露配置文件，输入yes就好npm eject">
+<meta property="og:type" content="article">
+<meta property="og:title" content="create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb">
+<meta property="og:url" content="http://example.com/2018/03/28/create-react-app%20%E9%85%8D%E7%BD%AEscss,ant-design%EF%BC%8C%E8%A3%85%E9%A5%B0%E5%99%A8%EF%BC%8C%E4%BB%A3%E7%90%86%EF%BC%8Cnode%E6%94%AF%E6%8C%81%E6%9C%80%E6%96%B0%E8%AF%AD%E6%B3%95%EF%BC%8Cexpress%20es6%20%E5%90%8E%E7%AB%AF%EF%BC%8C%E9%93%BE%E6%8E%A5mongodb/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="新建一个项目123456789npm install -g create-react-appcreate-react-app my-appcd my-appnpm inpm start# 或者，npm 5.1版本以上自带npx,以下官方推荐npx create-react-app my-appcd my-appnpm start 暴露配置文件12# 暴露配置文件，输入yes就好npm eject">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-1.png">
+<meta property="og:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-2.png">
+<meta property="og:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-3.png">
+<meta property="og:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE.png">
+<meta property="article:published_time" content="2018-03-28T11:37:07.000Z">
+<meta property="article:modified_time" content="2022-11-28T03:24:45.211Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="ant-design">
+<meta property="article:tag" content="scss">
+<meta property="article:tag" content="create-react-app">
+<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="express">
+<meta property="article:tag" content="mongodb">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-1.png">
+  
+  
+  
+  <title>create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-03-28 19:37" pubdate>
+          2018年3月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<h2 id="新建一个项目"><a href="#新建一个项目" class="headerlink" title="新建一个项目"></a>新建一个项目</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install -g create-react-app<br>create-react-app my-app<br>cd my-app<br>npm i<br>npm start<br><span class="hljs-meta prompt_"># </span><span class="language-bash">或者，npm 5.1版本以上自带npx,以下官方推荐</span><br>npx create-react-app my-app<br>cd my-app<br>npm start<br></code></pre></td></tr></table></figure>
+<h2 id="暴露配置文件"><a href="#暴露配置文件" class="headerlink" title="暴露配置文件"></a>暴露配置文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">暴露配置文件，输入<span class="hljs-built_in">yes</span>就好</span><br>npm eject<br></code></pre></td></tr></table></figure>
+<h2 id="下载依赖"><a href="#下载依赖" class="headerlink" title="下载依赖"></a>下载依赖</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">scss依赖</span><br>npm install sass-loader node-sass --save-dev<br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果node-sass下载不下来的话，即node-sass安装失败使用：</span><br> npm install --save node-sass --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/dist --sass-binary-site=http://npm.taobao.org/mirrors/node-sass<br><span class="hljs-meta prompt_"># </span><span class="language-bash">说明</span><br>--registry=https://registry.npm.taobao.org 淘宝npm包镜像<br>--disturl=https://npm.taobao.org/dist 淘宝node源码镜像，一些二进制包编译时用<br>--sass-binary-site=http://npm.taobao.org/mirrors/node-sass 这个才是node-sass镜像<br><span class="hljs-meta prompt_"># </span><span class="language-bash">ant-design</span><br>npm install antd --save<br><span class="hljs-meta prompt_"># </span><span class="language-bash">按需加载的依赖</span><br>npm install babel-plugin-import --save<br></code></pre></td></tr></table></figure>
+<h2 id="配置webpack参数"><a href="#配置webpack参数" class="headerlink" title="配置webpack参数"></a>配置webpack参数</h2><h2 id="scss"><a href="#scss" class="headerlink" title="scss"></a>scss</h2><p>在config 里面的webpack.config.dev.js和webpack.config.prod.js里面，前面一个是开发的配置文件，后面的是生产时的配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">大约160行左右<br><span class="hljs-meta prompt_"># </span><span class="language-bash">第一处是：</span>  <br>test: /\.css$/ 变成 test: /\.s?css$/  <br><span class="hljs-meta prompt_"># </span><span class="language-bash">第二处是：</span> <br>&#123;loader: require.resolve(&#x27;sass-loader&#x27;)&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-1.png" srcset="/img/loading.gif" lazyload><br>之后你随便新建一个a.scss ，import “路径&#x2F;a.scss”就可以了</p>
+<blockquote>
+<p>缺点就是css代码会是全局的，一个人开发还好，多人的话，css命名冲突就很难受了，css-moudle是一种解决方案，但是我不怎么喜欢，我个人推荐可以用下style-component</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/06/css_modules.html">css-moudle阮一峰</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.styled-components.com/">style-component</a></p>
+<h2 id="ant-design"><a href="#ant-design" class="headerlink" title="ant-design"></a>ant-design</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs javascript"># 修改babel配置，在package.<span class="hljs-property">json</span>里面<br># 装饰器的包：npm i babel-plugin-transform-decorators-legacy --D<br># <span class="hljs-number">1.</span>按需加载,让nodejs支持最新的语法，装饰器<br># package.<span class="hljs-property">json</span>里面不能写注释，记得删掉<br> <span class="hljs-string">&quot;babel&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;presets&quot;</span>: [<br>      <span class="hljs-string">&quot;react-app&quot;</span>,<br>      [<br>        <span class="hljs-string">&quot;env&quot;</span>,<br>        &#123;<br>          <span class="hljs-string">&quot;targets&quot;</span>: &#123;<br>            <span class="hljs-string">&quot;node&quot;</span>: <span class="hljs-literal">true</span><br>          &#125;<br>        &#125;<br>      ]<br>    ],<br>    <span class="hljs-comment">// 这边是按需加载ant-design的css</span><br>    <span class="hljs-string">&quot;plugins&quot;</span>: [<br>      [<br>        <span class="hljs-string">&quot;import&quot;</span>,<br>        &#123;<br>          <span class="hljs-string">&quot;libraryName&quot;</span>: <span class="hljs-string">&quot;antd&quot;</span>,<br>          <span class="hljs-string">&quot;libraryDirectory&quot;</span>: <span class="hljs-string">&quot;es&quot;</span>,<br>          <span class="hljs-string">&quot;style&quot;</span>: <span class="hljs-string">&quot;css&quot;</span><br>        &#125;<br>      ],<br>      <span class="hljs-comment">// 装饰器</span><br>      <span class="hljs-string">&quot;transform-decorators-legacy&quot;</span><br>    ]<br>  &#125;,<br>  <span class="hljs-comment">//设置代理,应为前端开启了一个服务器，后端又开启了一个服务器，导致跨域的问题，设置代理能解决这个问题</span><br>    <span class="hljs-string">&quot;proxy&quot;</span>: <span class="hljs-string">&quot;http://localhost:8888&quot;</span>,<br></code></pre></td></tr></table></figure>
+<p>之后就ok了。你引入一个ant的组件试试就知道了</p>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"># 导入<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Button</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;antd&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./msgCircle.scss&quot;</span>;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MsgCircle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> &#123;<br>  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> (<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;msg-circle&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span>&gt;</span>Primary<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>    )<br>  &#125;<br>&#125;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">MsgCircle</span>;<br># 有人说为什么不用导入css,应为前面已经配置了按需加载<br></code></pre></td></tr></table></figure>
+<h1 id="如果我又想用antd的主题怎么办"><a href="#如果我又想用antd的主题怎么办" class="headerlink" title="如果我又想用antd的主题怎么办"></a>如果我又想用antd的主题怎么办</h1><blockquote>
+<p>这里就给一个官方的解决方案</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/Kruemelkatze/057f01b8e15216ae707dc7e6c9061ef7">传送门</a></p>
+<p><img src="/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-2.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><blockquote>
+<p>修改配置文件后要重新npm start一下的</p>
+</blockquote>
+<ul>
+<li>若配置装饰器后，发现 <code>vscode</code> 有红色波浪线，解决方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"># 新建一个tsconfig.<span class="hljs-property">json</span>，内容如下<br>&#123;<br>  <span class="hljs-string">&quot;compilerOptions&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;experimentalDecorators&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;allowJs&quot;</span>: <span class="hljs-literal">true</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="链接mongodb，后端node"><a href="#链接mongodb，后端node" class="headerlink" title="链接mongodb，后端node"></a>链接mongodb，后端node</h1><blockquote>
+<p>梦想还是要有的，万一实现了呢</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在根目录新建一个server</span> <br>cd server<br><span class="hljs-meta prompt_"># </span><span class="language-bash">init后就会生成一个package.json，记录你每次安装的包</span><br>npm init <br><span class="hljs-meta prompt_"># </span><span class="language-bash">为什么把模块装在server里面，装在外面的package.json不好吗，可以啊，不过我喜欢分开</span><br>npm i bluebird express mongoose nodemon --save <br>mkdir server.js<br></code></pre></td></tr></table></figure>
+<p>准备启动后端了，链接mongodb</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-keyword">const</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mongoose&#x27;</span>)<br><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;<br>  <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">json</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)<br>&#125;)<br><span class="hljs-comment">// mongoose的Promise已经废弃了，这里就用下bluebird</span><br>mongoose.<span class="hljs-property">Promise</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;bluebird&#x27;</span>);<br><br><span class="hljs-keyword">try</span> &#123;<br>  mongoose.<span class="hljs-title function_">connect</span>(<span class="hljs-string">&#x27;mongodb://localhost/test&#x27;</span>, &#123;<br>    <span class="hljs-comment">// 不加参数会报警告</span><br>    <span class="hljs-comment">// useMongoClient: true</span><br>  &#125;)<br>&#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error)<br>&#125;<br>mongoose.<span class="hljs-property">connection</span><br>  .<span class="hljs-title function_">once</span>(<span class="hljs-string">&#x27;open&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;mongoose connection&#x27;</span>)<br>  &#125;)<br>  .<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;error&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-keyword">throw</span> error;<br>  &#125;)<br><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">8888</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;服务开启在8888&quot;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>前面代理的端口要和后端启动的端口一致的</p>
+</blockquote>
+<p>修改package.json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"># nodemon 就是你不用每次再去手动node server.<span class="hljs-property">js</span>了，他会自动的帮你的（在外层的package.<span class="hljs-property">json</span>）<br>  <span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;server&quot;</span>: <span class="hljs-string">&quot;nodemon server/server.js&quot;</span><br>  &#125;,<br></code></pre></td></tr></table></figure>
+<h1 id="express怎么不是es6的语法"><a href="#express怎么不是es6的语法" class="headerlink" title="express怎么不是es6的语法?"></a>express怎么不是es6的语法?</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">那就实现一下</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">用babel-cli</span> <br>npm i bebel-cli --save <br>修改scripts命令<br>  &quot;server&quot;: &quot;NODE_ENV=test nodemon --exec babel-node server/server.js&quot;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">不指定babel-node的话，默认是node</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">之后你把里面的require改成import是不会报错的</span><br></code></pre></td></tr></table></figure>
+<h1 id="mongodb-存储配置"><a href="#mongodb-存储配置" class="headerlink" title="mongodb 存储配置"></a>mongodb 存储配置</h1><ul>
+<li>默认你已经安装好mongodb,配好mongodb的环境变量，不配也没关系，多打几个路径而已</li>
+<li>在某一盘符下新建一个test(名字随意)，里面新建data,etc,logs三个文件夹</li>
+<li>data是存放数据的，etc是配置文件，logs是日志</li>
+<li>在etc下新建mongo.conf<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">内容范例</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">数据库路径 (你自己的路径)</span><br>dbpath=/home/skl/Desktop/test/data<br><span class="hljs-meta prompt_"># </span><span class="language-bash">日志输出文件路径</span> <br>logpath=/home/skl/Desktop/test/logs/mongodb.log<br><span class="hljs-meta prompt_"># </span><span class="language-bash">错误日志采用追加模式，配置这个选项后mongodb的日志文件会追加到现有的日志文件，而不是重新创建一个文件</span> <br>logappend=true<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">过滤一些无用的日志</span> <br>quiet=false<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">启动日志文件，默认启动</span> <br>journal=true<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">端口号，默认是27017</span> <br>port=27018<br></code></pre></td></tr></table></figure></li>
+<li>需要注意的是：linux和window的文件分隔符是不一样的，pwd打一下就知道了</li>
+<li>在etc文件里面运行 mongod –config mongo.conf （指定配置文件）<blockquote>
+<p>启动server.js前先链接数据库 ，在etc文件里面运行 mongod –config mongo.conf （指定配置文件）</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd server<br>npm start<br></code></pre></td></tr></table></figure>
+
+<p><img src="/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-3.png" srcset="/img/loading.gif" lazyload><br>访问localhost:8888，会出现</p>
+<p><img src="/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE.png" srcset="/img/loading.gif" lazyload></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/shoukailiang/react-scaffolding">传送门</a>  项目放github上了，可以自己查看</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/" class="category-chain-item">javascript</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/react/" class="category-chain-item">react</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/javascript/react/webpack%E9%85%8D%E7%BD%AE/" class="category-chain-item">webpack配置</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+        <a href="/tags/ant-design/">#ant-design</a>
+      
+        <a href="/tags/scss/">#scss</a>
+      
+        <a href="/tags/create-react-app/">#create-react-app</a>
+      
+        <a href="/tags/webpack/">#webpack</a>
+      
+        <a href="/tags/express/">#express</a>
+      
+        <a href="/tags/mongodb/">#mongodb</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb</div>
+      <div>http://example.com/2018/03/28/create-react-app 配置scss,ant-design，装饰器，代理，node支持最新语法，express es6 后端，链接mongodb/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年3月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/07/07/maven%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="maven学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">maven学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/03/20/git%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5/" title="git命令速查">
+                        <span class="hidden-mobile">git命令速查</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
