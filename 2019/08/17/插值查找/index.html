@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="插值查找原理介绍: 插值查找算法类似于二分查找，不同的是插值查找每次从自适应mid处开始查找。 将折半查找中的求mid 索引的公式 , low 表示左边索引left, high表示右边索引right. key 就是前面我们讲的  findVal    int mid &#x3D; low + (high - low) * (key - arr[low]) &#x2F; (arr[high] - a">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/image/%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE/%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE-1.png">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281401781.png">
 <meta property="article:published_time" content="2019-08-17T11:53:36.000Z">
-<meta property="article:modified_time" content="2022-11-28T03:24:45.225Z">
+<meta property="article:modified_time" content="2022-11-28T06:02:40.092Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="查找">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/image/%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE/%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE-1.png">
+<meta name="twitter:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281401781.png">
   
   
   
@@ -281,8 +281,8 @@
 <li>插值查找算法类似于二分查找，不同的是插值查找每次从自适应mid处开始查找。</li>
 <li>将折半查找中的求mid 索引的公式 , low 表示左边索引left, high表示右边索引right. key 就是前面我们讲的  findVal</li>
 </ol>
-<p><img src="/image/%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE/%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE-1.png" srcset="/img/loading.gif" lazyload></p>
-<ol start="3">
+<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281401781.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
 <li>int mid &#x3D; low + (high - low) * (key - arr[low]) &#x2F; (arr[high] - arr[low])  ;&#x2F;<em>插值索引</em>&#x2F; 对应前面的代码公式：int mid &#x3D; left + (right – left) * (findVal – arr[left]) &#x2F; (arr[right] – arr[left])</li>
 <li>举例说明插值查找算法 1-100 的数组</li>
 </ol>

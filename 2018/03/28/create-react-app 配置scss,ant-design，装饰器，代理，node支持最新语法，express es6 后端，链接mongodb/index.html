@@ -23,12 +23,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="新建一个项目123456789npm install -g create-react-appcreate-react-app my-appcd my-appnpm inpm start# 或者，npm 5.1版本以上自带npx,以下官方推荐npx create-react-app my-appcd my-appnpm start 暴露配置文件12# 暴露配置文件，输入yes就好npm eject">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-1.png">
-<meta property="og:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-2.png">
-<meta property="og:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-3.png">
-<meta property="og:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525283.png">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525084.png">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525730.png">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281526050.png">
 <meta property="article:published_time" content="2018-03-28T11:37:07.000Z">
-<meta property="article:modified_time" content="2022-11-28T03:24:45.211Z">
+<meta property="article:modified_time" content="2022-11-28T07:26:18.737Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="javascript">
@@ -39,7 +39,7 @@
 <meta property="article:tag" content="express">
 <meta property="article:tag" content="mongodb">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-1.png">
+<meta name="twitter:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525283.png">
   
   
   
@@ -292,7 +292,7 @@
 <h2 id="配置webpack参数"><a href="#配置webpack参数" class="headerlink" title="配置webpack参数"></a>配置webpack参数</h2><h2 id="scss"><a href="#scss" class="headerlink" title="scss"></a>scss</h2><p>在config 里面的webpack.config.dev.js和webpack.config.prod.js里面，前面一个是开发的配置文件，后面的是生产时的配置文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">大约160行左右<br><span class="hljs-meta prompt_"># </span><span class="language-bash">第一处是：</span>  <br>test: /\.css$/ 变成 test: /\.s?css$/  <br><span class="hljs-meta prompt_"># </span><span class="language-bash">第二处是：</span> <br>&#123;loader: require.resolve(&#x27;sass-loader&#x27;)&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-1.png" srcset="/img/loading.gif" lazyload><br>之后你随便新建一个a.scss ，import “路径&#x2F;a.scss”就可以了</p>
+<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525283.png" srcset="/img/loading.gif" lazyload><br>之后你随便新建一个a.scss ，import “路径&#x2F;a.scss”就可以了</p>
 <blockquote>
 <p>缺点就是css代码会是全局的，一个人开发还好，多人的话，css命名冲突就很难受了，css-moudle是一种解决方案，但是我不怎么喜欢，我个人推荐可以用下style-component</p>
 </blockquote>
@@ -305,7 +305,7 @@
 <p>这里就给一个官方的解决方案</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://gist.github.com/Kruemelkatze/057f01b8e15216ae707dc7e6c9061ef7">传送门</a></p>
-<p><img src="/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525084.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><blockquote>
 <p>修改配置文件后要重新npm start一下的</p>
 </blockquote>
@@ -337,8 +337,8 @@
 </ul>
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd server<br>npm start<br></code></pre></td></tr></table></figure>
 
-<p><img src="/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE-3.png" srcset="/img/loading.gif" lazyload><br>访问localhost:8888，会出现</p>
-<p><img src="/image/create-react-app%E9%85%8D%E7%BD%AE/create-react-app%E9%85%8D%E7%BD%AE.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281525730.png" srcset="/img/loading.gif" lazyload><br>访问localhost:8888，会出现</p>
+<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202211281526050.png" srcset="/img/loading.gif" lazyload></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/shoukailiang/react-scaffolding">传送门</a>  项目放github上了，可以自己查看</p>
 
                 
