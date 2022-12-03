@@ -1,0 +1,37 @@
+---
+title: SpringBoot报警告WARNING  An illegal reflective access operation has occurred
+date: 2021-08-04 13:30:29
+tags: 
+  - java
+  - springboot
+categories:
+ - 后端
+---
+
+
+# 错误详情
+![image.png](https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031245391.png)
+由于我将8的项目升级到了11
+# 解决办法
+```java
+public static void disableWarning() {
+    try {
+        Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+        theUnsafe.setAccessible(true);
+        Unsafe u = (Unsafe) theUnsafe.get(null);
+
+        Class cls = Class.forName("jdk.internal.module.IllegalAccessLogger");
+        Field logger = cls.getDeclaredField("logger");
+        u.putObjectVolatile(cls, u.staticFieldOffset(logger), null);
+    } catch (Exception e) {
+        // ignore
+    }
+}
+
+// 启动类
+public static void main(String[] args) {
+    disableWarning(); //禁用警告
+    SpringApplication.run(AppApplication.class, args);
+}
+
+```
