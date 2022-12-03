@@ -4,6 +4,309 @@
   
   
   <entry>
+    <title>Hololens2 单眼显示问题</title>
+    <link href="/2022/08/22/Hololens2%20%E5%8D%95%E7%9C%BC%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/"/>
+    <url>/2022/08/22/Hololens2%20%E5%8D%95%E7%9C%BC%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="法1：使用mrtk自带的shader"><a href="#法1：使用mrtk自带的shader" class="headerlink" title="法1：使用mrtk自带的shader"></a>法1：使用mrtk自带的shader</h1><p>使用MRTK中自带的shader<br><img src="https://img-blog.csdnimg.cn/eb23ebfb6ee6489ab7b5803a9e1bbb76.png" alt="请添加图片描述"></p><h1 id="法2：自定义shader"><a href="#法2：自定义shader" class="headerlink" title="法2：自定义shader"></a>法2：自定义shader</h1><ul><li><p>a2v 中添加 UNITY_VERTEX_INPUT_INSTANCE_ID</p></li><li><p>v2f 中添加 UNITY_VERTEX_OUTPUT_STEREO</p></li><li><p>vert 中添加 </p><p>​UNITY_SETUP_INSTANCE_ID(v); &#x2F;&#x2F;Insert<br>​        UNITY_INITIALIZE_OUTPUT(v2f, o); &#x2F;&#x2F;Insert<br>​        UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); &#x2F;&#x2F;Insert</p><h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2></li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs bash">Shader <span class="hljs-string">&quot;JaffHan/Wireframe&quot;</span> &#123;<br>Properties &#123;<br>        _Color(<span class="hljs-string">&quot;Color&quot;</span>,Color)=(1.0,1.0,1.0,1.0)<br>        _EdgeColor(<span class="hljs-string">&quot;Edge Color&quot;</span>,Color)=(1.0,1.0,1.0,1.0)<br>        _Width(<span class="hljs-string">&quot;Width&quot;</span>,Range(0,1))=0.2<br>    &#125;<br>SubShader &#123;<br><br>    Pass &#123;<br>    CGPROGRAM<br>    <span class="hljs-comment">#pragma vertex vert</span><br>    <span class="hljs-comment">#pragma fragment frag</span><br>    <span class="hljs-comment">#pragma target 3.0</span><br>    <span class="hljs-comment">#include &quot;UnityCG.cginc&quot;</span><br>    <br><br>    struct a2v &#123;<br>        half4 uv : TEXCOORD0 ;<br>        half4 vertex : POSITION ;<br>        UNITY_VERTEX_INPUT_INSTANCE_ID //Insert<br>    &#125;;<br><br>    struct v2f&#123;<br>        half4 pos : SV_POSITION ;<br>        half4 uv : TEXCOORD0  ;<br>        UNITY_VERTEX_OUTPUT_STEREO //Insert<br>    &#125;;<br>    fixed4 _Color;<br>    fixed4 _EdgeColor;<br>    <span class="hljs-built_in">float</span> _Width;<br>    <br>    v2f vert(a2v v)<br>    &#123;<br>        v2f o;<br>        UNITY_SETUP_INSTANCE_ID(v); //Insert<br>        UNITY_INITIALIZE_OUTPUT(v2f, o); //Insert<br>        UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); //Insert<br>        o.uv = v.uv;<br>        o.pos=UnityObjectToClipPos(v.vertex);<br>        <span class="hljs-built_in">return</span> o;<br>    &#125;<br><br><br>    fixed4 frag(v2f i) : COLOR<br>    &#123;<br>        fixed4 col;<br>        <span class="hljs-built_in">float</span> lx = step(_Width, i.uv.x);<br>        <span class="hljs-built_in">float</span> ly = step(_Width, i.uv.y);<br>        <span class="hljs-built_in">float</span> hx = step(i.uv.x, 1.0 - _Width);<br>        <span class="hljs-built_in">float</span> hy = step(i.uv.y, 1.0 - _Width);<br>        col = lerp(_EdgeColor, _Color, lx*ly*hx*hy);<br>        <span class="hljs-built_in">return</span> col;<br>    &#125;<br>    ENDCG<br>    &#125;<br>&#125; <br>    FallBack <span class="hljs-string">&quot;Diffuse&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>hololens2</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hololens2</tag>
+      
+      <tag>unity</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hololens2 开发常见问题</title>
+    <link href="/2022/05/09/Hololens2%20%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <url>/2022/05/09/Hololens2%20%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h1><h2 id="1-未能使用-通用身份验证…"><a href="#1-未能使用-通用身份验证…" class="headerlink" title="1 未能使用 通用身份验证….."></a>1 未能使用 通用身份验证…..</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/1aca0d2ca0fa80215d3040db01bf26e8.png" alt="image.png"></p><h3 id="解决办法-大概率是usb连接未装"><a href="#解决办法-大概率是usb连接未装" class="headerlink" title="解决办法 (大概率是usb连接未装)"></a>解决办法 (大概率是usb连接未装)</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/e9fe54810bab322d1b7d6b758f122f2a.png" alt="image.png"></p><h2 id="2-缺少pdb"><a href="#2-缺少pdb" class="headerlink" title="2 缺少pdb"></a>2 缺少pdb</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/ce7f02749d5c640755fb0e0a28995f2b.png" alt="image.png"></p><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>….. 至今不知道</p><h2 id="3-模型位置显示不正确的问题"><a href="#3-模型位置显示不正确的问题" class="headerlink" title="3 模型位置显示不正确的问题"></a>3 模型位置显示不正确的问题</h2><ul><li>1、Vuforia识别图上传时必须与实际打印的识别图的size一致。比如实际尺寸是10cm，那么上传时的width应该设置为0.1（Unity以米为单位）。</li><li>2、ARcamera 的 position 必须设置为（0，0，0）。<br>其他的关于模型不显示的问题，要么是显示了但不在识别码上，所以你看不到。要么就是你发布到Hololens的流程有问题，可能是某个选项忘记勾选了。</li></ul><h2 id="4-模型出现后，不消失"><a href="#4-模型出现后，不消失" class="headerlink" title="4 模型出现后，不消失"></a>4 模型出现后，不消失</h2><p>做此处的修改，此处为ImageTarget中自带的脚本<br><img src="https://img-blog.csdnimg.cn/img_convert/ec3735a097b9f2348c2712d936e328e2.png" alt="image.png"></p><h2 id="5-部署的时候出现-找不到-SDK“WindowsMobile-Version-x3D-10-0-18362-0”。"><a href="#5-部署的时候出现-找不到-SDK“WindowsMobile-Version-x3D-10-0-18362-0”。" class="headerlink" title="5 部署的时候出现:找不到 SDK“WindowsMobile, Version&#x3D;10.0.18362.0”。"></a>5 部署的时候出现:找不到 SDK“WindowsMobile, Version&#x3D;10.0.18362.0”。</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/5d027cc7d783086b44c19203a05ce533.png" alt="image.png"></p><p><img src="https://img-blog.csdnimg.cn/img_convert/272c6141d1ddabc0f4cbc88929d9ad6f.png" alt="image.png"></p><h2 id="6-打包后只出现左眼的问题"><a href="#6-打包后只出现左眼的问题" class="headerlink" title="6 打包后只出现左眼的问题"></a>6 打包后只出现左眼的问题</h2><p>在使用Hololens 2显示自己编写的Shader时，上传会出现只有左眼能看到，但是右眼看不到的问题。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/063afb276030b5b9d7c94a225bdc1299.png" alt="image.png"></p><h2 id="7-openxr中hololens灰色"><a href="#7-openxr中hololens灰色" class="headerlink" title="7.openxr中hololens灰色"></a>7.openxr中hololens灰色</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/8d6bbba05d76f08d1ebe439a7a151ca8.png" alt="image.png"></p><p>重新装一下openxr ,大概率直接没装或者一不小心被你删除了</p><p><img src="https://img-blog.csdnimg.cn/img_convert/f844e21513b0260e33f70f73c5042371.png" alt="image.png"></p><h2 id="8-激活-Windows-应用商店应用“Template3D-pzq3xp76mxafg-App”失败，错误为“拒绝访问”"><a href="#8-激活-Windows-应用商店应用“Template3D-pzq3xp76mxafg-App”失败，错误为“拒绝访问”" class="headerlink" title="8 激活 Windows 应用商店应用“Template3D_pzq3xp76mxafg!App”失败，错误为“拒绝访问”"></a>8 激活 Windows 应用商店应用“Template3D_pzq3xp76mxafg!App”失败，错误为“拒绝访问”</h2><p>hololens 没解锁，息屏了</p><h2 id="9-读取本地文件失败"><a href="#9-读取本地文件失败" class="headerlink" title="9 读取本地文件失败"></a>9 读取本地文件失败</h2><p>从我目前了解的情况看，貌似只支持在hololens2那几个文件夹中读取</p><p><img src="https://img-blog.csdnimg.cn/img_convert/f0aca104e35036f06cea73cdcb124af0.png" alt="2adbf16298a6c3ba4d5ed56877b2f9b.png"><br>打勾权限</p><p><img src="https://img-blog.csdnimg.cn/img_convert/94247777b2b42f0ac6c4a458685ad6fe.png" alt="cbe3ffdc37f021d5e5a53d29019fee3.png"></p><h2 id="json解析"><a href="#json解析" class="headerlink" title="json解析"></a>json解析</h2><p>使用simplejson</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>hololens2</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hololens2</tag>
+      
+      <tag>unity</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>photon pun2 设置中国区</title>
+    <link href="/2022/05/09/photon%20pun2%20%E8%AE%BE%E7%BD%AE%E4%B8%AD%E5%9B%BD%E5%8C%BA/"/>
+    <url>/2022/05/09/photon%20pun2%20%E8%AE%BE%E7%BD%AE%E4%B8%AD%E5%9B%BD%E5%8C%BA/</url>
+    
+    <content type="html"><![CDATA[<h1 id="photon-网址"><a href="#photon-网址" class="headerlink" title="photon 网址"></a>photon 网址</h1><blockquote><p><a href="https://dashboard.photonengine.com/zh-CN">https://dashboard.photonengine.com/zh-CN</a></p></blockquote><p>先创建一个app，这里的appid等等会用到</p><h1 id="中国区"><a href="#中国区" class="headerlink" title="中国区"></a>中国区</h1><blockquote><p><a href="https://vibrantlink.com/">https://vibrantlink.com/</a></p></blockquote><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>访问中国区官网<br><img src="https://img-blog.csdnimg.cn/b9f969e416a64e9cba78ddc29a1ff3e4.png" alt="在这里插入图片描述"><br>填写信息，填写之前复制的appid，一般两个工作日<br><img src="https://img-blog.csdnimg.cn/2862745f18c14acab7f8e67e916e1ffb.png" alt="在这里插入图片描述"><br>从unity商店中导入pun2<br><img src="https://img-blog.csdnimg.cn/4270a71d9e474ca7b277016cece51170.png" alt="在这里插入图片描述"></p><h1 id="修改信息"><a href="#修改信息" class="headerlink" title="修改信息"></a>修改信息</h1><p>填写appid（邮件回复的id）<br><img src="https://img-blog.csdnimg.cn/2119ceeb2a5b4543a3b5ab276173e99b.png" alt="在这里插入图片描述"><br>搜索LoadBalancingClient.cs<br><img src="https://img-blog.csdnimg.cn/5ba4e80917e543c5b05321a085cbdb56.png" alt="在这里插入图片描述"></p><p>修改 NameServerHost， 由 ns.exitgames.io 改为 ns.photonengine.cn;<br><img src="https://img-blog.csdnimg.cn/e27dc1c9705d45d9a34acd2760142746.png" alt="在这里插入图片描述"><br> PhotonServerSettings 的 Fixed Region 设置为 cn;<br><img src="https://img-blog.csdnimg.cn/9242ecd02fd24b2a818ab96e4bfff7b5.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/43e2789663054234aafb4b814f22cdff.png" alt="在这里插入图片描述"></p><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>可以将配置文件的日志打开，载入自带的demo<br><img src="https://img-blog.csdnimg.cn/000c74a18cd846509213834b7a7672e4.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/3d791f6937474fc892adc2487cad7dca.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>unity</tag>
+      
+      <tag>pun2</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>SpringBoot时间格式化</title>
+    <link href="/2021/08/13/SpringBoot%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96/"/>
+    <url>/2021/08/13/SpringBoot%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Date类型"><a href="#Date类型" class="headerlink" title="Date类型"></a>Date类型</h1><blockquote><p>java8推出了LocalDateTime 所以不太推荐使用Date了</p></blockquote><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-string">spring.jackson.date-format</span> <span class="hljs-string">=yyyy-MM-dd</span> <span class="hljs-string">HH:mm:ss</span><br><span class="hljs-string">spring.jackson.time-zone=GMT+8</span><br></code></pre></td></tr></table></figure><h1 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>    <span class="hljs-attr">jackson:</span><br>      <span class="hljs-attr">date-format:</span> <span class="hljs-string">yyyy-MM-dd</span> <span class="hljs-string">HH:mm:ss</span><br>      <span class="hljs-attr">time-zone:</span> <span class="hljs-string">GMT+8</span><br><br></code></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">package</span> com.shoukailiang.community.edu.config;<br><br><span class="hljs-keyword">import</span> com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><br><span class="hljs-keyword">import</span> java.time.LocalDateTime;<br><span class="hljs-keyword">import</span> java.time.format.DateTimeFormatter;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> shoukailiang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2021/8/6 16:53</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LocalDateTimeSerializerConfig</span> &#123;<br>    <span class="hljs-meta">@Value(&quot;$&#123;spring.jackson.date-format&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String pattern;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> LocalDateTimeSerializer <span class="hljs-title function_">localDateTimeDeserializer</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LocalDateTimeSerializer</span>(DateTimeFormatter.ofPattern(pattern));<br>    &#125;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Jackson2ObjectMapperBuilderCustomizer <span class="hljs-title function_">jackson2ObjectMapperBuilderCustomizer</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> builder -&gt; builder.serializerByType(LocalDateTime.class, localDateTimeDeserializer());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>springboot</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CyclicBarrier知识点提要</title>
+    <link href="/2021/08/13/CyclicBarrier%E7%9F%A5%E8%AF%86%E7%82%B9%E6%8F%90%E8%A6%81/"/>
+    <url>/2021/08/13/CyclicBarrier%E7%9F%A5%E8%AF%86%E7%82%B9%E6%8F%90%E8%A6%81/</url>
+    
+    <content type="html"><![CDATA[<h1 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>和CountDownLatch相反，需要集齐七颗龙珠，召唤神龙。也就是做加法，开始是0，加到某个值的时候就执行</p><p>CyclicBarrier的字面意思就是可循环（cyclic）使用的屏障（Barrier）。它要求做的事情是，让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活，线程进入屏障通过CyclicBarrier的await方法</p><h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>集齐7个龙珠，召唤神龙的Demo，我们需要首先创建CyclicBarrier</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 定义一个循环屏障，参数1：需要累加的值，参数2 需要执行的方法</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">CyclicBarrier</span> <span class="hljs-variable">cyclicBarrier</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CyclicBarrier</span>(<span class="hljs-number">7</span>, () -&gt; &#123;<br>  System.out.println(<span class="hljs-string">&quot;召唤神龙许愿---------------&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure><p>然后同时编写七个线程，进行龙珠收集，但一个线程收集到了的时候，我们需要让他执行await方法，等待到7个线程全部执行完毕后，我们就执行原来定义好的方法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">7</span>; i++) &#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-type">Integer</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> i;<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; &#123;<br>        System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;\t 收集到 第&quot;</span> + temp + <span class="hljs-string">&quot;颗龙珠&quot;</span>);<br>​<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 先到的被阻塞，等全部线程完成后，才能执行方法</span><br>            cyclicBarrier.await();<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">catch</span> (BrokenBarrierException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;, String.valueOf(i)).start();<br>&#125;<br></code></pre></td></tr></table></figure><p>完整代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.company;<br>​<br><span class="hljs-keyword">import</span> java.util.concurrent.BrokenBarrierException;<br><span class="hljs-keyword">import</span> java.util.concurrent.CyclicBarrier;<br>​<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> shoukailiang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2021/8/7 18:33</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CyclicBarrierDemo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">CyclicBarrier</span> <span class="hljs-variable">cyclicBarrier</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CyclicBarrier</span>(<span class="hljs-number">7</span>, () -&gt; &#123;<br>            System.out.println(<span class="hljs-string">&quot;召唤神龙许愿---------------&quot;</span>);<br>        &#125;);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">7</span>; i++) &#123;<br>            <span class="hljs-keyword">final</span> <span class="hljs-type">Integer</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> i;<br>            <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(()-&gt;&#123;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;\t 收集到第&quot;</span> + temp + <span class="hljs-string">&quot;颗龙珠&quot;</span>);<br>​<br>                <span class="hljs-keyword">try</span> &#123;<br>                    cyclicBarrier.await();<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125; <span class="hljs-keyword">catch</span> (BrokenBarrierException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;,String.valueOf(i)).start();<br>        &#125;<br>    &#125;<br>&#125;<br>​<br></code></pre></td></tr></table></figure><p>\</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>CyclicBarrier</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ForkJoin知识点提要</title>
+    <link href="/2021/08/13/ForkJoin%E7%9F%A5%E8%AF%86%E7%82%B9%E6%8F%90%E8%A6%81/"/>
+    <url>/2021/08/13/ForkJoin%E7%9F%A5%E8%AF%86%E7%82%B9%E6%8F%90%E8%A6%81/</url>
+    
+    <content type="html"><![CDATA[<p>一句话总结:把大任务拆分为小任务</p><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031248820.png" alt="image.png"></p><h1 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h1><p>1加到10_0000_0000</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">package</span> com.company;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.RecursiveTask;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> shoukailiang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2021/8/8 17:21</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ForkJoinDemo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">RecursiveTask</span>&lt;Long&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> Long start;<br>    <span class="hljs-keyword">private</span> Long end;<br><br>    <span class="hljs-comment">// 临界值</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">Long</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> <span class="hljs-number">10000L</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ForkJoinDemo</span><span class="hljs-params">(Long start, Long end)</span> &#123;<br>        <span class="hljs-built_in">this</span>.start = start;<br>        <span class="hljs-built_in">this</span>.end = end;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> Long <span class="hljs-title function_">compute</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">if</span> ((end-start)&lt;temp)&#123;<br>            <span class="hljs-type">Long</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0L</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">Long</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> start; i &lt;= end; i++) &#123;<br>                sum += i;<br>            &#125;<br>            <span class="hljs-keyword">return</span> sum;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-comment">// forkjoin 递归</span><br>            <span class="hljs-type">long</span> <span class="hljs-variable">middle</span> <span class="hljs-operator">=</span> (start + end) / <span class="hljs-number">2</span>; <span class="hljs-comment">// 中间值</span><br>            <span class="hljs-type">ForkJoinDemo</span> <span class="hljs-variable">task1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ForkJoinDemo</span>(start, middle);<br>            task1.fork(); <span class="hljs-comment">// 拆分任务，把任务压入线程队列</span><br>            <span class="hljs-type">ForkJoinDemo</span> <span class="hljs-variable">task2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ForkJoinDemo</span>(middle+<span class="hljs-number">1</span>, end);<br>            task2.fork(); <span class="hljs-comment">// 拆分任务，把任务压入线程队列</span><br>            <span class="hljs-keyword">return</span> task1.join() + task2.join();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h1 id="三种方法对比测试"><a href="#三种方法对比测试" class="headerlink" title="三种方法对比测试"></a>三种方法对比测试</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">TestFork</span>&#123;<br>    <span class="hljs-comment">// 循环计算</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test1</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">Long</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0L</span>;<br>        <span class="hljs-type">long</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">Long</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>; i &lt;= <span class="hljs-number">10_0000_0000</span>; i++) &#123;<br>            sum += i;<br>        &#125;<br>        <span class="hljs-type">long</span> <span class="hljs-variable">end</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        System.out.println(<span class="hljs-string">&quot;sum=&quot;</span>+sum+<span class="hljs-string">&quot; 时间：&quot;</span>+(end-start));<br>    &#125;<br>    <span class="hljs-comment">//ForkJoin</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException &#123;<br>        <span class="hljs-type">long</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        <span class="hljs-type">ForkJoinPool</span> <span class="hljs-variable">forkJoinPool</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ForkJoinPool</span>();<br>        <span class="hljs-type">ForkJoinDemo</span> <span class="hljs-variable">forkJoinDemo</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ForkJoinDemo</span>(<span class="hljs-number">0L</span>, <span class="hljs-number">10_0000_0000L</span>);<br>        ForkJoinTask&lt;Long&gt; submit = forkJoinPool.submit(forkJoinDemo);<br>        <span class="hljs-type">Long</span> <span class="hljs-variable">sum</span>  <span class="hljs-operator">=</span> submit.get();<span class="hljs-comment">// 获得结果</span><br>        <span class="hljs-type">long</span> <span class="hljs-variable">end</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        System.out.println(<span class="hljs-string">&quot;sum=&quot;</span>+sum+<span class="hljs-string">&quot; 时间：&quot;</span>+(end-start));<br>    &#125;<br>    <span class="hljs-comment">// 并行流</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test3</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">long</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        <span class="hljs-comment">// Stream并行流 ()  (]</span><br>        <span class="hljs-type">long</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> LongStream<br>                .rangeClosed(<span class="hljs-number">0L</span>, <span class="hljs-number">10_0000_0000L</span>) <span class="hljs-comment">// 计算范围(,]</span><br>                .parallel() <span class="hljs-comment">// 并行计算</span><br>                .reduce(<span class="hljs-number">0</span>, Long::sum); <span class="hljs-comment">// 输出结果</span><br><br>        <span class="hljs-type">long</span> <span class="hljs-variable">end</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        System.out.println(<span class="hljs-string">&quot;sum=&quot;</span>+<span class="hljs-string">&quot;时间：&quot;</span>+(end-start));<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException &#123;<br>         test1();<br>         test2();<br>         test3();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>结果</p><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">sum</span><span class="hljs-operator">=</span><span class="hljs-number">500000000500000000</span> 时间：<span class="hljs-number">6776</span><br><span class="hljs-attribute">sum</span><span class="hljs-operator">=</span><span class="hljs-number">500000000500000000</span> 时间：<span class="hljs-number">5497</span><br><span class="hljs-attribute">sum</span><span class="hljs-operator">=</span><span class="hljs-number">500000000500000000</span> 时间：<span class="hljs-number">79</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>高并发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hololens2调用深度相机和前置摄像头</title>
+    <link href="/2021/08/04/hololens2%E8%B0%83%E7%94%A8%E6%B7%B1%E5%BA%A6%E7%9B%B8%E6%9C%BA%E5%92%8C%E5%89%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/"/>
+    <url>/2021/08/04/hololens2%E8%B0%83%E7%94%A8%E6%B7%B1%E5%BA%A6%E7%9B%B8%E6%9C%BA%E5%92%8C%E5%89%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p><a href="https://github.com/microsoft/HoloLens2ForCV">microsoft&#x2F;HoloLens2ForCV: Sample code and documentation for using the Microsoft HoloLens 2 for Computer Vision research. (github.com)</a></p><p>此为官方demo<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031247846.png" alt="image.png"></p><h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031247626.png" alt="image.png"></p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.csdn.net/scy261983626/article/details/108685000">Hololens2初入——调用深度相机和前置摄像头的Demo_scy261983626的博客-CSDN博客</a><br><a href="https://blog.csdn.net/scy261983626/article/details/116381193">Hololens2初入——解决HL真机到PC图像传输的实时性问题_scy261983626的博客-CSDN博客</a><br><a href="https://blog.csdn.net/scy261983626/article/details/116381193">Hololens2初入——解决HL真机到PC图像传输的实时性问题_scy261983626的博客-CSDN博客</a><br><a href="https://blog.csdn.net/scy261983626/article/details/115255799">Hololens2 初入——获取彩色和深度图像数据流，并传递到程序中（不是网页浏览）_scy261983626的博客-CSDN博客</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>hololens2</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hololens2</tag>
+      
+      <tag>unity</tag>
+      
+      <tag>深度相机</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>jdk11 发现不能用var</title>
+    <link href="/2021/08/04/jdk11%20%E5%8F%91%E7%8E%B0%E4%B8%8D%E8%83%BD%E7%94%A8var/"/>
+    <url>/2021/08/04/jdk11%20%E5%8F%91%E7%8E%B0%E4%B8%8D%E8%83%BD%E7%94%A8var/</url>
+    
+    <content type="html"><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031243327.png" alt="image.png"></p><h1 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h1><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031243862.png" alt="image.png"></p><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031243053.png" alt="image.png"></p><h1 id="springBoot设置了还出错"><a href="#springBoot设置了还出错" class="headerlink" title="springBoot设置了还出错"></a>springBoot设置了还出错</h1><p>重新clean一遍</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>jdk</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Unity 子线程调用主线程</title>
+    <link href="/2021/08/04/Unity%20%E5%AD%90%E7%BA%BF%E7%A8%8B%E8%B0%83%E7%94%A8%E4%B8%BB%E7%BA%BF%E7%A8%8B/"/>
+    <url>/2021/08/04/Unity%20%E5%AD%90%E7%BA%BF%E7%A8%8B%E8%B0%83%E7%94%A8%E4%B8%BB%E7%BA%BF%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p>在Unity中，子线程是无法调用Unity主线程的API的，因为unity不允许这么干。例如在线程中使用gameObject.setActive(false).</p><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031241251.png" alt="image.png"></p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://zhuanlan.zhihu.com/p/107698641">https://zhuanlan.zhihu.com/p/107698641</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>unity</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>unity</tag>
+      
+      <tag>线程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>openfeign bug记录</title>
+    <link href="/2021/08/03/openfeign%20bug%E8%AE%B0%E5%BD%95/"/>
+    <url>/2021/08/03/openfeign%20bug%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>第二次遇到了…..记录一下</p></blockquote><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031238980.png" alt="image.png"><br>看了下目录结构</p><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031238005.png" alt="image.png"></p><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031239832.png" alt="image.png"><br>将主类和edu同层此就好了</p><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031239719.png" alt="image.png"><br>…….太僵硬了</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>openfeign</tag>
+      
+      <tag>微服务</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>idea中tomcat乱码</title>
+    <link href="/2021/08/03/idea%E4%B8%ADtomcat%E4%B9%B1%E7%A0%81/"/>
+    <url>/2021/08/03/idea%E4%B8%ADtomcat%E4%B9%B1%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<p>在springmvc中，idea中tomcat乱码</p><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031235794.png" alt="image.png"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">-Dfile.encoding=utf-<span class="hljs-number">8</span><br></code></pre></td></tr></table></figure><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031236082.png" alt="image.png"></p><ul><li><h4 id="HELP-gt-Edit-Custom-VM-OPtions中加-Dfile-encoding-x3D-utf-8-重启idea"><a href="#HELP-gt-Edit-Custom-VM-OPtions中加-Dfile-encoding-x3D-utf-8-重启idea" class="headerlink" title="HELP-&gt;Edit Custom VM OPtions中加 -Dfile.encoding&#x3D;utf-8 重启idea"></a>HELP-&gt;Edit Custom VM OPtions中加 -Dfile.encoding&#x3D;utf-8 重启idea</h4></li><li><h4 id="把Tomcat中-server-xml：在-标签中添加-URIEncoding-x3D-“UTF-8”"><a href="#把Tomcat中-server-xml：在-标签中添加-URIEncoding-x3D-“UTF-8”" class="headerlink" title="把Tomcat中 server.xml：在 标签中添加 URIEncoding&#x3D;“UTF-8”"></a>把Tomcat中 server.xml：在 标签中添加 URIEncoding&#x3D;“UTF-8”</h4></li></ul><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202212031236967.png" alt="image.png"><br>然后重启电脑，可以解决乱码问题</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>idea</tag>
+      
+      <tag>tomcat</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>docker安装mysql，redis</title>
     <link href="/2021/08/03/docker%E5%AE%89%E8%A3%85mysql%EF%BC%8Credis/"/>
     <url>/2021/08/03/docker%E5%AE%89%E8%A3%85mysql%EF%BC%8Credis/</url>
