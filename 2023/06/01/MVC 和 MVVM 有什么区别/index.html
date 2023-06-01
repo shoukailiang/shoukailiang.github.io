@@ -16,37 +16,27 @@
   <meta name="author" content="shoukailiang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="新建项目1create-react-app.cmd react18 --template typescript  配置别名安装 craco 1npm install @craco&#x2F;craco -D  新建 craco.config.js 12345678910const path &#x3D; require(&quot;path&quot;);const resolve &#x3D; (dir) &#x3D;&gt; pat">
+    <meta name="description" content="MVC 原理  View 传送指令到 Controller Controller 完成业务逻辑后，要求 Model 改变状态 Model 将新的数据发送到 View，用户得到反馈   MVVM 直接对标 Vue 即可  View 即 Vue template Model 即 Vue data VM 即 Vue 其他核心功能，负责 View 和 Model 通讯">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react18+eslint+prettier 配置">
-<meta property="og:url" content="http://example.com/2023/01/02/react18+eslint+prettier%20%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="MVC 和 MVVM 有什么区别">
+<meta property="og:url" content="http://example.com/2023/06/01/MVC%20%E5%92%8C%20MVVM%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="新建项目1create-react-app.cmd react18 --template typescript  配置别名安装 craco 1npm install @craco&#x2F;craco -D  新建 craco.config.js 12345678910const path &#x3D; require(&quot;path&quot;);const resolve &#x3D; (dir) &#x3D;&gt; pat">
+<meta property="og:description" content="MVC 原理  View 传送指令到 Controller Controller 完成业务逻辑后，要求 Model 改变状态 Model 将新的数据发送到 View，用户得到反馈   MVVM 直接对标 Vue 即可  View 即 Vue template Model 即 Vue data VM 即 Vue 其他核心功能，负责 View 和 Model 通讯">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021525411.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021528612.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021530202.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021532032.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021535045.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021536503.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021539691.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021540471.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021542779.png">
-<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021543934.png">
-<meta property="article:published_time" content="2023-01-02T07:47:32.000Z">
-<meta property="article:modified_time" content="2023-01-02T07:48:49.095Z">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011123725.png">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011123755.png">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011124042.png">
+<meta property="article:published_time" content="2023-06-01T03:20:26.000Z">
+<meta property="article:modified_time" content="2023-06-01T03:24:11.055Z">
 <meta property="article:author" content="shoukailiang">
-<meta property="article:tag" content="react">
-<meta property="article:tag" content="eslint">
-<meta property="article:tag" content="prettier">
-<meta property="article:tag" content="craco">
-<meta property="article:tag" content="editorconfig">
+<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="MVVM">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021525411.png">
+<meta name="twitter:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011123725.png">
   
   
   
-  <title>react18+eslint+prettier 配置 - Hexo</title>
+  <title>MVC 和 MVVM 有什么区别 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="react18+eslint+prettier 配置"></span>
+            <span id="subtitle" data-typed-text="MVC 和 MVVM 有什么区别"></span>
           
         </div>
 
@@ -222,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-02 15:47" pubdate>
-          2023年1月2日 下午
+        <time datetime="2023-06-01 11:20" pubdate>
+          2023年6月1日 上午
         </time>
       </span>
     
@@ -234,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          146 字
         
       </span>
     
@@ -245,7 +235,7 @@
         
         
         
-          12 分钟
+          2 分钟
         
       </span>
     
@@ -283,49 +273,26 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">react18+eslint+prettier 配置</h1>
+            <h1 style="display: none">MVC 和 MVVM 有什么区别</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">create-react-app.<span class="hljs-property">cmd</span> react18 --template typescript<br></code></pre></td></tr></table></figure>
-
-<h1 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h1><p>安装 craco</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install @craco/craco -D<br></code></pre></td></tr></table></figure>
-
-<p>新建 craco.config.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">resolve</span> = (<span class="hljs-params">dir</span>) =&gt; path.<span class="hljs-title function_">resolve</span>(__dirname, dir);<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-comment">// 配置别名</span><br>  <span class="hljs-attr">webpack</span>: &#123;<br>    <span class="hljs-attr">alias</span>: &#123;<br>      <span class="hljs-string">&quot;@&quot;</span>: <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&quot;src&quot;</span>),<br>    &#125;,<br>  &#125;,<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<p>加入红框中的两段<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021525411.png" srcset="/img/loading.gif" lazyload><br>package.json 修改</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;craco start&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;craco build&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;test&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;craco test&quot;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021528612.png" srcset="/img/loading.gif" lazyload><br>便可以使用别名了</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@/App&quot;</span>;<br></code></pre></td></tr></table></figure>
-
-<h1 id="代码规范设置"><a href="#代码规范设置" class="headerlink" title="代码规范设置"></a>代码规范设置</h1><h2 id="editorconfig"><a href="#editorconfig" class="headerlink" title="editorconfig"></a>editorconfig</h2><p>新建.editorconfig</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># https://editorconfig.org</span><br><span class="hljs-string">root</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span><br><br>[<span class="hljs-string">*</span>]<br><span class="hljs-string">charset</span> <span class="hljs-string">=</span> <span class="hljs-string">utf-8</span><br><span class="hljs-string">end_of_line</span> <span class="hljs-string">=</span> <span class="hljs-string">lf</span><br><span class="hljs-string">indent_size</span> <span class="hljs-string">=</span> <span class="hljs-number">2</span><br><span class="hljs-string">indent_style</span> <span class="hljs-string">=</span> <span class="hljs-string">space</span><br><span class="hljs-string">insert_final_newline</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span><br><span class="hljs-string">max_line_length</span> <span class="hljs-string">=</span> <span class="hljs-number">80</span><br><span class="hljs-string">trim_trailing_whitespace</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span><br><br>[<span class="hljs-string">*.md</span>]<br><span class="hljs-string">max_line_length</span> <span class="hljs-string">=</span> <span class="hljs-number">0</span><br><span class="hljs-string">trim_trailing_whitespace</span> <span class="hljs-string">=</span> <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
-
-<p>安装插件<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021530202.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="prettier"><a href="#prettier" class="headerlink" title="prettier"></a>prettier</h2><p>安装</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> prettier -D<br></code></pre></td></tr></table></figure>
-
-<p>安装 vscode 中的插件<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021532032.png" srcset="/img/loading.gif" lazyload><br>新建.prettierrc</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml">&#123;<br>  <span class="hljs-attr">&quot;useTabs&quot;:</span> <span class="hljs-literal">false</span>,<br>  <span class="hljs-attr">&quot;tabWidth&quot;:</span> <span class="hljs-number">2</span>,<br>  <span class="hljs-attr">&quot;printWidth&quot;:</span> <span class="hljs-number">80</span>,<br>  <span class="hljs-attr">&quot;singleQuote&quot;:</span> <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">&quot;trailingComma&quot;:</span> <span class="hljs-string">&quot;none&quot;</span>,<br>  <span class="hljs-attr">&quot;semi&quot;:</span> <span class="hljs-literal">false</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>新建.prettierignore，排除不需要检测的文件</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-string">/build/*</span><br><span class="hljs-string">.local</span><br><span class="hljs-string">.output.js</span><br><span class="hljs-string">/node_modules/**</span><br><br><span class="hljs-string">**/*.svg</span><br><span class="hljs-string">**/*.sh</span><br><br><span class="hljs-string">/public/*</span><br></code></pre></td></tr></table></figure>
-
-<p>可以使用 npm run prettier ，直接格式化代码<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021535045.png" srcset="/img/loading.gif" lazyload></p>
-<p>设置成 vscode 默认的格式化<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021536503.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><p>安装</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> i eslint -D<br></code></pre></td></tr></table></figure>
-
-<p>配置<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021539691.png" srcset="/img/loading.gif" lazyload><br>之后变会自动生成一个配置文件</p>
-<p>添加下面的两行，保证 module.export 不会报错。然后 eslint 和 prettier 的标准保持一致<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021540471.png" srcset="/img/loading.gif" lazyload><br>打开 vsocode 的设置，可以添加这两行<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021542779.png" srcset="/img/loading.gif" lazyload></p>
-<p>安装插件</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">npm <span class="hljs-keyword">install </span>eslint-plugin-prettier eslint-<span class="hljs-built_in">config</span>-prettier -D<br></code></pre></td></tr></table></figure>
-
-<p>当不满足标准的时候，就会报错<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202301021543934.png" srcset="/img/loading.gif" lazyload></p>
+                <p>MVC 原理</p>
+<ul>
+<li>View 传送指令到 Controller</li>
+<li>Controller 完成业务逻辑后，要求 Model 改变状态</li>
+<li>Model 将新的数据发送到 View，用户得到反馈</li>
+</ul>
+<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011123725.png" srcset="/img/loading.gif" lazyload></p>
+<p>MVVM 直接对标 Vue 即可</p>
+<ul>
+<li>View 即 Vue template</li>
+<li>Model 即 Vue data</li>
+<li>VM 即 Vue 其他核心功能，负责 View 和 Model 通讯</li>
+</ul>
+<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011123755.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011124042.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -344,7 +311,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="category-chain-item">设计模式</a>
   
   
 
@@ -359,15 +326,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/react/">#react</a>
+        <a href="/tags/MVC/">#MVC</a>
       
-        <a href="/tags/eslint/">#eslint</a>
-      
-        <a href="/tags/prettier/">#prettier</a>
-      
-        <a href="/tags/craco/">#craco</a>
-      
-        <a href="/tags/editorconfig/">#editorconfig</a>
+        <a href="/tags/MVVM/">#MVVM</a>
       
     </div>
   
@@ -379,8 +340,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>react18+eslint+prettier 配置</div>
-      <div>http://example.com/2023/01/02/react18+eslint+prettier 配置/</div>
+      <div>MVC 和 MVVM 有什么区别</div>
+      <div>http://example.com/2023/06/01/MVC 和 MVVM 有什么区别/</div>
     </div>
     <div class="license-meta">
       
@@ -392,7 +353,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月2日</div>
+          <div>2023年6月1日</div>
         </div>
       
       
@@ -424,18 +385,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/06/01/MVC%20%E5%92%8C%20MVVM%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" title="MVC 和 MVVM 有什么区别">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MVC 和 MVVM 有什么区别</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/22/minio%20%E7%BB%8F%E5%85%B8%E9%94%99%E8%AF%AF/" title="minio 经典错误">
-                        <span class="hidden-mobile">minio 经典错误</span>
+                      <a href="/2023/01/02/react18+eslint+prettier%20%E9%85%8D%E7%BD%AE/" title="react18+eslint+prettier 配置">
+                        <span class="hidden-mobile">react18+eslint+prettier 配置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

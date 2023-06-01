@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>MVC 和 MVVM 有什么区别</title>
+    <link href="/2023/06/01/MVC%20%E5%92%8C%20MVVM%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/"/>
+    <url>/2023/06/01/MVC%20%E5%92%8C%20MVVM%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/</url>
+    
+    <content type="html"><![CDATA[<p>MVC 原理</p><ul><li>View 传送指令到 Controller</li><li>Controller 完成业务逻辑后，要求 Model 改变状态</li><li>Model 将新的数据发送到 View，用户得到反馈</li></ul><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011123725.png"></p><p>MVVM 直接对标 Vue 即可</p><ul><li>View 即 Vue template</li><li>Model 即 Vue data</li><li>VM 即 Vue 其他核心功能，负责 View 和 Model 通讯</li></ul><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011123755.png"></p><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202306011124042.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MVC</tag>
+      
+      <tag>MVVM</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>react18+eslint+prettier 配置</title>
     <link href="/2023/01/02/react18+eslint+prettier%20%E9%85%8D%E7%BD%AE/"/>
     <url>/2023/01/02/react18+eslint+prettier%20%E9%85%8D%E7%BD%AE/</url>
