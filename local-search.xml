@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>手写深拷贝</title>
+    <link href="/2023/06/02/%E6%89%8B%E5%86%99%E6%B7%B1%E6%8B%B7%E8%B4%9D/"/>
+    <url>/2023/06/02/%E6%89%8B%E5%86%99%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
+    
+    <content type="html"><![CDATA[<h1 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h1><h2 id="错误答案-1"><a href="#错误答案-1" class="headerlink" title="错误答案 1"></a>错误答案 1</h2><p>使用 <code>JSON.stringify</code> 和 <code>JSON.parse</code></p><ul><li>无法转换函数</li><li>无法转换 <code>Map</code> <code>Set</code></li><li>无法转换循环引用</li></ul><p>PS：其实普通对象使用 JSON API 的运算速度很快，但功能不全</p><h2 id="错误答案-2"><a href="#错误答案-2" class="headerlink" title="错误答案 2"></a>错误答案 2</h2><p>使用 <code>Object.assign</code> —— 这根本就不是深拷贝，是浅拷贝 ！！！</p><ul><li><code>Object.assign(obj1, &#123;...&#125;)</code></li><li><code>const obj2 = Object.assign(&#123;&#125;, obj1, &#123;...&#125;)</code></li><li>可以理解为，浅层生拷贝，第二层开始都是浅拷贝了</li></ul><h2 id="错误答案-3"><a href="#错误答案-3" class="headerlink" title="错误答案 3"></a>错误答案 3</h2><p>只考虑了普通的对象和数组</p><ul><li>无法转换 <code>Map</code> <code>Set</code></li><li>无法转换循环引用</li></ul><h2 id="正确答案"><a href="#正确答案" class="headerlink" title="正确答案"></a>正确答案</h2><h2 id="深拷贝-1"><a href="#深拷贝-1" class="headerlink" title="深拷贝"></a>深拷贝</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 深拷贝</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">deepClone</span>(<span class="hljs-params">obj = &#123;&#125;</span>) &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj !== <span class="hljs-string">&quot;object&quot;</span> || obj == <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-comment">// 不是对象或者数组形式，或是 null ，直接返回</span><br>    <span class="hljs-keyword">return</span> obj;<br>  &#125;<br><br>  <span class="hljs-comment">// 初始化返回结果</span><br>  <span class="hljs-keyword">let</span> result;<br>  <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>) &#123;<br>    result = [];<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    result = &#123;&#125;;<br>  &#125;<br><br>  <span class="hljs-comment">// 变量</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> obj) &#123;<br>    <span class="hljs-keyword">if</span> (obj.<span class="hljs-title function_">hasOwnProperty</span>(key)) &#123;<br>      <span class="hljs-comment">// 保证不是原型属性（原型和原型链部分会讲解）</span><br><br>      <span class="hljs-comment">// 递归调用</span><br>      result[key] = <span class="hljs-title function_">deepClone</span>(obj[key]);<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 返回结果</span><br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br><br><span class="hljs-keyword">const</span> obj1 = &#123; <span class="hljs-attr">x</span>: <span class="hljs-number">100</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">200</span> &#125;;<br><span class="hljs-keyword">const</span> obj2 = <span class="hljs-title function_">deepClone</span>(obj1);<br>obj1.<span class="hljs-property">x</span> = <span class="hljs-number">101</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj2); <span class="hljs-comment">// x: 100</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深拷贝</tag>
+      
+      <tag>js</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CSS 之包含块</title>
     <link href="/2023/06/01/CSS%20%E4%B9%8B%E5%8C%85%E5%90%AB%E5%9D%97/"/>
     <url>/2023/06/01/CSS%20%E4%B9%8B%E5%8C%85%E5%90%AB%E5%9D%97/</url>
