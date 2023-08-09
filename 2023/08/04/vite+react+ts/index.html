@@ -16,23 +16,26 @@
   <meta name="author" content="shoukailiang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="深拷贝错误答案 1使用 JSON.stringify 和 JSON.parse  无法转换函数 无法转换 Map Set 无法转换循环引用  PS：其实普通对象使用 JSON API 的运算速度很快，但功能不全 错误答案 2使用 Object.assign —— 这根本就不是深拷贝，是浅拷贝 ！！！  Object.assign(obj1, &amp;#123;...&amp;#125;) const obj2">
+    <meta name="description" content="遇到的一些问题最近在用vite写react项目，记录一下遇到的问题  配置别名后，在vscode中path有波浪线   npm install @types&#x2F;node –save-dev   配置完成后，vscode中使用@还是有波浪线，但是项目没报错  1234567891011121314151617181920212223242526272829&amp;#123;  &quot;comp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手写深拷贝">
-<meta property="og:url" content="http://example.com/2023/06/02/%E6%89%8B%E5%86%99%E6%B7%B1%E6%8B%B7%E8%B4%9D/index.html">
+<meta property="og:title" content="vite+react+ts">
+<meta property="og:url" content="http://example.com/2023/08/04/vite+react+ts/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="深拷贝错误答案 1使用 JSON.stringify 和 JSON.parse  无法转换函数 无法转换 Map Set 无法转换循环引用  PS：其实普通对象使用 JSON API 的运算速度很快，但功能不全 错误答案 2使用 Object.assign —— 这根本就不是深拷贝，是浅拷贝 ！！！  Object.assign(obj1, &amp;#123;...&amp;#125;) const obj2">
+<meta property="og:description" content="遇到的一些问题最近在用vite写react项目，记录一下遇到的问题  配置别名后，在vscode中path有波浪线   npm install @types&#x2F;node –save-dev   配置完成后，vscode中使用@还是有波浪线，但是项目没报错  1234567891011121314151617181920212223242526272829&amp;#123;  &quot;comp">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-02T07:02:19.000Z">
-<meta property="article:modified_time" content="2023-06-08T07:34:11.595Z">
+<meta property="og:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202308051524370.png">
+<meta property="article:published_time" content="2023-08-04T08:44:32.000Z">
+<meta property="article:modified_time" content="2023-08-06T06:31:56.184Z">
 <meta property="article:author" content="shoukailiang">
-<meta property="article:tag" content="深拷贝">
-<meta property="article:tag" content="js">
+<meta property="article:tag" content="typescript">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="vite">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202308051524370.png">
   
   
   
-  <title>手写深拷贝 - Hexo</title>
+  <title>vite+react+ts - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="手写深拷贝"></span>
+            <span id="subtitle" data-typed-text="vite+react+ts"></span>
           
         </div>
 
@@ -208,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-02 15:02" pubdate>
-          2023年6月2日 下午
+        <time datetime="2023-08-04 16:44" pubdate>
+          2023年8月4日 下午
         </time>
       </span>
     
@@ -220,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          833 字
+          1.7k 字
         
       </span>
     
@@ -231,7 +234,7 @@
         
         
         
-          7 分钟
+          15 分钟
         
       </span>
     
@@ -269,31 +272,37 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">手写深拷贝</h1>
+            <h1 style="display: none">vite+react+ts</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h1><h2 id="错误答案-1"><a href="#错误答案-1" class="headerlink" title="错误答案 1"></a>错误答案 1</h2><p>使用 <code>JSON.stringify</code> 和 <code>JSON.parse</code></p>
+                <h1 id="遇到的一些问题"><a href="#遇到的一些问题" class="headerlink" title="遇到的一些问题"></a>遇到的一些问题</h1><p>最近在用vite写react项目，记录一下遇到的问题</p>
+<blockquote>
+<p>配置别名后，在vscode中path有波浪线</p>
+</blockquote>
 <ul>
-<li>无法转换函数</li>
-<li>无法转换 <code>Map</code> <code>Set</code></li>
-<li>无法转换循环引用</li>
+<li>npm install @types&#x2F;node –save-dev</li>
 </ul>
-<p>PS：其实普通对象使用 JSON API 的运算速度很快，但功能不全</p>
-<h2 id="错误答案-2"><a href="#错误答案-2" class="headerlink" title="错误答案 2"></a>错误答案 2</h2><p>使用 <code>Object.assign</code> —— 这根本就不是深拷贝，是浅拷贝 ！！！</p>
-<ul>
-<li><code>Object.assign(obj1, &#123;...&#125;)</code></li>
-<li><code>const obj2 = Object.assign(&#123;&#125;, obj1, &#123;...&#125;)</code></li>
-<li>可以理解为，浅层生拷贝，第二层开始都是浅拷贝了</li>
-</ul>
-<h2 id="错误答案-3"><a href="#错误答案-3" class="headerlink" title="错误答案 3"></a>错误答案 3</h2><p>只考虑了普通的对象和数组</p>
-<ul>
-<li>无法转换 <code>Map</code> <code>Set</code></li>
-<li>无法转换循环引用</li>
-</ul>
-<h2 id="正确答案"><a href="#正确答案" class="headerlink" title="正确答案"></a>正确答案</h2><h2 id="深拷贝-1"><a href="#深拷贝-1" class="headerlink" title="深拷贝"></a>深拷贝</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 深拷贝</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">deepClone</span>(<span class="hljs-params">obj = &#123;&#125;</span>) &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj !== <span class="hljs-string">&quot;object&quot;</span> || obj == <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-comment">// 不是对象或者数组形式，或是 null ，直接返回</span><br>    <span class="hljs-keyword">return</span> obj;<br>  &#125;<br><br>  <span class="hljs-comment">// 初始化返回结果</span><br>  <span class="hljs-keyword">let</span> result;<br>  <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>) &#123;<br>    result = [];<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    result = &#123;&#125;;<br>  &#125;<br><br>  <span class="hljs-comment">// 变量</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> obj) &#123;<br>    <span class="hljs-keyword">if</span> (obj.<span class="hljs-title function_">hasOwnProperty</span>(key)) &#123;<br>      <span class="hljs-comment">// 保证不是原型属性（原型和原型链部分会讲解）</span><br><br>      <span class="hljs-comment">// 递归调用</span><br>      result[key] = <span class="hljs-title function_">deepClone</span>(obj[key]);<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 返回结果</span><br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br><br><span class="hljs-keyword">const</span> obj1 = &#123; <span class="hljs-attr">x</span>: <span class="hljs-number">100</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">200</span> &#125;;<br><span class="hljs-keyword">const</span> obj2 = <span class="hljs-title function_">deepClone</span>(obj1);<br>obj1.<span class="hljs-property">x</span> = <span class="hljs-number">101</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj2); <span class="hljs-comment">// x: 100</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>配置完成后，vscode中使用@还是有波浪线，但是项目没报错</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-string">&quot;compilerOptions&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;target&quot;</span>: <span class="hljs-string">&quot;ES2020&quot;</span>,<br>    <span class="hljs-string">&quot;useDefineForClassFields&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;lib&quot;</span>: [<span class="hljs-string">&quot;ES2020&quot;</span>, <span class="hljs-string">&quot;DOM&quot;</span>, <span class="hljs-string">&quot;DOM.Iterable&quot;</span>],<br>    <span class="hljs-string">&quot;module&quot;</span>: <span class="hljs-string">&quot;ESNext&quot;</span>,<br>    <span class="hljs-string">&quot;skipLibCheck&quot;</span>: <span class="hljs-literal">true</span>,<br><br>    <span class="hljs-comment">/* Bundler mode */</span><br>    <span class="hljs-string">&quot;moduleResolution&quot;</span>: <span class="hljs-string">&quot;bundler&quot;</span>,<br>    <span class="hljs-string">&quot;allowImportingTsExtensions&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;resolveJsonModule&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;isolatedModules&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;noEmit&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;jsx&quot;</span>: <span class="hljs-string">&quot;react-jsx&quot;</span>,<br><br>    <span class="hljs-comment">/* Linting */</span><br>    <span class="hljs-string">&quot;strict&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;noUnusedLocals&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;noUnusedParameters&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;noFallthroughCasesInSwitch&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-comment">// 加这里=================================</span><br>    <span class="hljs-string">&quot;paths&quot;</span>: &#123; <br>      <span class="hljs-string">&quot;@/*&quot;</span>: [<span class="hljs-string">&quot;./src/*&quot;</span>], <br>    &#125; <br>  &#125;,<br>  <span class="hljs-string">&quot;include&quot;</span>: [<span class="hljs-string">&quot;src&quot;</span>],<br>  <span class="hljs-string">&quot;references&quot;</span>: [&#123; <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;./tsconfig.node.json&quot;</span> &#125;]<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<blockquote>
+<p>神奇的bug<br><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202308051524370.png" srcset="/img/loading.gif" lazyload></p>
+</blockquote>
+<p>将首字母改成大写就好了。</p>
+<blockquote>
+<p>后端返回的res为underfined，但是网络面板里是成功的</p>
+</blockquote>
+<p>后来发现是ts 类型的问题，他as 了一下就没了，主要还是前后端定义的格式有问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> type <span class="hljs-title class_">ResType</span> = &#123;<br>  <span class="hljs-attr">code</span>: number<br>  data?: <span class="hljs-title class_">DataType</span><br>  msg?: string,<br>  msgs?:any,<br>  users?:object,<br>&#125;<br><br><span class="hljs-keyword">export</span> type <span class="hljs-title class_">DataType</span> = &#123;<br>  [<span class="hljs-attr">key</span>: string]: any<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上一行执行一个reducer，nav(-1)，然后发现reducer不执行<br>后来我放回调里面了</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">run</span>: readMsgRun, <span class="hljs-attr">loading</span>: readMsgLoading &#125; = <span class="hljs-title function_">useRequest</span>(<br>  <span class="hljs-keyword">async</span> (to) =&gt; &#123;<br>    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">readMsgService</span>(to);<br>    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">num</span>:data,<span class="hljs-attr">from</span>:to&#125;;<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">manual</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-title function_">onSuccess</span>(<span class="hljs-params">res: any</span>) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res)<br>      <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">msgReadReducer</span>(&#123; <span class="hljs-attr">num</span>:res.<span class="hljs-property">num</span>, <span class="hljs-attr">from</span>: res.<span class="hljs-property">from</span> &#125;));<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(&#123; <span class="hljs-attr">num</span>:res, <span class="hljs-attr">userid</span>: _id &#125;)<br>    &#125;,<br>    <span class="hljs-title function_">onFinally</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-title function_">nav</span>(-<span class="hljs-number">1</span>);<br>    &#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -326,9 +335,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/">#深拷贝</a>
+        <a href="/tags/typescript/">#typescript</a>
       
-        <a href="/tags/js/">#js</a>
+        <a href="/tags/react/">#react</a>
+      
+        <a href="/tags/vite/">#vite</a>
       
     </div>
   
@@ -340,8 +351,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>手写深拷贝</div>
-      <div>http://example.com/2023/06/02/手写深拷贝/</div>
+      <div>vite+react+ts</div>
+      <div>http://example.com/2023/08/04/vite+react+ts/</div>
     </div>
     <div class="license-meta">
       
@@ -353,7 +364,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年6月2日</div>
+          <div>2023年8月4日</div>
         </div>
       
       
@@ -385,18 +396,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/04/vite+react+ts/" title="vite+react+ts">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vite+react+ts</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/01/CSS%20%E4%B9%8B%E5%8C%85%E5%90%AB%E5%9D%97/" title="CSS 之包含块">
-                        <span class="hidden-mobile">CSS 之包含块</span>
+                      <a href="/2023/06/02/%E6%89%8B%E5%86%99%E6%B7%B1%E6%8B%B7%E8%B4%9D/" title="手写深拷贝">
+                        <span class="hidden-mobile">手写深拷贝</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
