@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>commitlint报错问题</title>
+    <link href="/2023/08/26/commitlint%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/08/26/commitlint%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="commit一直有问题"><a href="#commit一直有问题" class="headerlink" title="commit一直有问题"></a>commit一直有问题</h1><p><img src="https://shoukailiang-blog.oss-cn-hangzhou.aliyuncs.com/article/202308262213444.png"></p><p>后来发现官网</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">echo</span> <span class="hljs-string">&quot;module.exports = &#123;extends: [&#x27;<span class="hljs-variable">@commitlint</span>/config-conventional&#x27;]&#125;&quot;</span> &gt; commitlint.config.js <br></code></pre></td></tr></table></figure><p>生成的代码时UTF16的，无语。<br>改成utf-8就好了</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>vite+react+ts</title>
     <link href="/2023/08/04/vite+react+ts/"/>
     <url>/2023/08/04/vite+react+ts/</url>
